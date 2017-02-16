@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>事件触发示例</title>
+    <script src="../../bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="../../js/jquery.mobile-1.4.5.min.js"></script>
+    <link href="../../js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+</head>
+<body>
+<script>
+    $(document).ready(function(){
+        alert("document.ready()被触发");
+    });
+    $(document).live("mobileinit",function(){
+        alert("mobileinit事件被执行");
+    });
+    $(document).delegate("#page_mobileInit0","pageinit",function(){
+        alert("page_mobileInit0的pageinit事件初始化执行");
+    });
+    $(document).delegate("#page_mobileInit0","pageshow",function(){
+        alert("page_mobileInit0的pageshow事件初始化执行");
+    });
+    $(document).delegate("#page_mobileInit1","pageinit",function(){
+        alert("page_mobileInit1的pageinit事件初始化执行");
+    });
+    $(document).delegate("#page_mobileInit1","pageshow",function(){
+        alert("page_mobileInit1的pageshow事件初始化执行");
+    });
+</script>
+<!--页面事件1-->
+<section id="page_mobileInit0" data-role="page">
+    <header data-role="header">
+        <h1>页面事件</h1>
+    </header>
+    <div class="content" data-role="content">
+        <p>
+            <mark>
+                jQuery Mobile页面初始化是通过mobileInitia $(document).ready()以及pageinit实现的<br>
+            </mark>
+            <a href="#" onclick="$(document).trigger('mobileinit')">手动触发mobileInit事件</a>
+            <br>
+            进入<a href="#page_mobileInit1">下一页</a>
+            <br>
+            <p>
+                <b>mobileInit,document.ready() pageinit只会触发一次（当页面返回时不会再次触发，只会再次出发pageshow事件）</b>
+            </p>
+        </p>
+    </div>
+    <div onclick="javascript:alert('div')">
+        <button onclick="javascript:alert('button')">按钮</button>
+    </div>
+
+</section>
+
+<!--页面事件2-->
+<section id="page_mobileInit1" data-role="page">
+    <header data-role="header">
+        <h1>页面事件</h1>
+        <a href="#page_mobileInit0">返回</a>
+    </header>
+    <div class="content" data-role="content">
+        <p>
+            jQuery Mobile页面初始化是通过pageinit实现的.<br>
+        </p>
+    </div>
+    <h2 data-role="header">
+        什么是事件冒泡
+    </h2>
+    <p>
+        在一个对象上触发某类事件（比如单击onclick事件），如果此对象定义了此事件的处理程序，那么此事件就会调用这个处理程序，如果没有定义此事件处理程序或者事件返回true，那么这个事件会向这个对象的父级对象传播，从里到外，直至它被处理（父级对象所有同类事件都将被激活），或者它到达了对象层次的最顶层，即document对象（有些浏览器是window）。
+    </p>
+</section>
+</body>
+</html>

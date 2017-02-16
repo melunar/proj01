@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <title>事件js</title>
+</head>
+<body onload="test03()">
+
+
+	<div onselectstart="return false">无法选择此处文本onselectstart="return false"</div>
+<!-- 	onselectstart事件不被input和textarea标签支持，而onselect事件只被input和textarea支持 -->
+    <script>
+
+
+        /**
+         * 基础的事件原理（DOM0时期）
+         *
+         * 直接在dom对象上注册事件名称-DOM0写法,事件名称也可以用['']方式(相同的注册事件 后面的会覆盖前面的)
+         * 事件的注册还可以直接写在标签里(这种方式好像获取不到当前上下文this以及事件对象e参数在函数体内使用会有问题，不建议用于复杂的事件)
+         *
+         * 事件触发时，会默认传入一个参数e，表示事件对象，通过e，我们可以获取很多有用的信息，比如点击的坐标、具体触发该事件的dom元素等等
+         *
+         * 事件触发时，this就是指该事件在哪个dom对象上触发
+         *
+         * btn.已经注册事件名称 = null;可以解除该注册事件
+         * */
+        function test01() {
+            //这俩是等效的
+            document.getElementById("btn1").onclick = function(e){
+                co("btn1");
+                co(e.clientX);
+                co(this.nodeName);//button
+            };
+            //document.getElementById("btn1")["onclick"] = function(e){alert("btn1")};
+
+
+            //document.getElementById("btn1").onclick = null;
+        }
+        function test011(e){
+            co("btn1");
+            co(this.nodeName);//button
+        }
+
+
+        /**
+         *
+         * addEventListener 和 removeEventListener
+         *
+         * 事件的三阶段（捕获 目标 冒泡）：某个元素触发了某个事件，最先得到通知的是window，然后是document，依次而入，直到真正触发事件的那个元素(目标元素)为止，这个过程就是捕获。接下来，事件就到了目标，然后再从元素开始起泡，再依次而出，直到window对象为止，这个过程就是冒泡。
+         *
+         * 默认使用的是冒泡阶段（ＩＥ不支持捕获触发）
+         *
+         * */
+
+        /**
+         * 同一个dom元素注册不同时期的触发事件（捕获、冒泡）
+         *
+         * addEventListener注册一个或多个（相同）事件（相同事件不会被覆盖），参数：事件名称(没有on)，事件回调，[捕获（true）/冒泡（false）]
+         *
+         * removeEventListener解除绑定要跟绑定参数同步，监听器要调用函数不要使用匿名函数，不然解绑不方便，（若是有俩事件句柄，一次在捕获阶段，一次在冒泡阶段，必须单独移除该事件。）
+         *
+         * */
+        function test02() {
+            var btn = document.getElementById("btn2");
+            if (!window.attachEvent) {
+                btn.addEventListener("click", fn1,true);
+                btn.addEventListener("click", fn2,true);
+            } else {
+                btn.attachEventListener("click", fn1);
+                btn.attachEventListener("click", fn2);
+            }
+           // btn.removeEventListener("click",fn1,true);
+        }
+        function fn1(e){
+            alert("捕获");
+        }
+        function fn2(e){
+            alert("冒泡");
+        }
+
+        /**
+         * 不同dom元素（嵌套关系）注册同时期(true,捕获)的同触发事件：先触发外面的元素，在触发内部的；若是都在冒泡时期触发则反之（不同级元素定义不同时期事件，理清捕获冒泡顺序和元素嵌套即可分清触发时期）
+         *
+         * 如果是同时期同元素注册多个相同事件，则按照定义顺序执行
+         *
+         * IE6及其以下使用attachEvent
+         * 新版的IE好像普遍支持addEventListener 也支持事件的三个阶段（演示所得）
+         *
+         * */
+        function test03() {
+            var btn = document.getElementById("btn3"),
+                    btnp = document.getElementById("btn3p");
+            if (btn.addEventListener) {
+                btn.addEventListener("click", function (e) {
+                    alert("btn3");
+                }, true);
+                btnp.addEventListener("click", function(e){
+                    alert("段落");
+                }, true);
+            } else if(btn.attachEvent) {
+                btnp.attachEvent("click", function(e){
+                    co("段落IE ");//z子元素
+                });
+                btn.attachEvent("click", function (e) {
+                    co("btn3 IE");//fu
+                });
+            }
+            if (btn.addEventListener) {alert("add");}
+            if (btn.attachEvent) {alert("attach");}
+        }
+
+
+        /*
+                event对象的重要属性
+
+         兼容IE的event对象
+         evt = (evt) ? evt : window.event;
+
+         altKey	返回当事件被触发时，"ALT" 是否被按下。
+         clientX	返回当事件被触发时，鼠标指针的水平坐标。
+         clientY	返回当事件被触发时，鼠标指针的垂直坐标。
+         ctrlKey	返回当事件被触发时，"CTRL" 键是否被按下。
+         metaKey	返回当事件被触发时，"meta" 键(mac)是否被按下。
+         screenX	返回当某个事件被触发时，鼠标指针的水平坐标。
+         screenY	返回当某个事件被触发时，鼠标指针的垂直坐标。
+         shiftKey	返回当事件被触发时，"SHIFT" 键是否被按下。
+         keyCode	（IE获取方式e.keycode，其他用e.which）对于 keypress 事件，该属性声明了被敲击的键生成的 Unicode 字符码。对于 keydown 和 keyup 事件，它指定了被敲击的键的虚拟键盘码.
+         offsetX,offsetY	发生事件的地点在事件源元素的坐标系统中的 x 坐标和 y 坐标。
+		 pageX pageY 鼠标点击的坐标点，相对于整个屏幕
+
+        * */
+
+        /*
+               常用的事件（鼠标 键盘）
+         onclick	当用户点击某个对象时调用的事件句柄。
+         oncontextmenu	在用户点击鼠标右键打开上下文菜单时触发
+         ondblclick	当用户双击某个对象时调用的事件句柄。
+         onmousedown	鼠标按钮被按下。
+         onmouseenter	当鼠标指针移动到元素上时触发。
+         onmouseleave	当鼠标指针移出元素时触发
+         onmousemove	鼠标被移动。
+         onmouseover	鼠标移到某元素之上。
+         onmouseout	鼠标从某元素移开。
+         onmouseup	鼠标按键被松开。
+
+         onkeydown	某个键盘按键被按下。
+         onkeypress	某个键盘按键被按下并松开。
+         onkeyup	某个键盘按键被松开。
+         * */
+
+        function noNumbers(e)  {
+            //不允许输入数字的
+
+            var keynum,  keychar,  numcheck;
+
+            if(window.event)
+            {
+                keynum = e.keyCode;// IE获取键盘值
+            }
+            else if(e.which)
+            {
+                keynum = e.which;// Netscape/Firefox/Opera 获取键盘值
+            }
+            if(e.shiftKey) {
+                keynum += 26;
+            }
+            co(keynum);
+            keychar = String.fromCharCode(keynum);
+            numcheck = /\d/;
+            return !numcheck.test(keychar);
+        }
+
+        /**
+         *
+         * */
+        function test0() {
+        }
+        test0();
+
+        $.get("load.html").then(
+                function(){ alert("$.get succeeded"); },
+                function(){ alert("$.get failed!"); }
+        );
+    </script>
+    <button id="btn1"  >btn1</button><!--onclick="test011()"-->
+    <button id="btn2"><p>按钮有两个事件（捕获和冒泡）</p></button>
+    <div style="width: 100px; height: 100px; background-color: #b51600" id="btn3"><p style="width: 50px; height: 50px; background-color: aqua" id="btn3p">P</p></div>
+    <input type="text" onkeydown="return noNumbers(event)" />
+</body>
+<script>
+
+    function co(o) {
+        console.log(o);
+    }
+</script>
+</html>

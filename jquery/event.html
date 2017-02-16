@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        .enter {
+            background-color: #ccff65;
+        }
+        .p1 {
+            color: red;
+
+        }
+        .p2 {
+            color: #00cbcb;
+
+        }
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <title>事件</title>
+</head>
+<body>
+    <script>
+        $(function() {
+//            $("#btn01").on("click",false);
+
+            //在每个对象上，这个事件处理函数只会被执行一次 one
+            /*$("#btn01").one("click", function(){
+                alert( $(this).text() );
+            });*/
+             $("#btn01").on("click",{name: "name"},function(e) {
+//                 e.preventDefault(); 通知浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。例如，如果 type 属性是 "submit"，在事件传播的任意阶段可以调用任意的事件句柄，通过调用该方法
+//                 console.log(e.cancelable); true
+                 alert(this + " " +e.data.name  );
+                 //e.stopPropagation();
+             });
+            $("#btn01").mouseover(function(e) {
+                alert("over");
+            });
+
+
+            /*$(".btn01").on("mouseenter mouseleave",function() {
+                $(this).toggleClass("enter");
+            });*/
+            $("#btn01").on({
+                mouseover: function() {alert("over");},
+                mouseout:  function() {alert("out");}
+            });
+            //off接受一个参数（不能有逗号隔开的多个事件），或者没有参数（解除所有事件）
+//            $("#btn01").off("click");
+            /*
+
+            $("#btn01p").on("click",function(e) {
+                alert(111);
+                e.stopPropagation();
+            });*/
+
+            //trigger 和绑定多个回调函数参数
+            $(".btn01").last().dblclick( function (event, a) {
+                // 一个普通的点击事件时，a是undefined类型
+                // 如果用下面的语句触发，那么a指向"foo",而b指向"bar"
+                //alert(a);
+            }).trigger("dblclick", ["foo"]);
+
+            //triggerHandler 触发指定函数的参数 但是不会触发事件 不会产生冒泡事件
+            $("#old").click(function(){
+                $("input").trigger("focus");
+            });
+            $("#new").click(function(){
+                $("input").triggerHandler("focus");
+            });
+            $("input").focus(function(){
+                $("<span>Focused!</span>").appendTo("body").fadeOut(1000);
+            });
+
+            /*$(".btn01").click(function() {alert(11)});*//*
+            $(".btn01").live('click',function() {alert("live 可以给后来添加的元素添加事件")});*/
+            $('.btn01').on('click', function() {
+                alert("live(1.9以后用取消了live 无法实现这个功能了) 可以给后来添加的元素添加事件");
+            });
+            $("<button class='btn01 btn010'>后来添加的按钮</button>").appendTo($('body'));
+            $(".btn010").click(function() {alert("后来添加的按钮 要在添加语句之后绑定事件,,,,解绑事件注意要用$(div)....不是$(div p)");});
+
+            //可以解绑所有方式绑定的事件
+            //
+
+            $("div").delegate("p",'click',function() {alert(this);});
+            $("div").undelegate();
+
+
+/*
+            用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
+            如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的。
+*/
+           // $(".toggleP").toggle(1000,function() {alert("hahh")});//显示和隐藏的切换
+            $(".toggleP2").toggle(function () {
+                        $(this).addClass("p2");
+                    },
+                    function () {
+                        $(this).addClass("p1");
+                    });//显示和隐藏的切换
+            //$(".toggleP").toggle(); 隐藏了
+
+        });
+    </script>
+
+    <p id="btn01p"><button id="btn01">on</button></p>
+    <button class="btn01">on</button>
+    <button class="btn01">双击</button>
+
+    <button id="old">.trigger("focus")</button>
+    <button id="new">.triggerHandler("focus")</button><br/><br/>
+    <input type="text" value="To Be Focused"/>
+
+    <div>
+        <p>可以点击的段落 用div.delegate(p)实现</p>
+    </div>
+    <p class="toggleP" style="display: none">toggle:用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
+        如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的。</p>
+
+    <p class="toggleP2" style="display: none">toggle:速度参数和多个回调函数不可以同时存在
+        如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的。</p>
+    <p class="toggleP2" style="display: none">toggle:用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
+        如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的。</p>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,IAAK;EACH,WAAW,EAJE,qBAAqB;;ACEpC,IAAK;EACH,SAAS,EAAE,0BAA0B;EACrC,gBAAgB,EDHH,IAAI;;ACKnB,GAAI;EACH,KAAK,EAAE,GAAG",
+"sources": ["../sass/demo-in.scss","../sass/index.scss"],
+"names": [],
+"file": "index.css"
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>-->
+    <!--<link rel="stylesheet" media="only screen and (min-width:480px) and (max-width:1000px)" href="../css/width480.css">-->
+    <link rel="stylesheet" media="only screen and (orientation:landscape)" href="../css/width480.css"><!--横屏landscape 竖屏porttrait-->
+</head>
+<body>
+    <p>这是网页的内容</p>
+    <select>
+        <option>1</option>
+        <option>3</option>
+        <option>2</option>
+    <select/>
+<script>
+
+    //方法1
+    if(window.applicationCache) {
+        console.log("支持h5");
+    }
+    else    cosole.log("不支持H5");
+
+    //方法2
+    if(document.createElement("canvas").getContext) {
+        console.log("支持画布");
+    }
+    else console.log("不支持画布");
+
+    //方法3
+    console.log("video标签：" + !!document.createElement('video').canPlayType);
+
+   //方法4
+    var i = document.createElement("input");
+    i.setAttribute("type","range");
+    if(i.type == "range") {
+        console.log("range input");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<title>图表</title>
+	<script type="text/javascript" src="../../js/echarts.js"></script>
+	<style type="text/css">
+		#demo01 {
+			width: 400px;
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo01"></div>
+</body>
+<script type="text/javascript">
+	var myChart = echarts.init(document.getElementById("demo01"));
+    //设置数据
+   
+    var option = {
+      //设置标题
+      title:{
+          show: true,
+          text: '标题 \ntitle.text',
+          link: "http://echarts.baidu.com/option.html#title.text",
+          target: "blank",// 或者 'self'
+          textStyle: {
+              color: "#270",
+              fontStyle: "oblique",
+              fontWeight: "bold",
+              fontFamily: "sans-serif",
+              fontSize: 18 //number
+          },
+          textAlign: "left",//left right
+          textBaseline: "top",// 'top', 'middle', 'bottom'
+          subtext: '二级标题 title.subtext',//二级标题具有一级标题类似属性 如sublink
+          padding: [0, 10]
+          //....
+      },
+      //设置提示 鼠标滑过的吐司提示
+      tooltip: {
+        show: true
+      },
+      //设置图例
+      legend: {
+          show: true,
+          left: 300,
+          orient: 'vertical',//'horizontal'
+          itemWidth: 45,
+          selectedMode: true,
+          //formatter: 'Legend {name}',
+        data:[{
+            name: '柱状图',
+            // 强制设置图形为圆。
+            icon: 'circle',
+            // 设置文本为红色
+            textStyle: {
+                color: 'red'
+            }
+        },"折线图","饼图"] //暂时只能设置一个图例 不然不统一
+      },
+        //坐标系内的网格
+        grid: {
+          show: true
+        },
+      //设置坐标轴
+      xAxis : [
+        {
+            name: "X轴",
+          type : 'category',
+          data : ["xAxis.data1","xAxis.data2","xAxis.category-in","裤子","高跟鞋","袜子",{
+              value: "帽子",
+              textStyle: {
+                  color: 'red'
+              }
+          },"围巾"]
+        }
+      ],
+      yAxis : [
+        {
+          type : 'value'
+        }
+      ],
+      //设置数据
+      series : [
+        //条形图
+        {
+          "name":"柱状图",
+          "type":"bar",//条形图
+          "data":[5, 20, 38, 10, 24, 20,24,32]
+        },
+        //折线图
+         {
+              "name":"折线图",
+              "type":"line",//折线图
+              step: true,
+              "data":[5, 20, 38, 10, 24, 20,24,32],
+              //绘制平均线
+              markLine : {
+                  data : [{type : 'max', name: '最大值'},
+                      {type : 'average', name: '平均值'}
+                  ]
+              },
+              //绘制最高最低点
+              markPoint : {
+                  symbol: "arrow",
+                  symbolSize: 20,
+                  data : [
+                      {type : 'max', name: '最大值'},
+                      {type : 'min', name: '最小值'}
+                  ]
+              }
+          },
+          {
+              "name":"饼图",
+              "type":"pie",//
+              roseType: true,
+              center: ['10%', '50%'],
+              "data":[5, 20, 38, 10, 24, 20,24,32]
+
+          }
+      ]
+    };
+    var option1 = {
+        //时间轴设置
+        timeline : {
+            //时间轴时间列表
+            data:[
+                '2002-01-01','2003-01-01','2004-01-01','2005-01-01','2006-01-01'
+            ],
+            //自定义处理，只显示年份
+            label:{
+                formatter : function(s) {
+                    return s.slice(0, 4);
+                }
+            },
+            //时间轴的位置设定
+            height:80,
+            x:50,
+            padding:[40,10,10,10],
+            //时间轴播放控制
+            autoPlay : true,
+            playInterval : 2000
+        },
+        //时间点设置
+        options : [
+            //第一个时间点
+            //2002年数据表
+            {
+                title:{
+                    text:'2002年货物销量图',
+                    subtext:'纯属捏造，如有雷同，人品爆发。'
+                },
+                //设置提示
+                tooltip: {
+                    show: true
+                },
+                //设置图例
+                legend: {
+                    data:['销量']
+                },
+                //设置坐标轴
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","帽子","围巾"],
+                        axisLabel:{
+                            margin:-20,
+                            textStyle:{
+                                color:'#999',
+                                fontWeight:'bold'
+                            }
+                        }
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        type:'line',
+                        data:[5, 20, 38, 10, 24, 20,24,32],
+                        //绘制平均线
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        },
+                        //绘制最高最低点
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        }
+                    }
+                ]
+            },
+            //第二个时间点
+            //2003年数据表，新增内容
+            {
+                title:{
+                    text:'2003年货物销量图',
+                    subtext:'纯属捏造，如有雷同，人品爆发。'
+                },
+                series : [
+                    {
+                        type:'line',
+                        data:[10, 20, 36, 18, 26, 16,20,34],
+                        //绘制平均线
+                        markLine : {
+                            data : [
+                                {type : 'average', name: '平均值'}
+                            ]
+                        },
+                        //绘制最高最低点
+                        markPoint : {
+                            data : [
+                                {type : 'max', name: '最大值'},
+                                {type : 'min', name: '最小值'}
+                            ]
+                        }
+                    }
+                ]
+            },
+            //第三个时间点
+            {}
+            //...
+        ]
+    };
+
+    // 为echarts对象加载数据 
+    myChart.setOption(option);
+  
+</script>
+</html>

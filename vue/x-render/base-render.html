@@ -1,0 +1,77 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>VUE-x-render</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-router.js"></script>
+	</head>
+	<body>
+    <div id="app">
+        <anchored-heading :level="5">
+            <span slot="h1">H1 </span>
+            <span slot="h2">H2 </span>
+            <span slot="h3">H3 </span>
+            Hello world!
+        </anchored-heading>
+    </div>
+
+	</body>
+    <script>
+//   anchored-heading标签内没有被标注slot属性的元素 被存储在组件实例中的 $slots.default
+/**
+ * createElement函数
+ * 参数1：{String | Object | Function}，一个 HTML 标签，组件选项，或一个函数 Return 上述其中一个；
+ * 参数2：{Object} 对应属性的数据对象。可选项
+ * 参数3：{String | Array} 子节点(VNodes)。 可选项
+ * */
+        Vue.component('anchored-heading', {
+            render: function (createElement) {
+                console.log(this.$slots);
+                var _this = this;
+                return createElement('div', {
+                    class: "_DivDemo",
+                    id: "DivDemo"
+                }, [
+                        //VNodes 可以嵌套多个结点
+                    createElement('h1', {class: "my-title"}, 'hello world h1'),
+                    createElement(
+                            'h' + _this.level,
+                            {
+                                // 和`v-bind:class`一样的 API
+                                class: {
+                                    foo: true,
+                                    bar: false
+                                },
+                                // 和`v-bind:style`一样的 API
+                                style: {
+                                    color: 'red',
+                                    fontSize: '14px'
+                                },
+                                // 正常的 HTML 特性
+                                attrs: {
+                                    id: 'foo'
+                                },
+                                // 组件 props
+                                props: {
+                                    myProp: 'bar'
+                                }
+                            },
+                            _this.$slots.default
+                    )
+                ]);
+            },
+            props: {
+                level: {
+                    type: Number,
+                    required: true
+                }
+            }
+        });
+
+        var app = new Vue({
+            el:"#app"
+        });
+    </script>
+</html>

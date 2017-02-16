@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        .a {
+            /*margin: 10px;*/
+            width: 100px;
+            height: 100px;
+            background-color: #b6d;
+        }
+        .b {
+            /*margin: 20px;*/
+            width: 200px;
+            height: 100px;
+            background-color: #0fd;
+        }
+        .c {
+            width: 100px;
+            height: 100px;
+            background-color: #0f4;
+        }
+        .d {
+            width: 100px;
+            height: 100px;
+            background-color: #9f0;
+        }
+        .e {
+            width: 300px;
+            height: 300px;
+            background-color: #06d;
+            margin: 100px;
+        }
+        .ab {
+            position: absolute;
+            top: 500px;
+            left: 500px;
+        }
+        .re {
+            position: relative;
+            top: 300px;
+            left: 900px;
+        }
+        .fl {
+            float: left;
+        }
+    </style>
+    <script src=""></script>
+    <title>定位01</title>
+</head>
+<body>
+<script>
+    /**
+     * absolute : 　脱离文档流。
+     * 其层叠通过css z-index属性定义。此时对象不具有边距，但仍有补白和边框
+     *      参考对象：第一个position不是static的父元素的左上角
+     *      遗留空间由后续元素填充。
+     *
+     * relative : 　对象不可层叠，
+     * 参考对象：本身元素在static定位状态下的左上角
+     *          脱离文档流的布局，在文档流原先的位置遗留空白区域,不会被后继元素补充空间（可能会覆盖后面或者前面的元素，因为已经脱离的文档流）
+     *
+     * absolute 和 relative设置定位的元素不会影响父元素的大小，但是在浏览器缩小到此元素不可见时，会出现滚动条
+     *
+     * 绝对定位的子元素与float浮动的子元素不推荐同时使用，布局很难控制
+     *
+     *
+     * */
+</script>
+<div class="e ">
+    <div class="b">div-b</div>
+    <div class="a re">
+        div-a
+    </div>
+    <div class="c fl">div-c</div>
+    <div class="d fl">div-d</div>
+</div>
+</body>
+</html>

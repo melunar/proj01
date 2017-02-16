@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>each-基本循环使用方法</title>
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/handlebars.js"></script>
+</head>
+
+<body>  <table>
+    <thead>
+    <tr>
+        <th>each嵌套</th>
+    </tr>
+    </thead>
+    <tbody id="tableList">
+
+
+    </tbody>
+</table>
+
+<!--Handlebars.js模版-->
+<!--Handlebars.js模版放在script标签中，保留了html原有层次结构,模版中要写一些操作语句-->
+<!--id可以用来唯一确定一个模版,type是模版固定的写法-->
+<script id="table-template" type="text/x-handlebars-template">
+    {{#each this}}
+    {{#each info}}
+    {{../name}}的---是{{this}}<br/>
+    {{/each}}
+    {{/each}}
+
+    <!--with的使用-->
+   <!-- {{#with this}}
+    {{#this}}
+    {{name}}-&#45;&#45;{{info}}
+    {{/this}}
+    {{/with}}-->
+
+    <!--if的使用
+        凡是返回的为undefined null "" [] false都会返回假 不渲染if下面的模板
+    -->
+    <!--
+    <!--这是each方式
+    {{#each}}
+        {{#info}}
+            {{../name}}的老婆是{{this}}<br/>
+        {{/info}}
+    {{/each}}-->
+</script>
+
+
+
+
+<!--进行数据处理、html构造-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        //模拟的json对象
+        var data = [{
+            "name":"夏守成",
+            "info":
+                    [
+                        "刘亦菲",
+                        "王菲",
+                    ]
+        },
+            {
+                "name":"小龙",
+                "info":
+                        [
+                            "刘三",
+                            "王小菲",
+                        ]
+            }
+        ];
+
+        //注册一个Handlebars模版，通过id找到某一个模版，获取模版的html框架
+        //$("#table-template").html()是jquery的语法，不懂的童鞋请恶补。。。
+        var myTemplate = Handlebars.compile($("#table-template").html());
+        //将json对象用刚刚注册的Handlebars模版封装，得到最终的html，插入到基础table中。
+        $('#tableList').html(myTemplate(data));
+    });
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>跨域的处理</title>
+<script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+<img src="image/bbbb.bmp" alt="">
+<img src="image/bmp.bmp" alt="">
+<img src="image/jpg.jpg" alt="">
+<div>
+	<script type="text/javascript">
+	/**
+	 * [html标签的src属性->GET请求 可以实现跨域 
+	 *  这里是一个统计请求的示例]
+	 * @param {[type]} params [description]
+	 */
+		var Count = function(params) {
+			var _img = new Image();
+
+			return function(param) {
+				var str = "http://static.zybuluo.com/melunar/rvxvmozlh0ih9a5chqoew45o/image_1b08h5akr9b310coico16b516t59.png?";
+				for (var i in param) {
+					str += i + "=" + param[i];
+				}
+				_img.src = str;
+				//$("body").append(_img);
+				console.log("img: " + _img);
+			}(params);
+		};
+		Count({num: 10});
+	</script>
+	<script type="text/javascript">
+		function jsonPCallback(res, req) {
+			console.log(res, req);
+		}
+	</script>
+
+	<script src="http://localhost:1111/demosoft/domain/inc/jsonP.json?callback=jsonPCallback&data=jsonPData"></script>
+</div>
+</body>
+</html>

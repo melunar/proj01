@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>闭包</title>
+</head>
+<body onload="init1()">
+    <script>
+        //闭包：事件处理
+        var outter = [];
+/*        function clouseTest () {
+            var array = ["one", "two", "three", "four"];
+            for(var i = 0; i < array.length;i++){
+                var x = {};
+                x.no = i;
+                x.text = array[i];
+                x.invoke = function(){
+                    //仅仅是   构造了一个函数体，迭代完之后调用i都是 4
+                    console.log(i);
+                }
+                outter.push(x);
+            }
+        }
+
+        clouseTest();
+        outter[0].invoke();//4
+        outter[1].invoke();//4
+        outter[2].invoke();//4
+        outter[3].invoke();//4*/
+
+
+        //使用匿名函数
+        var outter = [];
+        function clouseTest () {
+            var array = ["one", "two", "three", "four"];
+            for(var i = 0; i < array.length;i++){
+                var x = {};
+                x.no = i;
+                x.text = array[i];
+                x.invoke = function(num){
+                    //立即执行了 输出1,2,3,4
+                    console.log(num);
+                }(i);
+                outter.push(x);
+            }
+        }
+
+        clouseTest();
+        console.log(outter[0]);//该对象的invoke属性为undefine
+
+        console.log("使用函数外部变量的最后的值");
+
+
+
+        var datamodel = {
+            table : [1,2,3],
+            tree : {}
+        };
+        (function(dm){
+            for(var i = 0; i < dm.table.rows; i++){
+                var row = dm.table.rows[i];
+                for(var j = 0; j < row.cells; i++){
+                    drawCell(i, j);
+                }
+            }
+        //build dm.tree
+        })(datamodel);
+
+
+
+
+        /**
+         * @难点：
+         * */
+       /* var CachedSearchBox = (function(){
+            var cache = {},
+                    count = [];
+            return {
+                attachSearchBox : function(dsid){
+                    if(dsid in cache){//如果结果在缓存中
+                        console.log("in cache");
+                        return cache[dsid];//直接返回缓存中的对象
+                    } else {
+                        console.log("not in cache");
+                    }
+                    var fsb = dsid + " ...";
+                    cache[dsid] = fsb;//更新缓存
+                    if(count.length > 10){//保正缓存的大小<=10
+                        console.log("delete one cache");
+                        delete cache[count.shift()];
+                    }
+                    return fsb;
+                },
+                clearSearchBox : function(dsid){
+                    if(dsid in cache){
+                        cache[dsid].clearSelection();
+                    }
+                }
+            };
+        })();
+        CachedSearchBox.attachSearchBox("input1");*/
+
+
+
+        function Person() {
+            var name = "default";
+            return {
+              getName: function() {
+                  return name;
+              },
+              setName: function(newName) {
+                  name = newName;
+              }
+            };
+        }
+        var per1 = new Person();
+        console.log(per1.getName());
+        per1.setName("hao1");
+        console.log(per1.getName());
+
+
+        var per2 = new Person();
+        console.log(per2.getName());
+        per2.setName("hao2");
+        console.log(per2.getName());
+        console.log("--------------------------------事件--------------------");
+
+
+        function init() {
+            var obj = document.getElementById("main");
+            obj.style.border = "1px solid red";
+            //初始化一个 1 秒钟以后被调用的回调函数
+            setTimeout(function () {
+                obj.style.display = 'none';
+            }, 1000);
+            //用来延迟显示消息的通用函数
+            function delayedAlert(msg, time) {
+                //初始化一个被封套的函数
+                setTimeout(function () {
+                    //此函数使用了来自封套它的函数的变量 msg
+                    alert(msg);
+                }, time);
+            }
+
+            var items = ["click", "keypress"];
+            for (var i = 0; i < items.length; i++) {
+                (function () {
+                    var item = items[i];
+                    obj["on" + item] = function () {
+                        alert("Thanks for your " + item);
+                    };
+                })();
+
+                //delayedAlert( "Welcome!", 2000 );
+            }
+
+        }
+        function init1() {
+            var obj = document.getElementById("main");
+
+            var items = ["click", "mousehover"];
+            for (var i = 0; i < items.length; i++) {
+                (function () {
+                    var item = items[i];
+                    obj["on" + item] = function () {
+                        alert("Thanks for your " + item);
+                    };
+                })();
+            }
+        }
+
+        //生成做加法的新函数的函数
+       /* function addGenerator( num ) {
+            return function( toAdd ) {
+                return num + toAdd
+            };
+        }
+
+        //addFive 现在是接受一个参数的函数，
+        //此函数将给参数加 5，返回结果数字
+        var addFive = addGenerator( 5 );
+        //这里我们可以看到，当传给它参数 4 的时候
+        //函数 addFive 的结果为 9
+        alert( addFive(4) == 9 );*/
+    </script>
+<div id="main">main</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+</head>
+<body>
+    <script>
+        function Person(){
+
+        }
+        Person.prototype = {
+            age: 12,
+            name: "Hao",
+            gender: "female",
+            eat: function(food) {
+                alert("Hao is eatting..." + food);
+            }
+        };
+        var per = new Person();
+        console.log(per);
+
+    </script>
+</body>
+</html>

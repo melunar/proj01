@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数及原型模式混合使用</title>
+</head>
+<body>
+    <script>
+        console.log("构造函数模式用于定义实例的属性，而原型模式用于定义方法和共享的属性。" +
+                "结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方方法的引用，最大限度的节约内存。" +
+                "此外，组合模式还支持向构造函数传递参数，");
+        console.log("原型中的属性是共享的，一改动全身");
+
+        function Person(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.lessons = ['Math', 'Physics'];
+        }
+        Person.prototype = {
+            //constructor: Person,//原型字面量方式会将对象的constructor变为Object，此外强制指回Person
+            //__proto__:Date.prototype,
+            change: ['value1','value2'],
+            getName: function () {
+                return this.name;
+            }
+        };
+        console.log(Person.prototype.__proto__ === Object.prototype);//默认是Object  一般不用修稿
+        console.log(Person.prototype.constructor);//默认是Object 现在是Person类
+        var person1 = new Person('Jack', 19, 'SoftWare Engneer');
+        person1.lessons.push('Biology');
+        person1.change.push("value3");
+        var person2 = new Person('Lily', 39, 'Mechanical Engneer');
+        console.log(person1.lessons);//Math,Physics,Biology
+        console.log(person2.lessons);//Math,Physics
+        console.log(person1.change);
+        console.log(person2.change);//原型中的共享变量 发生干扰-变换
+        console.log(person1.getName === person2.getName);//true,//共享原型中定义方法
+
+    </script>
+</body>
+</html>

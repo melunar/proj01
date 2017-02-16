@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <title>链式方法</title>
+</head>
+<body>
+<script>
+    var CheckObject = {
+        checkName: function() {
+            console.log("checkName");
+            return this;
+        },
+        checkEmail: function() {
+            console.log("checkEmail");
+            return this;
+        },
+        checkPassword: function() {
+            console.log("checkPassword");
+            return this;
+        }
+    };
+    CheckObject.checkName().checkEmail().checkPassword();
+
+
+    //或者
+    var CheckObj = function() {};
+    CheckObj.prototype = {
+        checkName: function() {
+            console.log("checkName");
+            return this;
+        },
+        checkEmail: function() {
+            console.log("checkEmail");
+            return this;
+        },
+        checkPassword: function() {
+            console.log("checkPassword");
+            return this;
+        }
+    };
+    var checkObj = new CheckObj();
+    checkObj.checkEmail().checkEmail().checkName().checkPassword();
+</script>
+</body>
+</html>

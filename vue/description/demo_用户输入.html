@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>VUE-用户输入</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+        <div id="app-5">
+            <p>{{message}}</p>
+            <button v-on:click="reverseMessage">reverse</button>
+        </div>
+        <hr>
+        <div id="app-6">
+            <!--
+                无效
+                <input type="text" value={{message}}>
+            -->
+            <input type="text" v-model="message">
+        </div>
+        </div>
+	</body>
+	<script>
+        /**
+         * data的每一个属性在vue封装的对象中都有get/set方法=>实时双向数据绑定的关键
+         */
+        var app5 = new Vue({
+            el: "#app-5",
+            data: {
+                message: "你好 Vue ha"
+            },
+            methods: {
+                reverseMessage: function() {
+                    /**
+                     * this 代指app5 对象
+                     */
+                    this.message = this.message.split(" ").reverse().join(" ");
+                }
+            }
+        });
+
+        var app6 = new Vue({
+            el: "#app-6",
+            data: {
+                message: "input value"
+            }
+        });
+	</script>
+</html>

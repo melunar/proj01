@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Events1</title>
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+ </head>
+ <body>
+	<h1>jQuery.Event</h1>
+	<form name="myform">
+		<input type="button" name="mybutton" id="mybuttonID" value="BUTTON"></button>
+		<input type="button" name="mybutton2" value="BUTTON"></button>
+	</form>
+	<script>
+		var e = new jQuery.Event("click");
+		console.log(e.type + " " + e.target + " " + e.data);
+		
+		/*not '()'!!!!!! IT is not a 调用方法*/
+		document.myform.mybutton.onclick = myfunction;
+		function myfunction() {
+			alert("click");
+		}
+		document.myform.mybutton2.onclick = function() {
+			if(confirm("Are U OK?")) {
+				alert("GOOD");
+			}
+			else 
+				alert("OH NO!!!");
+		};
+	</script>
+
+	<table>
+		<tr>
+			<td>
+				<img id="pic1" src="images/1.png" />
+			</td>
+			<td id="output1">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img id="pic2" src="images/2.png" />
+			</td>
+			<td id="output2">
+			</td>
+		</tr>
+	</table>
+	<br><hr/>
+	<a href="nodes.html" target="_blank" class="preventDefault">preventDefault():阻止默认的浏览器事件-但是没有成功</a>
+	<script language="javascript">
+		$(function() {
+			$("#pic1").click(function(ev) {
+			$("#output1").html("timeStamp:" + ev.timeStamp + "<br>screenY:" + ev.screenY + "<br> screenX:" + ev.screenX + "<br>pageY:" + ev.pageY + "<br> pageX:" + ev.pageX);
+			});
+			$("#pic2").dblclick(function(ev) {
+				$("#output2").html("timeStamp:" + ev.timeStamp + "<br>screenY:" + ev.screenY + "<br> screenX:" + ev.screenX + "<br>pageY:" + ev.pageY + "<br> pageX:" + ev.pageX + "<br /> targetNodeName:" + ev.target.nodeName);
+			});
+			
+			//没有成功
+
+//			$("#pic2").click(function(ev) {
+//				ev.preventDefault();
+//				alert("isDefaultPrevented():" + ev.isDefaultPrevented());
+//			});
+//
+//			$("a .preventDefault").click(function(ev) {
+//				ev.preventDefault();
+//				alert("isDefaultPrevented():" + ev.isDefaultPrevented());
+//			});
+		});
+	</script>
+ </body>
+</html>

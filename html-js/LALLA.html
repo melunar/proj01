@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>eval</title>
+</head>
+<body>
+    <script>
+        var per = {
+            name: "name",
+            age: 14,
+            getName: function() {
+                return thiS.name;
+            }
+        }
+
+        //console.log(eval("(" + per + ")"));
+
+        function test01(va1, va2) {
+            alert(typeof arguments);
+            arguments.var1 = "123";
+            console.log(arguments.length);
+            console.log(arguments);
+        }
+        test01(1,2);
+
+    </script>
+</body>
+</html>

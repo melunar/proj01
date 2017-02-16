@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <base href="http://www.baidu.com" />
+    <base target="_blank" />
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        HTML5 NEW TAGS.
+    </h1>
+    <div class="row">
+        <div class="span10">
+            <ul class="nav-list unstyled">
+                <li>
+                    HTML5 a 标签也支持name属性规定锚的名称。<br>
+                    <a href="#c1">下面的抛锚了！</a>
+                </li>
+                <li>
+                    <br>
+                    &lt;abbr&gt;标签，标记一个缩写：标签中使用全局的 title 属性，这样就能够在鼠标指针移动到 abbr 元素上时显示出简称/缩写的完整版本。
+                    <br>这是一个缩写<abbr title="GNU">GNU</abbr>，鼠标放上来吧。
+                </li>
+                <li>
+                    <br>
+                    &lt;acronym&gt;：标记一个首字母缩写<br><mark>HTML5 不再支持</mark>
+                    &lt;acronym title="World Wide Web"&gt;WWW&lt;/acronym&gt;
+                </li>
+                <li>
+                    <br>
+                    area标签：定义图像映射内部的区域。
+                    <textarea style="display: block; width: 800px; height: 100px;">
+<img src="ad.jpg" name="mult" usemap="#Map1" id="mult" />
+<map name="Map1">
+    <area shape="circle" coords="180,88,22" href="file:///F|/web front/html5/tags1.html">
+    <area shape="poly" coords="255,104,288,86,316,94,321,124,292,143,258,131" href="file:///F|/web front/html5/note3.html">
+</map>
+                    </textarea>
+                </li>
+                <li>
+                    <br>
+                    <b>base 标签</b>为页面上的所有链接规定默认地址或默认目标,但是优先级高于href=#锚点，使其失效。<br>
+                    通常情况下，浏览器会从当前文档的 URL 中提取相应的元素来填写相对 URL 中的空白。<br>
+                    使用 <base> 标签可以改变这一点。浏览器随后将不再使用当前文档的 URL，而使用指定的基本 URL 来解析所有的相对 URL。
+                    <br>这其中包括 a、img、link、form 标签中的 URL。<br>
+                    &lt;head&gt;<br>
+                    &lt;base href="http://www.baidu.com" /&gt;<br>
+                    &lt;base target="_blank" /&gt;<br>
+                    &lt;/head&gt;<br>
+                    注意暂时最好在&lt;/head&gt;之前防止base标签<br>
+                    本页面已经设置，测试下面的链接：<a href="#">空的a</a> <a href="github.com">非空的</a>
+                </li>
+                <li>
+                    <br>
+                    <b>optgroup</b>
+                    <textarea  style="display: block; width: 800px; height: 100px;">
+                        optgroup标签把相关的选项组合在一起
+                        <select>
+                            <optgroup label="Swedish Cars">
+                                <option value ="volvo">Volvo</option>
+                                <option value ="saab">Saab</option>
+                            </optgroup>
+
+                            <optgroup label="German Cars">
+                                <option value ="mercedes">Mercedes</option>
+                                <option value ="audi">Audi</option>
+                            </optgroup>
+                        </select>
+                    </textarea>
+                </li>
+                <li>
+                    <div dropzone="copy">dropzone="copy"</div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="span9" style="margin-top: 20px;">
+            meter 标签定义已知范围或分数值内的标量测量,也被称为 gauge（尺度）。
+            <br>默认全值为1.IE不支持该标签
+            <meter value="3" min="0" max="10">3/10</meter><br>
+            &lt;meter value="3" min="0" max="10"&gt;3/10&lt;/meter&gt;
+            <br>
+
+            <br>
+            <b>progess标签标示任务的进度,使用时给他加个父标签</b>
+            <progress value="0.2" max="2">
+            </progress>
+            <br><span><progress /></span>
+            <br><br>
+            &lt;dd&gt; 定义定义列表中项目的描述(二级列表项)。
+                <br><br>
+            &lt;cite&gt; 标签通常表示它所包含的文本对某个参考文献的引用，比如书籍或者杂志的标题。
+
+                按照惯例，引用的文本将以斜体显示。
+
+                被启用的标签<br />
+            <big>HTML5 中不支持 applet 标签,用 object 元素 标签代替。</big>
+        </div>
+    </div>
+</div>
+<pre>
+
+
+
+
+        &lt;zhehi &gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+<a name="c1">抛锚 </a>
+<pre>
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

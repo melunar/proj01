@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../js/co.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+  <br>valueOf偏向于运算，toString偏向于显示。
+  <br>在进行对象转换时（例如:alert(a)）,将优先调用toString方法，如若没有重写toString将调用valueOf方法，如果两方法都不没有重写，但按Object的toString输出。
+  <br> 在进行强转字符串类型时将优先调用toString方法，强转为数字时优先调用valueOf。
+  <br>在有运算操作符的情况下，valueOf的优先级高于toString。
+
+    <script>
+        console.log(location.hash);
+        con(new Date().toGMTString());
+
+        con((new Date().getTime()).toGMTString());
+        con(((new Date().getTime()) + 24*3600*1000).toGMTString());
+        if( new Boolean(false)) {
+            console.log("yes");
+        }
+
+        /*
+        * push - pop
+        * shift - unshift
+        * */
+        arr = [1,2,3,"eqew",5];
+       // arr.shift();
+        //alert(arr);
+        //arr.unshift(6);
+
+        //arr.unshift(7);
+       // arr.pop();
+        //arr.push("1");
+        //alert(arr);
+     /*   alert(arr.valueOf());
+        alert(arr.toString());
+        alert(arr.slice(1,4));
+        alert(arr.splice(1,3,[2,3]));
+        alert(arr);*/
+
+        var arrr = [1,3,5,6,3,2];
+        //alert(arrr.sort());
+        /*alert(arrr.sort(function(a,b) {
+            return b - a;
+        }));*/
+
+
+        /*等同运算符 === 先判断类型*/
+
+        var per1 = {
+            name : "per1"
+        }
+        var per2 = {
+            name : "per2"
+        }
+        function getName() {
+            //alert(this.name);
+        }
+        /*getName.call(per1);
+        getName.call(per2);*/
+
+        var sttr = "some";
+        //alert(sttr === this.sttr);
+
+    </script>
+</body>
+</html>

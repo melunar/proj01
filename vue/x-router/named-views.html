@@ -1,0 +1,74 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>VUE-x-router 命名视图</title>
+    <style>
+        a {
+            font: 12px/1.3em "";
+            color: #222;
+            display: inline-block;
+            padding-right: 6px;
+        }
+
+        a:not(:last-child) {
+            border-right: 1px solid #888;
+        }
+    </style>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Named Views</h1>
+    <ul>
+        <li>
+            <router-link to="/">/</router-link>
+        </li>
+        <li>
+            <router-link to="/other">/other</router-link>
+        </li>
+    </ul>
+    <router-view ></router-view>
+    <router-view name="a"></router-view>
+    <router-view name="b"></router-view>
+</div>
+</body>
+<script>
+    const Foo = {template: '<div>foo</div>'};
+    const Bar = {template: '<div>bar</div>'};
+    const Baz = {template: '<div>baz</div>'};
+    const Bazx = {template: '<div>bazx</div>'};
+
+    const router = new VueRouter({
+        //该设置会改变hash路由模式【实际路径的模式】
+//        mode: 'history',
+//
+        routes: [{
+                path: '/',
+                // a single route can define multiple named components
+                // which will be rendered into <router-view>s with corresponding names.
+
+            //components 不是 component
+                components: {
+                    default: Foo,
+                    a: Bar,
+                    b: Baz
+                }
+            }, {
+                path: '/other',
+                components: {
+                    default: Baz,
+                    a: Bar,
+                    b: Foo
+                }
+            }
+        ]
+    });
+
+    new Vue({
+        router,
+        el: '#app'
+    })
+
+
+</script>
+</html>

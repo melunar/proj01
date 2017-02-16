@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>原型链</title>
+</head>
+<body>
+    <script>
+        var base = {
+            name: "base",
+            getName: function() {
+                return this.id + " " + this.name;
+            }
+        }
+        function BaseB() {
+            name = "baseB";
+            getName = function() {
+                return this.name;
+            }
+        }
+        BaseB.prototype = {
+            consturctor: BaseB,
+            getName1: function() {
+                return this.name;
+            }
+        }
+        var ba = new BaseB();
+        var ex1 = {
+            id: 0,
+            __proto__: base
+        }
+        var ex2 = {
+            id: 9,
+            name: "ex2",
+            __proto__: base
+        }
+        var ex3 = {};
+        ex3.prototype = new BaseB();
+
+        //console.log(ex1.id + " " + ex2.id);
+
+        /**
+         * 从对象本身出发，沿着__proto__查找，
+         * 直到找到属性名称相同的值(没有找到，则返回 undefined)。
+         * */
+        console.log(ex1.getName() + " " + ex2.getName());//0 base 9 ex2
+
+        var dat = new Date();
+        /*
+        * 修改了__proto__属性 下面就输出false(默认是object的原型)
+        * */
+        console.log(ex1.__proto__ === Object.prototype); //false
+        //错console.log(ex1.prototype.__proto__ === Object.prototype);
+
+        /*标准方法Object.getPrototypeOf(ex1)相当于ex1.__proto__*/
+        console.log(Object.getPrototypeOf(ex1) === ex1.__proto__);//true
+        console.log(ex3.prototype.__proto__ === BaseB.prototype);//true
+
+        var arr = [1, 2, 3, 4];
+        arr.push(15);
+
+        console.log(Object.getPrototypeOf(ex1) == Object.getPrototypeOf(dat));//base(obj) != dateObj
+        console.log(Object.getPrototypeOf(dat));//date(obj)
+        console.log(Object.getPrototypeOf(arr));//array(obj)
+/*
+        当我们要调用一个对象的方法，或读取对象的属性时，运行时会首先查找对象本身。如果运行时找不到想要的东西，它就会循着 __proto__ 引用和对象原型寻找该成员。
+        （若果在自己本身找到该属性或方法 就是方法的覆盖）
+        比如调用arr的push方法时，JavaScript 并没有在arr对象上发现push方法，而是在arr的原型对象上找到了，于是 JavaScript 调用此方法*/
+
+
+        console.log(Object.getPrototypeOf(Array) === Object.getPrototypeOf(function() {}));//function
+        console.log(Object.getPrototypeOf(Array));//function
+        console.log(Array.__proto__);//function
+
+        console.log(Array.prototype.__proto__ === Object.prototype);//true
+
+        /**
+         * typeof返回值 undefined（undefine）, number（数值）, string（字符串）, boolean（布尔值）,function（内建类，比如Array，Number，Date以及自定义函数）,object（new的对象）
+         *
+         * */
+
+        console.log("---------------------------------------------");
+        console.log(BaseB.prototype.constructor);
+        console.log(BaseB.constructor);
+        /*constructor属性，这个属性包含一个指向prototype属性所在函数的指针*/
+        console.log(ex3.prototype.constructor);
+
+        console.log(Object.keys(arr));
+        /*for(i in ex3) {
+            Object.keys();
+        }*/
+    </script>
+</body>
+</html>

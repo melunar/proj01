@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <title>笔记</title>
+</head>
+<body>
+<script>
+    //激活状态的切换
+    //el.addClass("active").siblings().removeClass("active");
+
+    //窗口高
+    //console.log(jQuery(window).height());
+    /**
+     * Q01:iFram里面include的html静态文件没有在浏览器开发者工具的network中显示资源的加载
+     *
+     * Q02：iFram中哪里定义了渲染模块到id为pva-iframe的子框架中的js代码
+     *
+     *
+     *
+     * */
+
+    /**
+     * requireJs:
+     * paths还有一个重要的功能，就是可以配置多个路径，如果远程cdn库没有加载成功，可以加载本地的库["...",",,,,,,"]
+     *
+     * define 从名字就可以看出这个api是用来定义一个模块
+     * require 加载依赖模块，并执行加载完后的回调函数
+     *
+     * define和require在依赖处理和回调执行上都是一样的，不一样的地方是define的回调函数需要有return语句返回模块对象
+     * 这样define定义的模块才能被其他模块引用；require的回调函数不需要return语句。
+     *
+     * 把require.config的配置加入到data-main后，就可以使每一个页面都使用这个配置，然后页面中就可以直接使用require来加载所有的短模块名
+     * *********require会默认的将data-main指定的js为根路径*********
+     *
+     * AMD异步模块定义（专门为浏览器的JavaScript环境设计的）：加载模块不影响后面的语句执行，依赖这个模块的语句都定义在一个回调函数里，加载完成，这个回调函数才会执行
+     * （回调函数本身就是一个异步的过程）
+     * （与同步相对应，异步指的是让CPU暂时搁置当前请求的响应,处理下一个请求,当通过轮询或其他方式得到回调通知后,开始运行。多线程将异步操作放入另一线程中运行，通过轮询或回调方法得到完成通知,但是完成端口，由操作系统接管异步操作的调度，通过硬件中断，在完成时触发回调方法，此方式不需要占用额外线程。）
+     *
+     *
+     *
+     *
+     *extend.screen.js
+     * */
+
+
+    function Thing(name) {
+        this.name = name;
+    }
+    Thing.prototype.doSomething = function(callback, salutation) {
+// Call our callback, but using our own instance as the context
+        callback(salutation);
+    }
+    function foo(salutation) {
+        alert(salutation);
+    }
+    var t = new Thing('Joe');
+    //t.doSomething(foo, 'Hi'); // Alerts "Hi Joe"
+
+    alert(window.screen.width);
+    alert(window.screen.height);
+</script>
+</body>
+</html>

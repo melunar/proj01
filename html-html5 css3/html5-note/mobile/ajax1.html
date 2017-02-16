@@ -1,0 +1,100 @@
+<! doctype html>
+<html>
+<head>
+	<meat charset="utf-8"></meat>
+	<title>ajax1</title>
+	<script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+</head>
+
+<body>
+	<button>button(js)</button> &nbsp;&nbsp;<span id="button1span"></span><br>
+	<p>
+		post get方法从服务器请求简单的文本，回掉函数的三个参数（可选）：来自服务器的数据，包含的状态文本和jqXHR对象.
+	</p>
+	<button>button(get)</button> &nbsp;&nbsp;<span id="button2span"></span><br>
+	<button>button(post)</button> &nbsp;&nbsp;<span id="button3span"></span><br>
+	<script language="javascript">
+		$(function() {
+			var xhr = new XMLHttpRequest();
+			$("button:first").click(function() {
+				xhr.open("get","file.log",true);
+				xhr.send(null);
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == 4) {
+						console.log(xhr.responseText);//file
+						console.log(xhr.responseXML);//
+						$("button1span").html(xhr.responseText);//
+					}
+				}
+			});
+
+			/*post get方法从服务器请求简单的文本，回掉函数的三个参数（可选）：来自服务器的数据，包含的状态文本和jqXHR对象.*/
+			$("button:eq(1)").click(function() {
+				$.get("file.log",function(data,status,jqXHR) {
+					$("#button2span").text(data + " " + status + " " + jqXHR);
+				});
+			});
+
+			$("button:eq(2)").click(function() {
+				$.post("file.log",function(data) {
+					$("#button3span").html(data);
+				});
+			});
+
+		});
+	</script>
+	<br>
+	<hr>
+	<button id="xml">get xml</button><br />
+	<button id="xml2">get xml</button><br />
+	<script>
+		$(function() {
+			$("button#xml").click(function() {
+				$.get("xml.xml",function(data) {
+					for(i in data)
+					$("#output").append(i + ":" + data + "<br />");
+				});
+			});
+			$("button#xml2").click(function() {
+				$.get("xml.xml",function(data) {
+					$("#output").text("");
+					var y = data.getElementsByTagName("name");
+					alert(y.length);
+					for(var i = 0; i < y.length; i++) {
+						$("#output").append(y[i].childNodes[0].nodeValue + "<br />");
+					}
+				});
+			});
+		});
+	</script>
+	<br>
+	<hr>学习php完成这个演示<br>
+	<form>
+		name:<input type="text" size="26" /><br />
+		password:<input type="password" size="20">
+	</form>
+	<button>login $.get</button>
+	<button>login $.post</button>
+	<div id="output"></div>
+	<script language="JavaScript">
+		$(function() {
+			$("button:eq(-2)").click(function() {
+				$.get("xx.php",{
+					username:$("input:first").val(),
+					passwd:$("input:eq(1)").val()
+				},function(data) {
+					$("#output").html(data);
+				});
+			});
+			$("button:last").click(function() {
+				$.post("xx.php",{
+					username:$("input:first").val(),
+					passwd:$("input:eq(1)").val()
+				},function(data) {
+					$("#output").html(data);
+				});
+			});
+		});
+	</script>
+</body>
+</html>

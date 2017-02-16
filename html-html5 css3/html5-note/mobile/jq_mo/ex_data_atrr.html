@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <base href="#page_multiPageDemo">
+    <title>跨平台移动应用</title>
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.js"></script>-->
+    <script src="../../bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="../../js/jquery.mobile-1.4.5.min.js"></script>
+    <link href="../../js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!--这里显示的是多页显示的第一页-->
+    <section id="page_multiPageDemo" data-role="page" data-title="第一个页面">
+        <header data-role="header">
+            <h1>多页面显示模板</h1>
+        </header>
+        <div class="content" date-role="content">
+            <p>这是一个多页面显示模板演示<br />
+            请点击下面的超链接 页面跳转<br />
+            点击这里，进入<a href="#pageSecond" data-transition="slidedown">第二个页面</a><br />
+                <!--
+                data-transition 页面切换方式
+                slide slideup slidedown pop fade flip turn flow slidefade none
+                -->
+            点击这里，进入<a href="#pageThird" data-transition="flip">对话框</a>
+            </p>
+        </div>
+    </section>
+
+    <!--这里是多页显示的第二个页面-->
+    <section id="pageSecond" data-role="page" data-title="第二个页面">
+        <header data-role="header">
+            <h1>第二个页面</h1>
+        </header>
+        <div class="content" data-role="content" >
+            <p>
+                点击这里，返回<a href="#page_multiPageDemo" >第一个页面</a><br/>
+                点击这里，进入<a href="#pageThird" data-transition="flip">对话框</a>
+            </p>
+        </div>
+    </section>
+
+    <!--这里是多页显示的对话框-->
+    <section id="pageThird" data-role="dialog" data-title="对话框">
+        <header data-role="header">
+            <h1>对话框</h1>
+        </header>
+        <div class="content" data-role="content">
+            <a href="#page_multiPageDemo" data-role="button" >第一个页面</a>
+            <a href="#pageSecond"  data-role="button" data-rel="back">第二个页面</a>
+            <a href="#" data-role="button" onClick="$('#pageThird').dialog('close')">关闭</a>
+        </div>
+
+    </section>
+</body>
+</html>

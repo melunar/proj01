@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        HTML5 表单元素（*****）
+    </h1>
+
+    <div class="row">
+        <div class="span5">
+            <h3 class="page-header">
+                input输入类型
+            </h3>
+            <form class="table-bordered">
+                <h3>title属性定义提示错误信息</h3>
+                <label>email</label>
+                <input type="email" name="email" title="邮箱类型不对"/>
+
+                <label>url</label>
+                <input type="url" name="url"/>
+
+                <label>number(0-100能被3整除的整数)</label>
+                <input type="number" name="number" min="0" max="100" step="3" value="0"/>
+
+                <label>range(类似number)</label>
+                <input type="range" name="range" min="1" max="10"/>
+
+                <label>Date pickers (date, month, week, time, datetime, datetime-local)</label>
+                date<input type="date"/><br>
+                month <input type="month"/><br>
+                week<input type="week"/><br>
+                time <input type="time"/><br>
+                datetime <input type="datetime"/><br>
+                datetime-local<input type="datetime-local"/><br>
+
+                <label>search</label>
+                <input type="search" size="35"
+                       value="用于搜索域,比如站点搜索或 Google搜索,显示为常规的文本域。">
+                <br>
+                <input type="submit" value="提交"/>
+            </form>
+        </div>
+        <div class="span7">
+            <h3 class="page-header">表单元素</h3>
+
+            <form class="table-bordered">
+                <h5>datalist 元素:灵活性好（可以自行输入，也可以选择）</h5>
+
+                <p>
+                    datalist 元素规定输入域的选项列表。<br>
+                    列表是通过 datalist 内的 option 元素创建的,option 元素永远都要设置 value 属性。<br>
+                    如需把 datalist 绑定到输入域，请用输入域的
+                    <mark>list</mark>
+                    属性引用
+                    <mark>datalist 的 id</mark>
+                    .<br>
+                </p>
+                select：<input type="text" list="url_list" name="link"/>
+                <datalist id="url_list">
+                    <option label="haoyong" value="郝勇"/>
+                    <option label="moon" value="好明月"/>
+                    <option label="Microsoft" value="microsoft.com"/>
+                </datalist>
+
+                <pre>
+                    <h5>keygen 元素</h5>
+    keygen 元素的作用是提供一种验证用户的可靠方法。
+    keygen 元素是密钥对生成器（key-pair generator）。当提交表单时，会生成两个键，一个是私钥，一个公钥。
+    私钥（private key）存储于客户端，公钥（public key）则被发送到服务器。公钥可用于之后验证用户的客户端证书（client certificate）。
+    目前，浏览器对此元素的糟糕的支持度不足以使其成为一种有用的安全标准。
+                    <mark>&lt;keygen name="security" /&gt;</mark>
+                </pre>
+                <h3>output输出</h3>
+                <script type="text/javascript">
+                    function resCalc() {
+                        var numA = document.getElementById("num_a").value;
+                        var numB = document.getElementById("num_b").value;
+                        document.getElementById("result2").value = Number(numA) + Number(numB);
+                    }
+                </script>
+
+                <input id="num_a"/> +
+                <input id="num_b"/> =
+                <output id="result2" onforminput="resCalc()">暂时失效</output>
+                <br>
+                <!--<button onclick="resCalc()">加</button>-->
+
+                <br>
+                <input type="submit" value="提交"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

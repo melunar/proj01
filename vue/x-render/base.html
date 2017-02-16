@@ -1,0 +1,72 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>VUE-x-render</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-router.js"></script>
+	</head>
+	<body>
+    <div id="app">
+        <anchored-heading :level="2">
+            <span slot="h1">H1 </span>
+            <span slot="h2">H2 </span>
+            <span slot="h3">H3 </span>
+            Hello world!
+        </anchored-heading>
+    </div>
+
+	</body>
+    <script type="text/x-template" id="anchored-heading-template">
+        <div>
+            <h1 v-if="level === 1">
+                <slot name="h1"></slot>
+            </h1>
+            <h2 v-if="level === 2">
+                <slot name="h2"></slot>
+            </h2>
+            <h3 v-if="level === 3">
+                <slot name="h3"></slot>
+            </h3>
+            <h4 v-if="level === 4">
+                <slot></slot>
+            </h4>
+            <h5 v-if="level === 5">
+                <slot></slot>
+            </h5>
+            <h6 v-if="level === 6">
+                <slot></slot>
+            </h6>
+        </div>
+    </script>
+    <script>
+    /*    Vue.component('anchored-heading', {
+            render: function (createElement) {
+                return createElement(
+                        'h' + this.level,   // tag name 标签名称
+                        this.$slots.default // 子组件中的阵列
+                )
+            },
+            props: {
+                level: {
+                    type: Number,
+                    required: true
+                }
+            }
+        });*/
+        Vue.component('anchored-heading', {
+            template: '#anchored-heading-template',
+            props: {
+                level: {
+                    type: Number,
+                    required: true,
+//                    value: 6
+                }
+            }
+        });
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</html>

@@ -1,0 +1,52 @@
+
+<html>
+<head>
+    <script language="javascript" type="text/javascript">
+/**
+    iframe方式本域和其他域的相互访问: www.aa.com和www.bb.com 用 iframe
+数据提交跟获取，采用iframe这种方式的确可以了，但由于父窗口与子窗口之间不能交互（跨域访问的情况下，这种交互被拒绝），因此无法完成对父窗口效果的影响。在页面内嵌或动态生成指向别的网站的IFRAME，然后这2个网页间可以通过改变对方的anchor hash fragment来传输消息。改变一个网页的anchor hash fragment并不会使浏览器重新装载网页，所以一个网页的状态得以保持，而网页本身则可以通过一个计时器(timer)来察觉自己anchor hash的变化，从而相应改变自己的状态。
+1. http://192.168.60.29:1111/demoSoft/domain/iframe/a.html
+**/
+        var url = "http://192.168.60.29:8313/b.html";
+        var oldHash = null;
+        var timer = null;
+        function getHash() {
+            var hash = window.location.hash;
+            if ((hash.length >= 1) && (hash.charAt(0) == '#')) {
+                hash = hash.substring(1);
+            }
+            return hash;
+        }
+        function sendRequest() {
+            var d = document;
+            var t = d.getElementById('request');
+            var f = d.getElementById('alienFrame');
+            f.src = url + "#" + t.value + "<br/>" + new Date();
+        }
+        function setDivHtml(v) {
+            var d = document;
+            var dv = d.getElementById('response');
+            dv.innerHTML = v;
+        }
+        function idle() {
+            var newHash = getHash();
+            if (newHash != oldHash) {
+                setDivHtml(newHash);
+                oldHash = newHash;
+            }
+            timer = window.setTimeout(idle, 100);
+        }
+       // function 
+       window.onload = function()
+        {
+            timer = window.setTimeout(idle, 100);
+        }
+    </script>
+</head>
+<body>
+请求：<input type="text" id="request"> <input type="button" value="发送a" onclick="sendRequest()"/><br/>
+回复：
+<div id="response"></div>
+<iframe id="alienFrame" src="http://192.168.60.29:8313/b.html"></iframe>
+</body>
+</html>

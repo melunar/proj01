@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5 note1:html5&video&audio</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        HTML5 notes:html5&video&audio.（****）
+    </h1>
+    <div class="row">
+        <div class="span2">
+            <ul class="nav-list unstyled">
+                <li class="active"><a href="#">note day1</a></li>
+                <li><a href="note2.html">note day2</a></li>
+                <li><a href="note3.html">note day3</a></li>
+                <li><a href="note4.html">note day4</a></li>
+                <li><a href="form.html">note of form</a></li>
+                <li><a href="form2.html">note of form2</a></li>
+        </div>
+        <div class="span4">
+            <h4>
+                HTML5的一些规则
+            </h4>
+            <p>
+                新特性应该基于 HTML、CSS、DOM 以及 JavaScript<br>
+                减少对外部插件的需求（比如 Flash）<br>
+                更优秀的错误处理<br>
+                更多取代脚本的标记<br>
+                HTML5 应该独立于设备<br>
+                开发进程应对公众透明<br>
+            </p>
+        </div>
+        <div class="span4">
+            <h4>
+                HTML5 中的一些新特性
+            </h4>
+            <p>
+                用于绘画的 canvas 元素<br>
+                用于媒介回放的 video 和 audio 元素<br>
+                对本地离线存储的更好的支持<br>
+                新的特殊内容元素，比如 article、footer、header、nav、section<br>
+                新的表单控件，比如 calendar、date、time、email、url、search<br>
+            </p>
+        </div>
+        <br>
+        <div class="span6">
+            <h3>Html5 显示视频/音频<small> audio 元素允许多个 source 元素,source 元素可以链接不同的音频文件。浏览器将使用第一个可识别的格式</small></h3>
+            <video id="vi" src="" controls="controls" height="290" width="500">
+                <!--autoplay="autoplay" loop="loop"-->
+                你的浏览器不支持 video tag.
+            </video>
+            <button onclick="playPause()">播放/暂停</button>
+            <button onclick="makeBig()">大</button>
+            <button onclick="makeNormal()">中</button>
+            <script language="JavaScript">
+                var vi = document.getElementById("vi");
+                function playPause() {
+                    if(vi.paused) {
+                        vi.play();
+                    }
+                    else if(vi.played) {
+                        vi.pause();
+                    }
+                }
+                function makeBig() {
+                    vi.height = 400;
+                    vi.width = 600;
+                }
+                function makeNormal() {
+                    vi.width=500;
+                    vi.height = 290;
+                }
+            </script>
+            <br><br>
+            <audio controls="controls">
+                <source src="" type="audio/mp3">
+                <source src="" type="audio/ogg">
+                Your browser does not support the audio tag.
+            </audio>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

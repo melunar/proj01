@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>VUE-组件component</title>
+    <style>
+        <!--
+        /*css*/
+        -->
+    </style>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+    <h2>使用组件</h2>
+    <div id="example">
+        <my-component>
+            <!--有效-->
+        </my-component>
+
+        <my-child-component>
+            <!--有效-->
+        </my-child-component>
+        <br>
+        <div>
+            <!--<tr is="my-component">-->
+            <!--有效-->
+            <!--</tr>-->
+            <my-child-component>
+                <!--无效-->
+            </my-child-component>
+            <!--</div>-->
+            <my-component>
+                <!--有效-->
+            </my-component>
+        </div>
+        <br>
+        <table>
+            <tr is="my-component">
+                <!--有效-->
+            </tr>
+            <!--<my-child-component>-->
+                <!--无效-->
+            <!--</my-child-component>-->
+            <!--</div>-->
+            <!--<my-component>-->
+                <!--无效-->
+            <!--</my-component>-->
+        </table>
+    </div>
+    <hr>
+    <my-component>
+        <!--无效-->
+    </my-component>
+    <!--<my-child-component>-->
+    <!--无效-->
+    <!--</my-child-component>-->
+    <hr>
+    <div id="example1">
+        <h2></h2>
+        <my-component>
+            <!--有效-->
+        </my-component>
+
+        <!--<my-child-component>-->
+        <!--无效-->
+        <!--</my-child-component>-->
+    </div>
+    <hr>
+    <div id="example-2">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+    </div>
+</body>
+<script>
+    /**
+     * 什么是组件component
+     * 组件可以扩展 HTML 元素，封装可重用的代码。在较高层面上，组件是自定义元素，
+     * Vue.js 的编译器为它添加特殊功能。在有些情况下，组件也可以是原生 HTML 元素的形式，以 is 特性扩展。
+     *
+     * 组件必须应用在根实例中【全局组件也不例外】
+     * 子组件只能用在自己的根实例中
+     * 全局组件可以用在所有的根实例中
+     *
+     * 当使用 DOM 作为模版时（例如，将 el 选项挂载到一个已存在的元素上）,
+     * 会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模版内容。
+     * 尤其像这些元素 <ul> ， <ol>， <table> ， <select> 限制了能被它包裹的元素， <option> 只能出现在其它元素内部。
+     * ！！！！！！！！！ 变通的方案是使用特殊的 is 属性
+     */
+
+        // 1.注册组件【务必要在实例化根之前注册组件】
+        // 全局组件
+    Vue.component("my-component", {
+        template: "<div>{{message}}, 这是一个基础全局组件</div>",
+//        template: "<div v-for='item in message'>{{item.data}}, 这是一个基础全局组件</div>",
+        data: function() {
+            return {
+                'message': "message"
+                /*[{
+                    "data": "data1"
+                },{
+                    "data": "data2"
+                },{
+                    "data": "data3"
+                }]*/
+            }
+        }
+
+    });
+    var childComponent = {
+        template: "<div>这是一个基础子组件</div>"
+    };
+    var childComponentTr = {
+        template: "<tr>这是一个基础子组件-tr</tr>"
+    };
+    // 2.实例化根实例
+    var vm = new Vue({
+        el: "#example",
+        data: {},
+        components: {
+            'my-child-component': childComponent,
+            'my-child-component-tr': childComponentTr
+        },
+        watch: {},
+        computed: {}
+    });
+    var vm1 = new Vue({
+        el: "#example1",
+        data: {},
+        watch: {},
+        computed: {}
+    });
+
+    console.log("---------------------------------------------------------------------------------------------");
+
+    var data = {
+        counter: 0
+    };
+    Vue.component("simple-counter", {
+        template: "<button v-on:click='counter += 1'>{{counter}}</button>",
+        // data 是一个函数，因此 Vue 不会警告，
+        // 但是我们为每一个组件返回了同一个对象引用
+        data: function () {
+            //return  data;
+            //由于这三个组件共享了同一个 data ， 因此增加一个 counter 会影响所有组件！
+
+            //通过为每个组件返回新的 data 对象来解决这个问题
+            return {
+                counter: 0
+            };
+        }
+    });
+    new Vue({
+        el: "#example-2"
+    })
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

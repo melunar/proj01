@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颜色图块-链表</title> 
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <script src="linkedlist.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <style>
+        .wrap {
+            clear: both;
+            height: auto;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(20, 20, 20, .2);
+            float: left;
+        }
+        .item {
+            display: inline-block;
+            box-sizing: border-box;
+            height: 40px;
+            width: 120px;
+            margin: 5px 10px;
+            /*line-height: 40px;*/
+            text-align: center;
+            font-size: 9px;
+            cursor: pointer;
+            font-family: "微软雅黑";
+            /*outline: none;*/
+            border: none;
+            float: left;
+        }
+        .item:hover {
+            border: 5px solid #111;
+        }
+        div.box {
+            display: inline-block;
+            box-sizing: border-box;
+            width:50%;
+            border:7px solid red;
+            /*float:left;*/
+        }
+        .margin_test_box {
+            position:absolute;
+            margin: 20px 10px;
+            height: 100px;
+            width: 100px;
+            background-color: #f56; 
+        }
+        body {
+            overflow:hidden;
+            display: block;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            let $l = $(".item").length,
+                $items = $(".item"),
+                _color = "",
+                _random_num = function() {
+                    return parseInt(Math.random() * 255);
+                };
+            $items.each(function(index, item) {
+                _color += "rgb(" + _random_num() + ", " + _random_num() + ", " + _random_num() + ")";
+                $(item).css({
+                    "background-color": _color
+                }).text(_color)/*.mouseenter(function() {
+                    $(this).css({
+                        // "border": "solid 2px rgba(20, 20, 20, .6)",
+                        //"outline": "solid 2px rgba(20, 20, 20, .6)",
+                        //"outline-offset": "0",
+                        //"border-radius": "2px"
+                    });
+                }).mouseleave(function() {
+                    $(this).css({
+                        "border": "none",
+                        "outline": "none"
+                    });
+                });*/
+               ; _color = "";
+            });
+        });
+        /**
+         * mouseover 事件在鼠标移动到选取的元素及其子元素上时触发 ;
+         * mouseenter 事件只在鼠标移动到选取的元素上时触发。
+         *
+         * mouseout 事件在鼠标离开任意一个子元素及选的元素时触发;
+         * mouseleave 事件只在鼠标离开选取的的元素时触发。
+         */
+        
+    </script>
+</head>
+<body>
+<script>
+/*
+
+    BFC布局规则：
+
+    内部的Box会在垂直方向，一个接一个地放置。
+    Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
+    每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反) 即使存在浮动也是如此。
+    BFC的区域不会与float box重叠。
+    BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+    计算BFC的高度时，浮动元素也参与计算
+
+*/
+</script>
+    <div class="margin_test_box"></div>
+    <div class="margin_test_box"></div>
+    <div class="wrap">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+    </div>
+    <div class="wrap">
+        <div class="box">
+            left div
+        </div>
+        <div class="box">
+            right div
+        </div>
+    </div>
+</body>
+</html>

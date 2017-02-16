@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/json.js"></script>
+    <title>JSON对象的语法及使用</title>
+</head>
+<body>
+    <script>
+        /*JSON(JavaScript Object Notation)，通过字面量来表
+        示一个对象(键值对 值可以是任意的javaScript 对象) */
+        var j = {
+            name : "json",
+            age : 11,
+            addr : {
+                street : "keji",
+                xno : "38",
+                last: {
+                    l1: 1,
+                    l2: 2
+                }
+            },
+            phone: "110"
+        };
+
+        /*
+        * 遍历json对象
+        * */
+   /*     for(k in j) {
+            console.log(typeof j[k]);
+        }*/
+        var pre = "";
+        function showJson(j) {
+            for(var item in j){
+                if((typeof j[item]) != 'object'){
+                    console.log(item + ": " + j[item]);
+                } else {
+                    console.log("");
+                    console.log(item + ":");
+                    pre += "   ";
+                    showJson(j[item]);
+                }
+
+            }
+
+        }
+        showJson(j);
+
+        var js = '{ "name": "json", "sex": "man" }';
+        //制将括号内的表达式（expression）转化为对象，而不是作为语句来执行
+        //，如若不加外层的括号，那么eval会将大括号识别为JavaScript代码块的开始和结束标记，
+        // 那么{}将会被认为是执行了一句空语句。
+        // 下面两个执行结果是不同的：
+        //alert(eval("{}"));  // return undefined
+        //alert(eval("({})"));// return object[Object]
+        var jo = eval("(" + js +")");
+        var jo1 = $.parseJSON(js);
+        alert(window.JSON);
+/*        for(kk in JSON) {
+            console.log(JSON[kk]);
+        }*/
+        //var jo = eval(js);
+
+        /**
+         * JSON.stringify(json) //将JSON对象转化为JSON字符(带有转义字符\) 引入json2.0.js
+         * $.parseJSON(); //由JSON字符串转换为JSON对象 jquery对象的方法
+         * 引入框架的方法 避免兼容性的问题
+         * */
+        var js1 = JSON.stringify(js);
+
+        //console.log(js1);
+        showJson(jo);showJson(jo1);
+        console.log(js1);
+        alert.call(this.alert(this));
+
+
+
+
+
+    </script>
+    <!--#include file="load.html"-->
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        form {
+            padding: 10px;
+            display: block;
+            width: 300px;
+            float: left;
+            background-color: #0f4b6d;
+        }
+       label {
+           display: block;
+           width: 100px;
+           text-align: right;
+           float: left;
+       }
+       .sexlabel {
+           width: 26px;
+       }
+        input {
+            display: block;
+            float: left;
+            padding: 2px;
+            font-family: "微软雅黑" Verdana, Geneva, sans-serif;
+            letter-spacing: 1px;
+        }
+        input[type="submit"] {
+            float: right;
+            margin: 0 20px 20px 0;
+        }
+    </style>
+    <script src=""></script>
+    <title>表单</title>
+</head>
+<body>
+    <form>
+        <label for="name">姓名：</label>
+        <input id="name" type="text" size="20" name="name" value="haoyong">
+        <br><br>
+
+        <label for="pwd">密码：</label>
+        <input id="pwd" type="password" size="20" name="pwd" value="123123">
+        <br><br>
+
+        <label>选择性别：</label>
+        <label for="man" class="sexlabel">男：</label>
+        <input id="man" type="radio" name="sex">
+
+        <label for="woman" class="sexlabel">女：</label>
+        <input id="woman" type="radio" name="sex">
+        <br><br>
+
+        <input type="submit" value="注册" />
+    </form>
+</body>
+</html>

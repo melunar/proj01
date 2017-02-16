@@ -1,0 +1,170 @@
+<html>
+<head>
+    <title>VUE-组件component:slot-内容分发</title>
+    <style>
+        <!--
+        /*css*/
+        -->
+    </style>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+<h2>slot-内容分发</h2>
+<div id="app">
+    <children>
+        <span>12345</span>
+        <!--上面这行不会显示-->
+    </children>
+    <children1>
+        <span>12345</span>
+        <!--上面这行不会显示-->
+    </children1>
+    <children2>
+        <span slot="first">12345</span>
+        <span slot="second">56789</span>
+    </children2>
+    <children3>
+        <!--
+        父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译
+
+        仅当点击文字12345的区域时（而不是按钮全部），会触发父组件的tobeknow方法。
+        -->
+        <span slot="first" @click="tobeknow">12345</span>
+        <span slot="second">56789</span>
+        <!--上面这行不会显示-->
+    </children3>
+    <children4>
+        <span slot="first">【12345】</span>
+        <!--上面这行不会显示-->
+        </children>
+    </children4>
+    <br>
+    <button @click="toshowabc">点击让子组件显示abc</button>
+    <children6 v-if="abc">
+
+    </children6>
+    <br>
+    <button @click="toshow">点击让子组件6显示`</button>
+    <children5>
+        <span slot="first">【12345】</span>
+        <!--上面这行不会显示-->
+    </children5>
+
+</div>
+
+</div>
+</body>
+<script>
+    /**
+     * 假如父组件需要在子组件内放一些DOM，那么这些DOM是显示、不显示、在哪个地方显示、如何显示，就是slot分发负责的活。
+     */
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            abc: true
+        },
+        components: {
+            children: { //这个无返回值，不会继续派发
+                template: "<button>为了明确作用范围，使用button标签</button>"
+            },
+            children1: { //这个无返回值，不会继续派发
+                /**
+                 *
+                 <button><span>12345</span>为了明确作用范围，使用button标签</button>
+                 即父组件放在子组件里的内容，插到了子组件的<slot></slot>位置；
+                 */
+                template: "<button><slot></slot>为了明确作用范围，使用button标签</button>"
+            },
+
+            //具名slot
+            /**
+             *
+             将放在子组件里的不同html标签放在不同的位置
+
+             父组件在要分发的标签里添加 slot=”name名” 属性
+
+             子组件在对应分发的位置的slot标签里，添加name=”name名” 属性，然后就会将对应的标签放在对应的位置了。
+
+             假如父组件没有在子组件中放置有标签，或者是父组件在子组件中放置标签，但有slot属性，而子组件中没有该slot属性的标签。
+             那么，子组件的slot标签，将不会起到任何作用。
+             除非，该slot标签内有内容，那么在无分发内容的时候，会显示该slot标签内的内容。
+             */
+            children2: { //这个无返回值，不会继续派发
+                template: "<button><slot name='first'></slot>为了明确作用范围，<slot name='second'></slot>所以使用button标签</button>"
+
+            },
+            /**
+             *  分发内容的作用域:
+             *  被分发的内容的作用域，根据其所在模板决定，
+             *  例如，以上标签，其在父组件的模板中（虽然其被子组件的children标签所包括，
+             *      但由于他不在子组件的template属性中，因此不属于子组件），则受父组件所控制。
+             */
+            children3: { //这个无返回值，不会继续派发
+                template: "<button><slot name='first'></slot>---为了明确作用范围，<slot name='second'></slot>使用button标签</button>"
+            },
+            children4: {
+                template: "<div><slot name='first'><button>【如果没有内容则显示我1】</button></slot>为了明确作用范围，<slot name='last'><button>【如果没有内容则显示我2】</button></slot>使用button标签</div></button>"
+            },
+
+            children5: { //这个无返回值，不会继续派发
+                template: "<div v-if='tohidden' @click='tohide'>这里是子组件6，点击隐藏</div>",
+                data: function () {
+                    return {
+                        tohidden: true,
+                        abc: true
+                    }
+                },
+                methods: {
+                    tohide: function () {
+                        this.tohidden = !this.tohidden;
+                        console.log(this.tohidden);
+                    },
+                    toshow: function () {
+                        this.abc = !this.abc;
+
+                    }
+                }
+            },
+            children6: { //这个无返回值，不会继续派发
+                template: "<div>这里是子组件</div>"
+            }
+
+        },
+        methods: {
+            tobeknow: function () {
+                console.log("It is the parent's method");
+            },
+            toshow: function () {
+                console.log("this.$children[6]");
+                console.log(this.$children[6]);
+                this.$children[6].tohidden = true;//现有示例中为第五个
+            },
+            toshowabc: function () {
+                this.abc = !this.abc;
+            }
+        }
+    });
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

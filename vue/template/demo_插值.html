@@ -1,0 +1,99 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>VUE-插值</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+        <div id="app-1">
+            <span v-once>This will never change: {{ msg }}</span>
+        </div>
+        <hr>
+        <div id="app-2">
+            <span v-html="msg">{{msg}}</span> <!--显示span>li的样式-->
+            <span>{{msg}}</span> <!--显示文本字符串-->
+        </div>
+        <hr>
+        <div id="app-3">
+            <div v-bind:id="dynamicId" v-bind:title="dynamicId">
+                dynamicId & dynamicHover
+            </div>
+        </div>
+        <hr>
+        <div id="app-4">
+            {{ number + 1 }} <br>
+            {{ ok ? 'YES' : 'NO' }} <br>
+            {{ message.split('').reverse().join('') }} <br>
+            <div v-bind:id="'list-' + id"></div> <br>
+        </div>
+	</body>
+	<script>
+        /**
+         * > 在底层的实现上， Vue 将模板编译成虚拟 DOM 渲染函数。
+         *   结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
+         */
+
+        /**
+         * ##文本
+         *      Mustache语法（双大括号）的文本插值
+         *      <span>Message: {{ msg }}</span>
+         *
+         *      Mustache 标签将会被替代为对应数据对象上 msg 属性的值。【无论何时】
+         *      v-once 指令，执行一次性地插值【一次】
+         */
+        var app1 = new Vue({
+            el: "#app-1",
+            data: {
+                msg: "fixed text"
+            }
+        });
+
+        console.log("------------------------------------------------------------------------------------------------");
+
+        /**
+         * ##纯html
+         * 双大括号会将数据解释为纯文本，而非 HTML 。为了输出真正的 HTML : 使用 v-html 指令
+         * 在不需要显示源代码 || 不仅仅是字符串时使用
+         */
+        var app2 = new Vue({
+            el: "#app-2",
+            data: {
+                msg: "<li>li dom</li>"
+            }
+        });
+
+        console.log("------------------------------------------------------------------------------------------------");
+
+        /**
+         * ##属性
+         * Mustache 不能在 HTML 属性中使用【尤其注意input的value属性是无法这样赋值滴】，应使用 v-bind 指令
+         */
+        var app3 = new Vue({
+            el: "#app-3",
+            data: {
+                dynamicId: "dynamic_id"
+            }
+        });
+
+        console.log("------------------------------------------------------------------------------------------------");
+
+        /**
+         * ##JavaScript 表达式
+         *
+         * 这些表达式会在所属 Vue 实例的数据作用域下作为 JavaScript 被解析。有个限制就是，每个绑定都只能包含单个表达式
+         *
+         * 看例子吧
+         */
+        var app4 = new Vue({
+            el: "#app-4",
+            data: {
+                id: "id_10",
+                number: "number_100",
+                ok: true,
+                message: "happy chinese new year"
+            }
+        });
+    </script>
+</html>

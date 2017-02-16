@@ -1,0 +1,109 @@
+<!DOCTYPE html >
+<html >
+<head>
+    <title>Simple app</title>
+    <link type="text/css" rel="stylesheet" href="../css/common.css">
+    <script src="../../js/angular.min.js"></script>
+    <script src="controllers.js"></script>
+    <style>
+        /* ... */
+    </style>
+</head>
+<body  ng-app="myApp" >
+
+
+<div ng-controller="myCtrl"  >
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <!--性: <span ng-model="gender" ng-value="man">man</span><br>-->
+    <input type="hidden" ng-model="gender" ng-bind="" value="man" />
+    <br>
+    <!--  有了控制器 这里可以直接获取变量 不用走model -->
+    姓名: {{firstName | uppercase  }} {{ lastName | lowercase}} | {{gender}}
+
+    <p>姓名为 <span ng-bind="firstName"></span></p>
+    <!--姓名为 <input ng-bind="firstName"/>-->
+    <div>
+        <p>name: <input type="text" ng-model="name"></p>
+        <h2>HELLO {{name || "null"}}</h2>
+        <p>1 + 2 = {{ 1 + 2 }}</p>
+    </div>
+
+</div>
+
+
+
+<div ng-controller="ctrl2">
+    <hr>
+    单价：<input type="number" ng-model="number">
+    数量：<input type="number" ng-model="price">
+    总价: {{number * price | currency}}<br>
+    这是全局名字:{{globalName}}<br>
+
+</div>
+
+<div ng-controller="ctrl3">
+    <hr>
+    这是2名字:{{name3}}<br>
+    这是全局名字:{{globalName}}<br>
+
+</div>
+
+<div ng-controller="namesCtrl">
+    筛选 <input type="text" ng-model="filterName">
+    <ul>
+        <li ng-repeat="x in names | orderBy:'name' | filter:filterName">
+            {{ x.name + ', ' + x.country }}
+        </li>
+    </ul>
+
+</div>
+<div ng-controller="CGlobal">
+    <h2>服务</h2>
+    <p>{{myUrl}}</p>
+</div>
+<div>
+    <h2>服务</h2>
+    <p>{{url}}</p>
+</div>
+
+<div ng-controller="ContFormat">
+    <ul>
+        <li ng-repeat="x in counts">
+            {{x | myFormat}}
+        </li>
+    </ul>
+</div>
+
+<div ng-controller="ctrlHttp">
+    {{UrlNames}}<br>
+    <hr>
+    <ul>
+        <li ng-repeat="item in UrlNames.sites">
+            {{item.Name + " in " + item.Country + "(" + item.Url + ")"}}
+        </li>
+    </ul>
+    {{resType}}
+</div>
+<div class="note">
+    <h2>笔记：</h2>
+    <ul>
+        <li style="color: #dd8f1c;">AngularJS 通过指令扩展了HTML，且通过表达式绑定数据到HTML。</li>
+        <li>AngularJS 通过 ng-directives 扩展了 HTML。</li>
+        <li>ng-app 指令定义一个 AngularJS 应用程序。</li>
+        <li>ng-model 指令把元素值（比如输入域的值）绑定到应用程序。</li>
+        <li>ng-bind 指令把应用程序数据绑定到 HTML 视图; bg-bind="name" <==> {{name}}</li>
+        <li>ng-init 指令初始化 AngularJS 应用程序变量(不常用 多用控制器)</li>
+        <li>AngularJS 表达式 {{ expression }}与 ng-bind 指令有异曲同工之妙</li>
+        <li>一个网页可以包含多个运行在不同元素中的 AngularJS 程序(ng-app)</li>
+        <li>ng-repeat = "x in names" 指令会重复一个 HTML 元素</li>
+        <li>自定义指令app.directive函数：使用驼峰法来命名一个指令，使用它时需要以 - 分割；restrict属性设置指令的调用方式（元素名 属性 类名 注释）</li>
+        <li> ng-show 指令的text在返回值为true的时候显示</li>
+        <li> ng-model 指令可以为应用数据提供状态值($invalid（是否合法）, $dirty（是否改变）, $touched（触摸屏）, $error（）)</li>
+        <li> 过滤器 : 管道字符 写在变量后面 currency，filter，lowercase， orderBy， uppercase:ruleName</li>
+        <li> Service 一个函数或对象 $location, $http, $timeout, $interval....</li>
+        <li> 自定义服务：app.service('ser', function(){this.fun = function(x) {return;});</li>
+    </ul>
+</div>
+</body>
+</html>

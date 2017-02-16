@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/handlebars.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <title>demo</title>
+</head>
+<body>
+<div id="div1"></div>
+<script id="entry-template" type="text/x-handlebars-template">
+    <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+            {{body}}
+        </div>
+    </div>
+</script>
+<script>
+    var source = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+
+    var context = {title: "标题", body: "我是字符串!"}
+    var html = template(context);
+    console.log(html);
+	console.log(typeof html);//string
+    document.getElementById("div1").innerHTML = html;
+
+    /*
+        失败
+    $(function() {
+        $.ajax({
+            url:  "inc/tmp.html",
+            success: function(req) {
+                    console.log("get...");
+                    var template = Handlebars.compile(req);
+                    var context = {title: "标题", body: "我是字符串!"}
+                    var html = template(context);
+                    console.log(html);
+                    // $("#showget").html(req);
+                    alert("GGG");
+                },
+                error: function () {
+                    alert("XXX");
+                }
+        });
+    });*/
+    /*var sour = $("#inc-template").html();
+    console.log(sour);
+    var temp = Handlebars.compile(sour);
+
+    var context = {title: "标题", body: "我是字符串!"}
+    var html = template(context);
+    document.getElementById("div1").innerHTML = html;*/
+
+
+</script>
+<div id="showget">
+</div>
+</body>
+</html>

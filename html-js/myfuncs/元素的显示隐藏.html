@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义函数：元素的显示隐藏</title>
+</head>
+<body>
+<h3 id="i" onclick="alert($('i'))">点击</h3>
+
+<a href="#" onclick="display('idd')">点击</a>
+<a href="#" id="idd" onclick="display('idd')">看我</a>
+<script>
+    //返回按ID检索的元素对象
+    function $(id) {
+        return !id ? null : document.getElementById(id);
+    }
+    function display(id) {
+        var obj = $(id);
+        if(obj.style.visibility) {
+            obj.style.visibility = obj.style.visibility == 'visible' ? 'hidden' : 'visible';
+        } else {
+            //执行的是这里
+            obj.style.display = obj.style.display == '' ? 'none' : '';
+        }
+    }
+</script>
+
+</body>
+</html>

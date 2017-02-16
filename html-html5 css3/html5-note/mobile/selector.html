@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <!-- <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <link href="../js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../bootstrap/js/bootstrap.js"></script>-->
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+<p class="c1">
+    <span class="c1" class="c2">c1-{c1,c2}</span>
+    <span class="c2">c1-{c2}</span>
+    <span class="">nothing
+        <span class="c2">c1 span c2</span>
+    </span>
+    <span class="c1 c2">c1-{c1 c2}</span>
+    <div class="div">div</div>
+</p>
+
+<p class="c3">c1 + c2 1</p>
+<p class="c3">c1 + c2 2</p>
+<script style="display:block">
+    $(".c1 .c2").css({
+        background:"black",
+        color:"white"
+    });
+    var cc2 = $(".c1 > .c2").css({
+        background:"orange",
+        color:"white"
+    });
+    //alert("selector: " + cc2.selector + " context: " + cc2.context);
+    $(".c1 + .c3").css({
+        background:"orange",
+        color:"#132332"
+    });
+    var cc3 = $(".c1 ~ .c3").css({
+        background:"orange",
+        color:"#132332"
+    });
+    //alert("selector: " + cc3.selector + " context: " + cc3.context);
+
+    /*
+       无法执行
+    $(".c1 .div").css({
+        background:"orange",
+        color:"#132332"
+    });*/
+
+    /*$(".c2").eq(1).css({
+        color:"red"
+    });*/
+    $("span:contains('c1')").slice(1).css({
+        color:"yellow"
+    });
+    $(".c2").not(":first").css({
+        color:"red"
+    });
+    $(".c1").last().css({
+        color:"green"
+    });
+</script>
+
+<input id="hiddenIput" type="hidden" value="隐藏的表单项">
+<button id="hiddenBut" style="display: none">隐藏的按钮</button>
+
+<button id="visibleBut">按钮</button>
+<div id="output"></div>
+<script language="JavaScript">
+   /* $("button:hidden").css({
+        display:"inline"
+    });*/
+ /*  $("button:visible").css({
+        display:"none"
+
+    });*/
+   var data =  " ";
+   $("#visibleBut").click(function() {
+       data = $("span").map(function() {
+            return $(this).text();
+        });
+       $("#output").text(data.get().join(" "));
+       console.log(data.length);
+    });
+   //错！console.log(data.get());
+</script>
+</body>
+</html>

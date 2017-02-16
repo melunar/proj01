@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Events2</title>
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+ </head>
+ <body>
+	<section id="bind">
+		<button>button(bind/unbind)</button><br /><br />
+		<button>button(one)</button><br /><br />
+		<form>
+			<input type="submit" value="禁止提交" />
+			<p class="output" style="display:none">
+				<code>
+					$("form").bind("submit",function(e) {
+						return false;
+					});
+				</code>
+			</p>
+		</form><br /><br />
+		
+		<button>button(2 events)</button>
+		<p class="output">这里会变化</p><br /><br />
+		<script>
+			$(function() {
+				/*当你遇到不明白的错误时，要想到是不是选择器有问题 ，尝试着修改一下*/
+				$("button:first").bind("click",{p1:"p1",p2:"p2",p3:"p3"},function(e) {
+					alert(e.data.p1);
+					$("#bind button:eq(0)").unbind("click");
+				});
+
+				$("button:eq(1)").one("click",function(e) {
+					alert("one");
+				});
+
+				$("form").bind("submit",function(e) {
+					$("form .output").toggle();
+					return false;
+				});
+				/*
+				方法1：（不推荐）
+				$("button:eq(2)").bind("mouseenter mouseleave",function(e) {
+					$("button:eq(2) + .output").toggle();
+				});
+				
+				方法2：
+				*/
+				$("button:eq(2)").bind({
+					"mouseenter":function(e) {
+					$("button:eq(2)").next().toggle();
+					},
+					"mouseleave":function() {
+						$("button:eq(2)").next().toggle();
+					}
+				});
+			});	
+		</script>
+	</section>
+	<br /><br />2015/12/24<hr /><br /><br />
+	<section id="trigger">
+		<button>button(tigger(event:"dbl"))</button> ->
+		<button>button("dbl")</button><br /><br />
+		<button>button(live)</button><br /><br />	
+		<a href="nodes.html">A:preventDefault</a>
+		<button>button(live imgToggle)</button>
+		<br><br><img src="images/1.png" /><br />
+		<script>
+			$(function() {
+				$("#trigger button").eq(1).bind("dblclick",function() {
+					alert("双击右侧按钮的事件");
+				});
+				$("#trigger button").eq(0).bind("click",function() {
+					$("#trigger button").eq(1).trigger("dblclick");
+				});
+				$("#trigger button:eq(2)").click(function() {
+					alert("click我");
+				});
+				$("#trigger button:eq(2)").click(function() {
+					alert("再次click我");
+				});
+				$("#trigger button:eq(2)").live("click",function() {
+					alert("live cilck我");
+				});
+				//$("#trigger button:eq(2)").die("click");
+				
+				$("#trigger a").live("click", function() {
+					return false; 
+				});
+
+				$("#trigger a").bind("click", function(event){
+					event.preventDefault();
+				});
+
+				$("#trigger button").eq(3).bind("click",function() {
+					$("#trigger img").toggle();
+				});
+				$("#trigger button").eq(3).bind("mouseover mouseout",function() {
+					$("#trigger img").toggle();
+				});
+			});
+		</script>
+	</section>
+	<br>2015/12/25<hr><br>
+	<section id="section3">
+		<button style="color:#aaa">button(delegate)</button>
+		<ul>
+			<li>哈哈</li>
+			<li>呵呵（鼠标过来会隐藏咯咯）</li>
+			<li>咯咯</li>
+		</ul>
+
+		<script>
+			$(function() {
+				$("#section3 ul").delegate("li:first","hover",function() {
+					$(this).css({color:"red"});
+				});
+				$("#section3 ul li").eq(1).hover(function() {
+					$("#section3 ul li").eq(2).hide();
+				},
+					function() {
+						alert("鼠标out”呵呵“了");
+					}
+				);
+			});
+		</script>
+	</section>
+ </body>
+</html>

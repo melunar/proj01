@@ -1,0 +1,126 @@
+
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑" Verdana, Geneva, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    list-style: none;
+    text-decoration: none;
+}
+body {
+    background-color: rgba(220,220,220,.5);
+    padding: 10px 0;
+    text-shadow: 1px 1px #fff;
+}
+.content {
+    position: relative;
+    float: left;
+    width: 70%;
+    left: 15%;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #dddddd;
+}
+.content h1 {
+    display: block;
+    font-size: 2em;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px #fff;
+    line-height: 3em;
+}
+
+.getBtn {
+    display: block;
+    float: right;
+    margin: 0 5% 10px 0;
+}
+.getBtn button {
+    padding: 4px 8px;
+    background-color: #6d7474;
+    color: #eeeeee;
+    border: none;
+    text-shadow: none;
+}
+.getBtn button:hover {
+     background-color: #6daa74;
+     color: #ffffff;
+    cursor: pointer;
+ }
+
+#newsListContent {
+    display: block;
+    float: left;
+    width: 100%;
+    background-color: rgba(180,180,180,.3);
+}
+.newsList .oneNews {
+    display: block;
+    float: left;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+}
+.newsList .oneNews a {
+    color: #222;
+    font-size: 1.2em;
+    line-height: 2.0em;
+    padding-left: 30px;
+    min-width: 80%;
+    overflow: hidden;
+}
+.newsList .oneNews a:hover {
+    color: #250;
+    text-decoration: underline;
+}
+.newsList .oneNews span {
+    text-shadow: none;
+    /*background-color: #aaaaaa;*/
+    padding-right: 10px;
+    border-radius: 13px 12px;
+    min-width: 9%;
+    float: right;
+    line-height: 2.4em;
+    color: #444;
+    cursor: pointer;
+}
+.newsContent {
+    color: #000;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin: 2px 0 2px 6%;
+}
+
+
+
+
+
+
+
+/*
+<div class="content">
+<h1>
+ 最新新闻，看不看
+        </h1>
+           <span class="getBtn">
+<button>刷新以显示</button>
+               </span>
+                 <div class="newsListContent">
+<ul class="newsList">
+<li class="oneNews">
+<a href="#">新闻标题</a>
+                  <span>time</span>
+                              <span>author</span>
+                                            </li>
+                                              </ul>
+                                                </div>
+                                                  </div>*/
+
+
+
+
+
+
+

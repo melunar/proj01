@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<base href="http://www.baidu.com">
+        <meta charset="UTF-8"/>
+        <title>Alternate Style Sheet</title>
+
+        <!-- IE 高版本下有样式选择的功能 -->
+        <link rel="alternate stylesheet" type="text/css" href="css/red.css" title="Red" />
+        <!-- <link rel="stylesheet" type="text/css" href="css/green" title="Green" /> -->
+        <link rel="alternate stylesheet" type="text/css" href="css/blue.css" title="Blue" />
+        <link rel="alternate stylesheet" type="text/css" href="css/big.css" title="Big" />
+        <style type="text/css">
+			/*@import url(http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/blue_green.css);*/
+			a, a:link {
+				/*font-size: 1in;*/
+				font: 1cm/2cm '';
+				color: red;
+				text-decoration: none;
+				cursor: default;
+				background-color: aqua;
+				/*font-stretch: wider;*/   
+				text-transform: lowercase ;
+			}
+			a:visited {
+				color: #333;
+			}
+			a:hover {
+				/*font-weight: bold;*/
+				text-decoration: underline;
+			}
+			a:active {
+				color: pink;
+			}
+			img[!alt] {
+				border: 2px solid red;
+			}
+			p {
+				text-indent: 1em;
+			}
+			p:first-letter {
+				font-size: 3em;
+			}
+			p:first-line {
+				color: #609;
+			}
+        </style>
+    </head>
+    <body>
+    <div class="dp-cpp"> 
+    	<span class="datatypes">datatypes</span>
+    </div>
+        <p>
+        	Hello,gays, I'm a paragraph!! And my color will changes according to the style sheet you choose. Hello,gays, I'm a paragraph!! And my color will changes according to the style sheet you choose. Hello,gays, I'm a paragraph!! And my color will changes according to the style sheet you choose.
+        </p>
+        <img src="../img/alternate.png" alt="">
+        <a href="#">alt link to PP百度</a>
+        <a href="#" style="font-size: 37px">alt link to 百度</a>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </body>
+</html>

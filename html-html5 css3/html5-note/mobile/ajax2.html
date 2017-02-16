@@ -1,0 +1,35 @@
+<! doctype html>
+<html>
+<head>
+    <meat charset="utf-8"></meat>
+    <title>ajax2</title>
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+</head>
+
+<body>
+<button>button(getJson)</button> &nbsp;&nbsp;<span id="button1span"></span><br>
+<button>button(getJson)</button> &nbsp;&nbsp;<span id="button2span"></span><br>
+
+
+<script language="javascript">
+    $(function() {
+        $("button:first").click(function() {
+            /*获取json数据类型，不推荐使用javascript eval()函数：缓慢 不稳定*/
+            $.getJSON("json.json",function(data) {
+                $("#button1span").append(data.Name + ": " + data.Education.University.Name + "  ");
+                $("#button1span").append(data.Name + ": " + data.Education.University.Specialty);
+            });
+        });
+        $("button:eq(1)").click(function() {
+            var u = "https://www.healthcare.gov/find-premium-estimates/#results/&aud=indv&type=med&state=AZ&county=Coconino&age0=40；";
+            $.getJSON(u,function(data) {
+                $("#button2span").text(data);
+            });
+        });
+    });
+</script>
+<br>
+<hr>
+
+</body>
+</html>

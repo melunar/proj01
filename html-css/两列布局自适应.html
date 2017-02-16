@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左不动右边自适应的两列布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            padding: 10px;
+        }
+        div {
+            /*text-align: center;*/
+        }
+        .whole {
+            float: left;
+            width: 100%;
+        }
+        .left {
+            position: absolute; /*绝对定位*/
+            top: 10px;
+            left: 0;
+            float: left;
+            width: 200px;
+            height: 600px;
+            background-color: aliceblue;
+            /*display: none;*/
+        }
+        .right {
+            /* 右侧自适应，宽度跟父元素相等，所以要使其子元素块状化 并加左边内边距固定值*/
+            width: 100%;
+            float: left;
+            height: 600px;
+            /*padding-left: 200px;*/
+            background-color: antiquewhite;
+            overflow: hidden;
+        }
+        .right span {
+            display: block;
+            padding-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="whole">
+        <div class="left">left</div>
+        <div class="right">
+            <span>
+                统计分析模块通过对海量数据的统计及规律分析，实现对车流量的统计及其同期比分析、并支持统计外地车辆在本地各个行政区划的的分布统计。<br>统计分析模块通过对海量数据的统计及规律分析，实现对车流量的统计及其同期比分析、并支持统计外地车辆在本地各个行政区划的的分布统计。统计分析模块通过对海量数据的统计及规律分析，实现对车流量的统计及其同期比分析、并支持统计外地车辆在本地各个行政区划的的分布统计。统计分析模块通过对海量数据的统计及规律分析，实现对车流量的统计及其同期比分析、并支持统计外地车辆在本地各个行政区划的的分布统计。
+            </span>
+        </div>
+    </div>
+</body>
+</html>

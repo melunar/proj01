@@ -1,0 +1,116 @@
+<!DOCTYPE html manifest="offline.manifest">
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>WEB WOKERS</title>
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.js"></script>-->
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+<!--
+    <link rel="stylesheet" href="../js/jquery.mobile-1.4.5.min.css" />
+    <script src="../js/jquery.mobile-1.4.5.min.js" ></script>-->
+</head>
+<body>
+<h1>计算器</h1>
+<p>
+    <button id="num1" class="number">1</button>
+    <button id="num2" class="number">2</button>
+    <button id="num3" class="number">3</button>
+    <button id="divide" class="fx">/</button>
+</p>
+<p>
+    <button id="num4" class="number">4</button>
+    <button id="num5" class="number">5</button>
+    <button id="num6" class="number">6</button>
+    <button id="multiply" class="fx">*</button>
+</p>
+<p>
+    <button id="num7" class="number">7</button>
+    <button id="num8" class="number">8</button>
+    <button id="num9" class="number">9</button>
+    <button id="subtract" class="fx">-</button>
+</p>
+<p>
+    <button id="num0" class="number">0</button>
+    <button id="numPoint" class="number">.</button>
+    <button id="add" class="fx">+</button>
+</p>
+<button id="clear">C</button>
+<button id="submit">=</button>
+
+<p>
+    First Number
+</p>
+<input type="text" id="first" readonly class="numbers">
+<p>
+    Second Number
+</p>
+<input type="text" id="second" readonly class="numbers">
+<p>
+    Result
+</p>
+<input type="text" id="result" readonly class="numbers">
+
+
+<script language="JavaScript">
+    if(!!window.Worker) {
+        var worker = new Worker("../js/workerCac.js");
+        //alert("浏览器支持ＷＯＫＥＲＳ");
+        worker.onmessage = function(e) {
+            $("#result").val(e.data);
+        }
+    }
+    else alert("浏览器不支持ＷＯＫＥＲＳ");
+
+
+    var next = 0, cur, func, one, two,message;
+    $(document).ready(
+            function() {
+                $(".number").click(
+                        function(){
+                            console.log(next);
+                            if(!next) {
+                            //获取第一个框的数字病更新
+                                cur = $("#first").val();
+                                num = $(this).html();
+                                num = cur + num;
+                                $("#first").val(num);
+                            }
+                            else {
+                                //获取第2个框的数字病更新
+                                cur = $("#second").val();
+                                num = $(this).html();
+                                num = cur + num;
+                                $("#second").val(num);
+                            }
+                        }
+                )
+            }
+    );
+    $(".fx").click(function() {
+        next = 1;
+        func = $(this).attr("id")
+        one = parseFloat($("#first").val());
+        console.log(next + " " + one + " " + $("#first").val());
+    });
+    $("#clear").click(function() {
+       $("input").val("");
+       //$("input").attr("value","");
+        next = 0;
+    });
+    $("#submit").click(function() {
+        two = parseFloat($("#second").val());
+        message = {
+          'func':func,
+          'one':one,
+          'two':two
+        };
+        worker.postMessage(message);
+    });
+</script>
+</body>
+</html>

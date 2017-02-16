@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>函数对象</title>
+</head>
+<body>
+    <script>
+        /**
+         * 函数的定义有哪几种?
+         * 1. 基本function关键字和函数表达式方式
+         *
+         * 2. 作为类的构造器 （对象）
+         *
+         * 3. 工厂模式 (对象)
+         * */
+        //1 函数生命会创建Function对象
+        function foo1(args) {
+           //...
+        }
+        //函数表达式：分为具名函数表达式和匿名函数表达式
+        //具名函数表达式是一种赋值表达式 会先创建object对象 在创建function对象
+        var foo2 = function(args) {
+          //...
+        }
+
+        //2
+        function cla() {
+            this.name = "hao";
+        }
+        cla.prototype = {};
+        var foo3 = new cla();
+        console.log(foo3);
+
+        //3
+        function foo4()
+        {
+            var object = new Object();
+            object.name = "fac";
+            object.get = function()
+            {
+                alert(this.name);
+            }
+            return object;
+        }
+        var o1 = foo4();
+
+        var o2 = foo4();
+        console.log(o1);
+
+        /**
+         *
+         * 匿名函数是没有函数名 后面带有括号 直接执行的函数，可以带参数，也可以链式调用(类似jQuery的链式调用，总要有个返回值-返回自身的上下文)
+         *
+         * */
+        (function(v) {
+            console.log(v);
+            return arguments.callee;
+        })("one")("two");
+
+        /**
+         * 回调函数：事先规定好执行完一些语句或函数之后再去执行特定的函数（回调函数），能很好的实现异步，回调函数是作为另一个函数的参数调用的。
+         *
+         * 好多框架会封装一些带有回调函数的方法 这样开发效率比较高
+         *
+         * 到一个商店买东西，刚好你要的东西没有货，于是你在店员那里留下了你的电话，过了几天店里有货了，店员就打了你的电话，然后你接到电话后就到店里去取了货。在这个例子里，你的电话号码就叫回调函数，你把电话留给店员就叫登记回调函数，店里后来有货了叫做触发了回调关联的事件，店员给你打电话叫做调用回调函数，你到店里去取货叫做响应回调事件（from 知乎）
+         * */
+
+        function callback01(callback) {
+            console.log("执行自己函数");
+            callback();
+        }
+        callback01(function() {
+            console.log("回调");
+        })
+
+        /**
+         * 构造函数
+         * new Function(argument_names..., body)
+         * */
+        var foo1 = new Function('var temp = 100; this.temp = 200; return temp + this.temp;');
+
+        console.log(typeof(foo1));
+        console.log(foo1()); //300
+
+        var foo3 = Function('var temp = 100; this.temp = 200; return temp + this.temp;');
+        console.log(typeof(foo3));
+        console.log(foo3()); //300
+
+        console.log("----------apply call-------------");
+        //重新定义函数的上下文对象
+        //当参数明确时可用call, 当参数不明确时可用apply给合arguments(数组)
+        //foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments)==this.foo(arg1, arg2, arg3)
+        /*function showthis() {
+            alert(this);
+            console.log(this);
+        }
+        var data = [1, 2, 3, 4];
+        var data1 = [1, 2, 3, 4, 5];
+
+
+        console.log(showthis.apply(window));
+        console.log(showthis.apply({}));
+
+        console.log(Math.max.apply(data));
+
+        console.log(Math.max.apply(data1));*/
+
+        function A(name,age) {
+            this.name = name;
+            this.age = age;
+            this.getName = function(mes1,mes2) {
+                return this.name +  " " + this.age + " " + mes1 + " " + mes2;
+            }
+        }
+
+
+        function B(name,age) {
+            this.name = "B";
+            this.age = age;
+            this.getName = function (mes1,mes2) {
+                return this.name + " " + this.age + " " + mes1 + " " + mes2;
+            }
+        }
+
+        var a = new A("aaa",11);
+        var b = new B("bbb",12);
+        var b1 = new B("bbb1",121);
+        console.log(b.getName.call(a));//a
+        console.log(b.getName.call(b1,"bbb11",23));
+
+        console.log(b.getName.call(b1,["bbb11",23]));//不合适 不能是数组
+        console.log(b.getName.apply(b1,["bbb11",23]));
+
+
+        console.log("----------length arguments-------------");
+
+        //length属性：在定义函数时声明已命名的参数的个数 注意是在定义时候
+        console.log(b.getName.length);
+
+       /*
+        不推荐还用
+        //arguments属性：在执行函数时 计算参数个数
+        console.log(b.getName(1).length);*/
+
+
+        //Arguments.length：在调用函数时参数的个数 注意是在定义时候
+        console.log(test0(1,2));//2
+
+        console.log("----------prototype-------------");
+        //属性prototype是在函数作为构造函数时使用的
+
+        function Person() {}
+        console.log(Person.__proto__ === Function.prototype);//true
+
+
+
+        //caller  返回一个对函数的引用，该函数调用了当前函数。(少使用)
+        //callee 属性是 arguments 对象的一个成员 返回正被执行的 Function 对象
+        function callee01() {
+            console.log(arguments.callee);
+        }
+        callee01();
+
+
+        /**
+         *
+         * */
+        function test0() {
+            console.log(arguments.length);
+        }
+        test0();//0
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+# 忽略idea文件夹目录（webstorm环境的工程配置目录）
+.idea/

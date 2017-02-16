@@ -1,0 +1,51 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>VUE-声明式渲染</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{message}}
+			<br>
+			{{obj.name + " " + obj.number + " years old."}}
+		</div>
+        <hr>
+
+        <!--
+            v-bind 属性被称为指令
+            这个指令的简单含义是说：将这个元素节点的 title 属性和 Vue 实例的 message 属性绑定到一起。
+        -->
+        <div id="app2" v-bind:title="message">
+            hover here and see.
+        </div>
+	</body>
+	<script>
+        /**
+         * 元素都是响应式的:
+         * 打开浏览器的控制台，修改app.message，可以看到上例相应地更新
+         */
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				obj: {
+					number: 4,
+					name: "Mr Vue is"
+				}
+			}
+		});
+        var app2 = new Vue({
+			el: '#app2',
+			data: {
+				message: 'hover info!',
+				obj: {
+					number: 100,
+					name: "Mr Vue"
+				}
+			}
+		});
+	</script>
+</html>

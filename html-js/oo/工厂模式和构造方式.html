@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工厂模式和构造函数</title>
+</head>
+<body>
+    <script>
+        //工厂模式
+        function CreatePerson(age,name) {
+            var o  = new Object('');
+            o.age = age;
+            o.name = name;
+            o.getName = function() {
+                return this.name;
+            };
+            return o;
+        }
+        //可以不适用new关键字创建实例
+        var per01 = CreatePerson(10,"gognchang1");
+        var per011 = new CreatePerson(10,"gognchang2");
+
+        //构造函数模式
+        function Person(age,name) {
+            this.age = age;
+            this.name = name;
+            this.getNanme = function() {
+                return this.name;
+            };
+        }
+        var per02 = new Person(11,"构造1");
+        var per021 = Person(11,"构造2");//错误 必须使用new创建实例
+
+        console.log(per01);
+        console.log(per011);
+        console.log(per02);
+        console.log(per021);
+
+    </script>
+</body>
+</html>

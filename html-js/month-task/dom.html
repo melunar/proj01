@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        .message {
+            color: red;
+        }
+    </style>
+    <script src=""></script>
+    <title>dom</title>
+</head>
+<body>
+    <script>
+        console.log(document.domain);
+        console.log(document.title);
+        console.log(document.URL);
+        console.log(document.referrer);
+        console.log(document.forms);
+        console.log(document.links);
+        console.log(document.images)
+
+
+        var ele = document.createElement("div");
+        ele.className = "message";
+
+        var tn = document.createTextNode("Hello ");
+        ele.appendChild(tn);
+
+        var tn2 = document.createTextNode("DOM");
+        ele.appendChild(tn2);
+
+        document.body.appendChild(ele);
+
+        var p = document.createElement("p").appendChild(document.createTextNode(" paras "));
+        ele.appendChild(p);
+
+        console.log(ele.childNodes.length);
+        ele.normalize();
+        console.log(ele.childNodes.length);
+
+    </script>
+    <form>
+        <input name="name">
+        <button id="btn">提交</button>
+    </form>
+ <form>
+     <input type="password" value="123">
+ </form>
+<a href="dom.html">a1</a>
+<a href="www.baidu.com">百度</a>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+table {
+	font-size:12px;
+	cursor:default;
+}
+
+tr {
+	background:#888;
+}
+
+.currrentDay {
+	color:red;
+	border:1pt solid;
+}
+
+.odd {
+	background:lightgray;
+} 
+
+.headercells {
+	background:gray;
+}
+
+.sunday {
+	background:#666;
+}
+
+.today {
+	background:#811;
+	cursor:pointer;
+}
+
+td {
+	height:2em;
+	width:3em;
+	text-align:center;
+}
+
+th {
+	height:1.7em;
+}
+td:hover{
+	background:#340;
+}

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+ </head>
+ <body>
+	<h2>H2 title</h2>
+	<button>Append</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	<button>Append function</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	<button>Prepend</button><br />
+	<button>Append h2</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	<br />
+	<div id="output">
+		[original content]
+	</div>
+	<script language="javascript">
+		$(function() {
+			$("button:first").click(function() {
+				var str = "< append content >";
+				$("#output").append(str);
+			});
+			$("button").eq(2).click(function() {
+				var str = "[ prepend content ]";
+				$("#output").prepend(str);
+			});
+
+			/*$("button:eq(1)").click(function() {
+				$("#output").append(function() {
+					alert($(this).text());
+					return $(this).text();
+				});
+			});
+			*/
+			
+			/*
+				添加页面内存在的dom节点会是原来的节点移动（删除，天交到新的地方）
+			*/
+			$("button").eq(3).click(function() {
+				$("#output").append($("h2"));
+			});
+
+			$("<h3>title 3</h3>").prependTo("div:first");
+			$("h2").appendTo("div:first");
+		});
+	</script>
+
+	<hr height=3 />
+	<br />
+	<div id="div">
+		<h3>title 3</h3>
+		<h4>title 4</h4>
+		<button>before</button>&nbsp;&nbsp;&nbsp;
+		<button>after</button>&nbsp;&nbsp;&nbsp;
+
+		<br/>
+		<div id="output2">{original content}</div>
+
+	</div>
+	<script language="javascript">
+		$(function() {
+			$("#div button:first").click(function() {
+				$("#output2").after($("#div h3"));
+			});
+			$("#output2").before($("h4"));
+		});
+	</script>
+
+	<br />
+	<hr />
+	<br />
+	<div id="wrap">
+		<button>wrap</button>
+		<span>wraping with something</span>
+		<span>wraping with something 2</span>
+	</div>
+	<script language="javascript">
+		$(function() {
+			//alert("");
+			$("#wrap button:first").click(function() {
+				$("#wrap span:first").wrap($("<h3>"));
+				$("#wrap span").wrapAll($("<div>"));
+				var oo = document.createElement("h1");
+				$("#wrap span").wrapInner(oo);
+			});
+		
+		});
+	</script>
+
+	<br />
+	<hr />
+	<br />
+	<div id="replace">
+		<span>span or title 1</span>
+		<span>span or title 2</span>
+		<span>span or title 4</span>
+		<button>replaceWith()</button>&nbsp;&nbsp;&nbsp;<br />
+		<button>replaceAll()</button>&nbsp;&nbsp;&nbsp;<br />
+	</div>
+	<script language="javascript">
+		$(function() {
+			$("#replace button:first").click(function() {
+				$("#replace span:first").replaceWith("<h1>title 1</h1>");
+			});
+			$("#replace button:eq(1)").click(function() {
+				var oo = document.createElement("hr");
+				$(oo).replaceAll($("#replace span"));
+			});
+		});
+	</script>
+
+	<br />
+	<hr />
+	<br />
+	<div id="tip">
+		<span>span1</span><br>
+		<span id="i1">span2</span><br>
+		<span>span3</span><br>
+		<span>span4</span><br>
+		<button>empty</button>
+		<button>remove all</button>
+		<button id="buttttt">remove only one</button>
+	</div>
+	<script language="javascript">
+		$(function() {
+			$("#tip button:first").click(function() {
+				/*清空标签内部的text*/
+				$("#tip span:first").empty();
+			});
+
+			var rem = null;
+			$("#tip button:eq(1)").click(function() {
+				/* 删除标签 有返回值（Jquery）*/
+				rem = $("#tip span").remove();
+				$("#tip button:last").after(rem[1]);
+			});
+			
+			$("#tip button:eq(2)").click(function() {
+				/* 删除标签 remove函数添加参数（过滤器）*/
+				rem = $("#tip span").remove("#i1");
+				$(this).attr({title:"按钮"});
+				$(this).removeAttr("id");
+				//$("#tip button:last").after(rem);
+				//alert(rem.length);
+			});
+			
+		});
+	</script>
+
+	<br />
+	<hr />
+	<br />
+	<div id="clone">
+		<span title="span1" style="color:red">span1</span><br>
+		<span title="span2" style="color:blue">span2</span><br>
+		<span>span3</span><br>
+		<span>span4<br /></span>
+		
+		<button>clone span1</button>
+		<button>clone(true)</button>
+		<button>clone(false)</button>
+	</div>
+	<script language="javascript">
+		$(function() {
+			$("#clone button:first").click(function() {
+				element = $("#clone span:first").clone();
+				$("#clone span:eq(3)").after(element);
+				console.log($("#clone span").size());
+			});
+
+			$("#clone button:eq(1)").click(function() {
+				element = $("#clone span:first").clone(true);
+				element.css({
+					color: "black"
+				});
+				$("#clone span:eq(3)").after(element);
+				console.log($("#clone span").size());
+			});
+
+			$("#clone button:eq(2)").click(function() {
+				element = $("#clone span:eq(1)").clone(false);
+				$("#clone span:eq(3)").after(element);
+				console.log($("#clone span").size());
+			});
+		});
+	</script>
+
+ </body>
+</html>

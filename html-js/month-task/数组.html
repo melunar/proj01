@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>数组</title>
+</head>
+<body>
+    <script>
+        var arr = [1, 2, 3, 4];
+        /*
+            ----部分类似string的方法----
+         Array（数组对象）
+         Array.concat( ) 连接数组
+         Array.join( ) 将数组元素连接起来以构建一个字符串
+         Array.length 数组的大小
+         Array.reverse( ) 颠倒数组中元素的顺序
+
+         Array.slice( ) 返回数组的一部分
+         Array.sort( ) 对数组元素进行排序
+         Array.splice( ) 插入、删除或替换数组的元素
+
+         Array.pop( ) 删除并返回数组的最后一个元素
+         Array.push( ) 给数组添加元素
+         Array.shift( ) 将元素移出数组
+         Array.unshift( )
+        */
+        function test01() {
+            console.log(arr.join("-"));
+            console.log(arr.sort(function(a,b) {
+                //排序会改变数组
+                //从大到小排序
+                return b - a;
+            }));
+            console.log(arr);
+            console.log(arr.splice(1,2,[11, 22]));//截取了数组，并添加元素
+            console.log(arr);//[4, Array[2], 1]
+
+        }
+        test01();
+
+
+
+
+        /**
+         *
+         * */
+        function test0() {
+            console.log();
+        }
+        test0();
+    </script>
+</body>
+</html>

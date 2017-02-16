@@ -1,0 +1,46 @@
+<!DOCTYPE html>	
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义函数：checkbox全选与全不选</title>
+</head>
+<body>
+<form>
+    <fieldset>
+        <input type="checkbox" onchange="checkAll()" id="selectAll"><label for="selectAll">全选</label>
+    </fieldset>
+    <fieldset>
+        <input type="checkbox" id="id1" name="allbox"><label for="id1">checkbox</label><br>
+        <input type="checkbox" id="id2" name="allbox"><label for="id2">checkbox</label><br>
+        <input type="checkbox" id="id3" name="allbox"><label for="id3">checkbox</label><br>
+        <input type="checkbox" id="id4" name="allbox"><label for="id4">checkbox</label><br>
+        <input type="checkbox" id="id5" name="allbox"><label for="id5">checkbox</label><br>
+    </fieldset>
+
+</form>
+<script>
+    //当前页面的url
+    /*alert(this.href);
+    alert(idd.href);
+    alert(document.location.toString());*/
+    function checkAll() {
+        var selectAll = document.getElementById("selectAll");
+        var allbox = document.getElementsByName("allbox");
+
+		var le = allbox.length;
+        if(selectAll.checked) {
+            for(var i = 0; i < le; i++) {
+                allbox[i].checked = true;
+            }
+        }else {
+            for(var i = 0; i < le; i++) {
+                allbox[i].checked = false;
+            }
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

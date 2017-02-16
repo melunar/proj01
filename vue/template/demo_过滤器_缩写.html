@@ -1,0 +1,61 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>VUE-过滤器-缩写</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+        <div id="app-1">
+            <p>
+                {{ message | capitalize }}
+            </p>
+            <p :title="message | formatMessage('_pre_','_after_')">
+                    hover and see title
+            </p>
+        </div>
+	</body>
+	<script>
+        /**
+         *  Filters are usable in two places: mustache interpolations and v-bind expressions.
+         *
+         *  Vue 2.x 中，过滤器只能在 mustache 绑定和 v-bind 表达式（从 2.1.0 开始支持）中使用，因为过滤器设计目的就是用于文本转换。
+         *  为了在其他指令中实现更复杂的数据变换，应该使用计算属性。
+         *
+         *  ** 过滤器函数总接受表达式的值作为第一个参数 所以调用的时候参数总是后移且少一个！
+         *
+         *  过滤器可以串联 "{{ message | filterA | filterB }}"
+         *
+         *  过滤器是 JavaScript 函数，因此可以接受参数：
+         *
+         */
+        var app1 = new Vue({
+            el: "#app-1",
+            data: {
+                message: "hello Vue"
+            },
+            filters: {
+                capitalize: function (value) {
+                    if (!value)
+                        return '';
+                    value = value.toString();
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                },
+                formatMessage: function(value, pre, after) {
+                    return pre + value + after;
+                }
+            }
+        });
+
+        /**
+         * ##缩写：
+         *
+         * Vue.js 为两个最为常用的指令提供了特别的缩写
+         *
+         * v-bind:prop ==> :prop
+         *
+         * v-on:event ==> @event
+         */
+    </script>
+</html>

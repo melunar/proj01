@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+    <title>Nodes plus</title>
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+ </head>
+ <body>
+	<div>
+		<span>span1</span>
+		<br />
+		<div class="c1">
+			<p>paragraph</p>
+		</div>
+		div
+	</div>
+	<script language="javascript">
+		$(function() {
+			console.log("$(\"div:first\").children().length :" + $("div:first").children(".c1").length);
+			for(var i = 0; i < $("div:first").children().length; i++) {
+				//console.log(i + " : " + $("div:first").children().eq(i).html());
+			}
+
+		    var pa = $("div:eq(1)").parent().length;
+			var pas = $("div:eq(1)").parents().length;
+			var pasUntil = $("div:eq(1)").parentsUntil("body").length;
+			//console.log("div:eq(1) parent.length -- :" + pa);
+			//console.log("div:eq(1) parents.length -- :" + pas);
+			for(var i = 0; i < pas; i++) {
+				//console.log($("div:eq(1)").parents()[i].nodeName);
+			}
+			//console.log("div:eq(1) parentsUntil(body).length -- :" + pasUntil);
+		});
+	</script>
+	<br/><hr /><br />
+	<section id="next">
+		<span>span 1  </span>
+		<span class="s1">span s1  </span>
+		<span>span 3  </span>
+		<span class="until">span 4 </span>
+		<p id="poem">日晚菱歌唱，风烟满夕阳。 月生飞鸟外，落霞夕阳西。 形影暮色里，危翠滴渔船。</p>
+		
+	</section>
+	<script language="javascript">
+		$(function() {
+			/*prev方法同理*/
+			console.log("next: " + $("#next .s1").next().text());
+			console.log("next andSelf: " + $("#next .s1").next().andSelf().text());
+			console.log("nextAll: " + $("#next .s1").nextAll().text());
+			
+			/*这里的until（“。until”）别写成（until（span 。until））*/
+			console.log("nextUntil(): " + $("#next .s1").nextUntil(".until").text());
+		
+			console.log("siblings: " + $("#next .s1").siblings().text());
+			
+
+			/*find()找一个元素的后代元素*/
+			console.log("section find s1: " + $("#next").find(".s1").text());	
+
+			console.log("section contents span: " + $("#next span").contents().text());
+				
+
+			var obj = {
+				name: "Phrel",
+				age: "12",
+				occupation: "student"
+			};
+			/*for in*/
+			for (i in obj)
+			{
+				console.log(i + ": " + obj[i]);
+			}
+			/*
+				$.each(arr,function(index,value){})
+			*/
+			jQuery.each(obj,function(index,value) {
+				console.log(index + ": " + value);
+			});
+
+			/*xx.each(funtion(index){})*/
+			$("#next span").each(function(index) {
+				$(this).prepend(index + " ");
+				$(this).append("<br>");
+			});
+
+
+		});
+	</script>
+ </body>
+</html>
+ 

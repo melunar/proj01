@@ -1,0 +1,31 @@
+/**
+ * Created by haoyong on 2016/7/31.
+ */
+.note {
+    width: 80%;
+    margin: 10px 10%;
+}
+.note h2 {
+    display: block;
+    font-size: 16px;
+    padding: 0 5% 0 5%;
+    line-height: 1.8em;
+}
+.note ul {
+    width: 100%;
+    display: block;
+    list-style: none;
+}
+.note ul li {
+    display: block;
+    width: 95%;
+    padding-left: 5%;
+    font-size: 13px;
+    line-height: 2.2em;
+}
+.note ul li:nth-child(2n)  {
+    background-color: rgba(112, 70, 26, 0.12);
+}
+.note ul li:hover {
+    background-color: rgba(112, 70, 26, 0.32);
+}

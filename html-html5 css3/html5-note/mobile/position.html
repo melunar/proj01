@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+ <head>
+	<meta charset="UTF-8">
+	<title>Position</title>
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+
+	<style>
+		body {
+			margin:0;
+			padding:0;
+			
+		}
+		table {
+			text-align:center;
+		}
+		#info {
+			width:440px;
+		}
+		img {
+			height:150px;
+			width:150px;
+			
+		}
+		img#p2 {
+			width:300px;
+		}
+		#p1 {
+			position:relative;
+			border:solid 1px;
+		}
+		#p2 {
+			position:absolute;
+			top:200px;
+		}
+		#p3 {
+			position:absolute;
+			top:200px;
+		}
+	</style>
+ </head>
+ <body>
+	
+		<h1>position(){top,left}:yuqipianyifuyuansuzhijianxiangdui detopheleftzhi</h1>
+		<table id="info"></table>
+
+		<img src="images/1.png" alt="youdao蓝色">
+		<div id="p1">
+			<img src="images/2.png" alt="有道红色">
+			<img id="p2" src="images/3.jpg" alt="pic3">
+		</div>
+		<img id="p3" src="images/4.jpg" alt="pic4">
+		<table style="margin-left:500px;" id="info2"></table>
+	<script language="javascript">
+		$(function() {
+			var pos = $("img:first").position();
+
+			$("#info").append("<tr><th width=35>images</th><th>left</th><th>top</th></tr>").append("<tr><td>image1</td><td>" + pos.left + "</td><td>" + pos.top + "</td></tr>");
+
+			pos = $("img:eq(1)").position();
+			$("#info").append("<tr><td>image2</td><td>" + pos.left + "</td><td>" + pos.top + "</td></tr>");
+
+			pos = $("img:eq(2)").position();
+			$("#info").append("<tr><td>image3</td><td>" + pos.left + "</td><td>" + pos.top + "</td></tr>");
+
+			pos = $("img:eq(3)").position();
+			$("#info").append("<tr><td>image4</td><td>" + pos.left + "</td><td>" + pos.top + "</td></tr>");
+
+			var offs = $("img:first").offset();
+
+			$("#info2").append("<tr><th width=35>images</th><th>left</th><th>top</th></tr>").append("<tr><td>image1</td><td>" + offs.left + "</td><td>" + offs.top + "</td></tr>");
+
+			offs = $("img:eq(1)").offset();
+			$("#info2").append("<tr><td>image2</td><td>" + offs.left + "</td><td>" + offs.top + "</td></tr>");
+
+			offs = $("img:eq(2)").offset();
+			$("#info2").append("<tr><td>image3</td><td>" + offs.left + "</td><td>" + offs.top + "</td></tr>");
+
+			offs = $("img:eq(3)").offset();
+			$("#info2").append("<tr><td>image4</td><td>" + offs.left + "</td><td>" + offs.top + "</td></tr>");
+				
+			$("img:eq(1)").css({
+				border:"5px #ccc solid",
+				"margin-top":"10px",
+				"padding-left":"10px"
+			});
+			console.log($("img:eq(1)").height() + " " + $("img:eq(1)").width());
+			console.log($("img:eq(1)").innerHeight() + " " + $("img:eq(1)").innerWidth());
+			console.log($("img:eq(1)").outerHeight() + " " + $("img:eq(1)").outerWidth());
+			
+		});
+	</script>
+ </body>
+</html>

@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/handlebars.js"></script>
+    <!--
+    <script src="../../../js/json.js"></script>-->
+    <script src="script.js"></script>
+    <title>获取新闻</title>
+
+
+
+</head>
+<body>
+<div class="content">
+    <h1>
+        最新新闻news
+    </h1>
+        <span class="getBtn">
+            <button>刷新以显示</button>
+        </span>
+    <div id="newsListContent">
+    </div>
+</div>
+
+</body>
+
+<script>
+
+    /* $.ajax({
+     url: "json.json",
+     dataType: "json",
+     success: function(re) {
+     var res = re['news'];//$.parseJSON(re);//
+     //console.log(res[0].content);
+     for(i in res) {
+     //console.log(res[i]);
+
+     var li  = $("#newsList").append("<li />");
+
+     $("li").last().append("<a href=''>");
+     $("li a").last().text(res[i].title);
+     }
+     //$("#newsList").append("<li />").addClass("oneNews");
+     console.log();
+     }
+     });
+     */
+    // getData();
+
+
+    $(function() {
+       /* console.log($.ajax({
+            url: "json.json"
+        }));*/
+      //  var data = {};
+        function loadContent() {
+           // console.log("before data");
+            //getData();
+
+            /*获取模板*/
+            var source;
+            $.ajax({
+                url: "inc/tmp.html",
+                async: false,
+                dataType: "html",
+                success: function(re) {
+                    /*console.log("inc:");
+                    console.log(re);*/
+                    source = re;
+                }
+            });
+            //var source = $("#tmp").html();
+            console.log("模板：");
+            console.log(source);
+            var template = Handlebars.compile(source);
+
+            var dataCopy;
+            //var html;
+            $.ajax({
+                url: "json2.json",
+                async:false,//
+                dataType: "json",
+                success: function(re) {
+                   // console.log("111" + re);
+                    dataCopy = re;
+                  // console.log(dataCopy.news);
+
+                    console.log('---------------------------------------------------------');
+                    console.log("json：");
+                    console.log(re);
+                    console.log("json-dataCopy：");
+                    console.log(dataCopy);
+                    var html = template(re);
+                    console.log("html without content:");
+                    console.log(html);
+                    //document.getElementById("newsListContent").innerHTML = html;
+                    $("#newsListContent").html(html).css({
+                        "display": "none"
+                    });
+                    $("#newsListContent").show(800);
+
+                    //单独把content插进页面去
+                    for(var i in $(".newsContent")) {
+                        $(".newsContent").eq(i).html(re.news[1].content);
+                        //re.news[1].content;
+                    }
+
+                    if($(".oneNews a")) {
+                        $(".oneNews a").hover(function() {
+                              $(this).siblings("div.newsContent").slideDown(500)
+                        },
+                         function() {
+                            $(this).siblings("div.newsContent").slideUp(500)
+
+                          });
+                    }
+                },
+                error: function() {
+                    alert("读取数据错误");
+                }
+
+            });
+
+        }
+
+        $(".getBtn button").click(loadContent);
+
+        //$(".oneNews a").trigger("hover");
+
+
+
+       /* function getD() {
+            return $.ajax({url:"inc/tmp.html",async:false}).then(function(result) {
+                console.log("OK" + result);
+                return result;
+            },function(error) {
+                console.log("bad" + error);
+                return error;
+            });
+        }
+        var tmpl = getD();
+        console.log('getD');
+        console.log("" + tmpl);
+
+        $.get("inc/tmp.html").then(
+                function(){ alert("$.get succeeded"); },
+                function(){ alert("$.get failed!"); }
+        );*/
+    });
+
+    /*var json00 = {
+        "news": [
+            {
+                "title": "新闻标题1",
+                "author": "admin",
+                "time": "2016-02-19 18:10:43",
+                "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+            },
+            {
+                "title": "新闻标题2",
+                "author": "admin",
+                "time": "2016-02-19 18:10:43",
+                "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+            },
+            {
+                "title": "新闻标题3",
+                "author": "admin",
+                "time": "2016-02-19 18:10:43",
+                "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+            },
+            {
+                "title": "新闻标题4",
+                "author": "admin",
+                "time": "2016-02-19 18:10:43",
+                "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+            }
+
+        ]
+    };*/
+
+</script>
+</html>
+

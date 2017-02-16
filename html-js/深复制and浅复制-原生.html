@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <title>深复制和浅复制（数组和对象存在的问题）</title>
+</head>
+<body>
+    <script language="JavaScript">
+        /**
+         * @author haoyong
+         * @date 2016-03-09
+         * 浅复制演示函数
+         * */
+        function test01() {
+            var arr = [1, 2, 3, 4],
+                arr1 = arr;
+            arr1[1] = 0;
+            console.log("arr:" + arr);//1,0,3,4
+            console.log("arr1:" + arr1);//1,0,3,4
+
+            var obj = {
+                a: 1,
+                b: 2
+            },
+                obj1 = obj;
+            obj1.c = 3;
+            obj.a = 0;
+
+            console.log("obj:");
+            console.log(obj);//Object {a: 0, b: 2, c: 3}
+            console.log("obj1:");
+            console.log(obj1);//Object {a: 0, b: 2, c: 3}
+        }
+        test01();
+
+        /**
+         * @author haoyong
+         * @date 2016-03-09
+         * 对象深复制演示函数（数组同理）
+         * */
+        /*function test02() {
+            var o = {
+                a: 1,
+                b: 2
+            },
+                o1 = {};
+            o1.a = o.a;
+            o1.b = o.b;
+
+            o1.a = 0;
+            o1.c = 3;
+
+            console.log("o:");
+            console.log(o);//Object {a: 1, b: 2}
+            console.log("o1:");
+            console.log(o1);//Object {a: 0, b: 2, c: 3}
+        }
+        test02();*/
+
+
+        /******************
+         * @author haoyong
+         * @date 2016-03-09
+         * 对象深复制原理
+         * ****************
+         * */
+        function deepCopy(o) {
+            var result = {};//拷贝返回值
+
+            for(var key in o) {
+                result[key] = 'object' === typeof o[key] ? deepCopy(o[key]) : o[key];
+            }
+            return result;
+        }
+
+
+        /******************
+         * @author haoyong
+         * @date 2016-03-09
+         * 数组深复制原理
+         * ****************
+         * */
+        function deepCopyArr(arr) {
+            var result = [];//拷贝返回值
+
+            for(var index in arr) {
+                result[index] = 'array' === typeof arr[index] ? deepCopyArr(arr[index]) : arr[index];
+            }
+            return result;
+        }
+
+        /**
+         * @author haoyong
+         * @date 2016-03-09
+         * 深复制演示
+         * */
+        function test03() {
+            /*数组*/
+            var arr = [1, 2, 3, [41, 42, 43, 44]],
+                    arr1 = deepCopyArr(arr);
+            arr1[1] = 0;
+            arr1[3][1] = 0;
+            console.log("arr:" + arr);
+            console.log("arr1:");
+            console.log(arr1);
+            console.log("arr length:" + arr.length + "  arr length:" + arr1.length);//arr length:4  arr length:4
+
+/*            var arr = [1, 2, 3, 4],
+                    arr1 = deepCopy(arr);
+            arr1[1] = 0;
+            console.log("arr:" + arr);
+            console.log("arr1:");
+            console.log(arr1);//变成了对象Object
+            console.log("arr length:" + arr.length + "  arr length:" + arr1.length);//arr length:4  arr length:undefined*/
+
+            /*对象*/
+            var o = {
+                        a: 1,
+                        b: 2,
+                        oo: {
+                            aa: 11,
+                            bb: 22
+                        }
+                    },
+                    o1 = deepCopy(o);
+
+            o1.a = 0;
+            o1.oo.aa  = 00;
+            o1.c = 3;
+
+            console.log("o:");
+            console.log(o);//Object {a: 1, b: 2}
+            console.log("o1:");
+            console.log(o1);//Object {a: 0, b: 2, c: 3}
+
+            /*对象嵌套数组*/
+            var oa = {
+                        a: 1,
+                        b: 2,
+                        oo: ["o1","o2","o3"]
+                    },
+                    oa1 = deepCopyArr(oa); //返回数组类型
+                    //oa1 = deepCopy(oa);  //返回对象类型
+
+            console.log("oa:");
+            console.log(oa);
+            console.log("oa1:");
+            console.log(oa1);
+        }
+        test03();
+    </script>
+</body>
+</html>

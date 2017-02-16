@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>    <script src="1.js" type="text/javascript"></script>
+
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        function test(){
+            pp.innerText="";
+            var num=document.getElementById("score").value;
+            f1(num,function(){ //匿名高层处理函数
+                if(num<60) alert("未及格！");
+                else if(num<=90) alert("该生成绩优良！");
+                else alert("该生成绩优秀!"); })
+        }
+    </script>
+ 
+<p>
+    回调函数示例:当学生成绩score<=0分时候，由底层处理；当score>0时，由高层处理。
+</p>
+请输入学生成绩<input type="text" id="score">
+<input type="button" onClick="test()" value=" 看看结果">
+<p id="pp"></p>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>dom</title>
+</head>
+<body>
+    <div id="div">
+        <h1 id="h1">h1</h1> <h2>h2</h2>
+    </div>
+    <script>
+        var h1 = document.getElementById("h1");
+
+        /*下一下相邻节点可能是文本（换行 空格导致）*/
+        var h2 = (h1.nextSibling.nodeName != '#text') ? h1.nextSibling : h1.nextSibling.nextSibling;//包含换行
+        alert(h2.nodeName);
+        //alert(h2.nextSibling.nodeName);
+
+        alert(document.getElementById("div").childNodes.length);//包含换行 5
+
+        alert(document.getElementById("div").children.length);//不包含换行 2
+    </script>
+</body>
+</html>

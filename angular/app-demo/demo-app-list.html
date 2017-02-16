@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<link type="text/css" rel="stylesheet" href="../css/common.css">
+<script src="../../js/angular.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/angular-route.js"></script>
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+<h2>我的备忘录</h2>
+
+<form ng-submit="todoAdd()">
+    <input type="text" ng-model="todoInput" size="50" placeholder="新增">
+    <input type="submit" value="新增">
+</form>
+
+<br>
+all:<input type="checkbox"  ng-click="selectAll()">   {{IsSelectAll}}
+<div ng-repeat="x in todoList">
+    <input class="one" type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+</div>
+
+<p>
+    <button ng-click="remove()">删除记录</button>
+</p>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('todoCtrl', function ($scope) {
+        $scope.todoList = [{todoText: 'Clean House', done: false}];
+        $scope.IsSelectAll = false;
+        $scope.todoAdd = function () {
+            if($scope.todoInput.trim().length <= 0) {
+                alert("NULL ERROR");
+                return;
+            }
+            $scope.todoList.push({todoText: $scope.todoInput, done: false});
+            $scope.todoInput = "";
+        };
+
+        $scope.remove = function () {
+            var oldList = $scope.todoList;
+            $scope.todoList = [];
+            angular.forEach(oldList, function (x) {
+                if (!x.done) $scope.todoList.push(x);
+            });
+        };
+        $scope.selectAll = function() {
+            if(!$scope.IsSelectAll) {
+                $scope.IsSelectAll = true;
+                $(".one").each(function(index, item) {
+                    console.log(index);
+                    $(item).attr("checked","checked");
+                });
+            } else {
+                $scope.IsSelectAll = false;
+                $(".one").each(function(index, item) {
+                    console.log("-" + index);
+                    $(item).removeAttr("checked");
+                });
+            }
+        };
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>类型转换</title>
+</head>
+<body>
+    <script>
+        /**
+         * JS是弱类型的语言，
+         * */
+
+
+
+        /**
+         * 布尔值，数字以及字符串和所有对象都有toString([bin])方法
+         *
+         * String(v)  null或undefined值强制类型转换可以生成字符串而不引发错误,toString()会引发错误,换句话说，null unfined 没有toString方法
+         *
+         * */
+        function test01() {
+            var bFound = 1;
+            var num = 10.0;
+            co(bFound.toString());//outputs "1
+            co(num.toString());//10
+            co(num.toString(2));//1010 以二进制的形式输出
+
+            //co(null.toString());
+        }
+        test01();
+
+        //进制转换：可以借助tostring方法转成某进制的数值，再以该进制解析字符串parseint得到数值型
+
+        /**
+         * 转换成数字：
+         * parseInt(str,[bin])第二个参数指定按哪一种进制来解析、parseFloat(str)
+         * 只有对String类型(Number除外)调用这些方法，才能正确运行对其他类型返回的都是NaN
+         * */
+        function test02() {
+            co(parseInt("123abc"));//123
+            co(parseInt("123abc.12"));//123
+            co(parseInt("abc"));//nan
+            co(parseInt(new Date()));//nan
+            co(parseInt("0a"));//
+            co(parseInt("1010",2));//10
+
+            co(parseFloat("10.1.1"));//10.1
+        }
+        //test02();
+
+
+        /**
+         * 强制类型转换
+         * 1： Boolean(v) 空字符串、数字0、undefined或null,它将返回false,其余返回true
+         * 2: Number(v) 强制转成数值型 该方法比parseInt()和parseFloat()要严格 遇到非法字符串会返回NaN
+         *     若合法 则智能调用parseInt()或parseFloat()
+         * */
+        function test03() {
+            co(Boolean(null || undefined || "" || 0));//false
+            co(Boolean(".." && 2));//true
+
+            co(Number("123.0"));//123
+            co(Number(".1"));//0.1
+            co(Number("123.2a"));//nan
+        }
+        test03();
+
+
+        /**
+         *
+         * */
+        function test0() {
+        }
+        test0();
+        function co(o) {
+            console.log(o);
+        }
+    </script>
+</body>
+</html>

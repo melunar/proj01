@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <title>封装</title>
+</head>
+<body>
+<script>
+    //封装形式 this 和 prototype
+    var Book = function(name, price, id) {
+        if(this instanceof Book) {
+            //防止实例化对象忘记写new关键字，导致属性绑定到window全局上
+            this.price = price;
+            this.id = id;
+            this.name = name;
+        } else {
+            return new Book(name, price, id);
+        }
+    };
+    Book.prototype = {
+        display: function() {
+            console.log("Book's name is" + this.name);
+        }
+    };
+    var book = new Book("JS-BOOK", 12, 1);
+    var bbno = Book("what", 0, 2);
+
+</script>
+<script>
+    //关于私有共有方法
+    var Books = function(name) {
+        var num = 1;
+        this.name = name;
+    };
+    Books.isChinese = true;
+    Books.prototype = {
+        isJSBook: false,
+        display: function() {
+            console.log("BOOK NAME IS: " + this.name);
+        }
+    };
+    var b = new Books("NOT JS BOOK");
+    console.log("1 " + b.num);
+    console.log("2 " + b.name);
+    console.log("3 " + b.isChinese);
+    console.log("4 " + b.isJSBook);
+    console.log("5 " + b.display());
+</script>
+<script>
+    /**
+     * 闭包是有权访问另一个函数作用域中变量的函数
+     *
+    /**
+     * 有时间再看看这是干嘛用的
+     */
+    //使用闭包封装 case1
+    var Book1 = (function() {
+        var bookNum = 0;
+        function checkBook(name) {}
+
+        //返回函数
+        return function(newId, newPrice, newName) {
+            var name, price;
+            function checkID(id) {}
+
+            //特权方法
+            this.getName = function() {};
+            this.setName = function() {};
+            this.getPrice = function() {};
+            this.setPrice = function() {};
+
+            this.id = newId;
+
+            this.copy = function() {};
+            bookNum++;
+            if(bookNum > 10) {
+                throw new Error("最多允许十本书");
+            }
+
+            //构造器
+            this.setName(name);
+            this.setPrice(price);
+        }
+    })();
+
+    Book.prototype = {
+        isJSBook: false,
+        display: function() {}
+    };
+</script>
+<script>
+    /**
+     * 有时间再看看这是干嘛用的
+     */
+    //使用闭包封装 case2
+    var Book2 = (function() {
+        var bookNum = 0;
+        function checkBook(name) {}
+
+        //创建类
+        function _book(newId, newName, newPrice) {
+            var name, price;
+            function checkID(id) {}
+
+            //特权方法
+            this.getName = function() {};
+            this.setName = function() {};
+            this.getPrice = function() {};
+            this.setPrice = function() {};
+
+            //共有属性
+            this.id = newId;
+
+            //公有方法
+            this.copy = function() {};
+            bookNum++;
+            if(bookNum > 10) {
+                throw new Error("最多允许十本书");
+            }
+
+            //构造器
+            this.setName(name);
+            this.setPrice(price);
+        }
+
+        //构造原型
+        _book.prototype = {
+            isJSBook: false,
+            display: function() {}
+        };
+
+        //返回类
+        return _book;
+    })();
+</script>
+</body>
+</html>

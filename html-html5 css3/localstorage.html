@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>localstorage</title>
+</head>
+<body onload="init()">
+    <script>
+        function init() {
+            if(! (window.localStorage.count)) {
+                localStorage.count = 0;
+            }
+            localStorage.count = parseInt(localStorage.count) + 1;
+            document.getElementById("count").innerHTML = parseInt(localStorage.count);
+        }
+    </script>
+</body>
+<div id="count">0</div>
+</html>

@@ -1,0 +1,9 @@
+<ul id="newsList" class="newsList">
+    {{#each news}}
+    <li class="oneNews">
+        <a href="#" title="{{title}}">{{this.title}}</a>
+        <span title="{{time}}">{{this.time}}</span>
+        <span title="{{author}}">{{this.author}}</span>
+    </li>
+    {{/each}}
+</ul>

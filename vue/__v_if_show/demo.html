@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>VUE-列表渲染</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+        <div id="example">
+            <h2>v-if v-else-if v-else</h2>
+            <span v-if="Math.random() <= 0.4">
+                0-0.4
+            </span>
+            <span v-else-if="Math.random() > 0.7">
+                0.4-0.7
+            </span>
+            <span v-else>
+                0.7-1
+            </span>
+        </div>
+        <hr>
+        <div id="show">
+            <h2>v-show</h2>
+            <p v-show="ok">v-show</p>
+            <p v-show="!ok">!v-show</p>
+        </div>
+	</body>
+	<script>
+        /**
+         * Vue 尝试尽可能高效的渲染元素，通常会复用已有元素而不是从头开始渲染。
+         * v-if v-else-if v-else 的模板组使用尽可能高效使用同一个dom结点
+         * 使用不用key属性可以使v-if v-else-if v-else各自的dom结点重新渲染【业务需求】
+         */
+        /**
+         * v-show 的元素会始终渲染并保持在 DOM 中，它只是简单的切换元素的 CSS 属性 display
+         */
+        var vm_if = new Vue({
+            el: "#example",
+            data: {
+                ok: false
+            }
+        });
+        var vm = new Vue({
+            el: "#show",
+            data: {
+                ok: false
+            }
+        });
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

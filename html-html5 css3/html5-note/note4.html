@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5 note4</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        HTML5 note 4：Web Worker & EventSource（***）
+    </h1>
+
+    <div class="row">
+        <div class="span2">
+            <ul class="nav-list unstyled">
+                <li><a href="index.html">note day1</a></li>
+                <li><a href="note2.html">note day2</a></li>
+                <li><a href="note3.html">note day3</a></li>
+                <li class="active"><a href="#">note day4</a></li>
+                <li><a href="form.html">note of form1</a></li>
+                <li><a href="form2.html">note of form2</a></li>
+            </ul>
+        </div>
+        <div class="span8">
+            <h4 class="page-header">Web Worker</h4>
+
+            <p>
+                web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。
+                您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。<br>
+                web worker 通常用于耗费 CPU 资源的任务，以节约本地资源。<br>
+                <small>所有主流浏览器均支持服务器发送事件，除了 Internet Explorer。</small>
+            </p>
+            <pre>
+                <h5>检测用户的浏览器是否支持Web Worker</h5>
+        if(typeof(Worker)!=="undefined")
+        {
+        // Yes! Web worker support!
+        // Some code.....
+        }
+        else
+        {
+        // Sorry! No Web Worker support..
+        }
+            </pre>
+            <p>Count numbers:
+                <output id="result"></output>
+            </p>
+            <button onclick="startWorker()">开始计数</button>
+            <button onclick="stopWorker()">停止计数</button>
+            <br/><br/>
+            <script>
+                var w;
+                function startWorker() {
+                    if (typeof(Worker) !== "undefined") {
+                        if (typeof(w) == "undefined") {
+                            w = new Worker("js/demo_workers.js");//执行一个脚本文件
+                        }
+                        w.onmessage = function (event) {
+                            //向 web worker 添加一个 "onmessage" 事件监听器.event.data接收到的数据。
+                            document.getElementById("result").innerHTML = event.data;
+                        };
+                    }
+                    else {
+                        document.getElementById("result").innerHTML = "你的浏览器不支持web worker";
+                    }
+                }
+
+                function stopWorker() {
+                    //主动终止 web worker，并释放浏览器/计算机资源，使用 terminate() 方法
+                    w.terminate();
+                }
+            </script>
+
+        </div>
+
+        <div class="span10">
+            <h4>
+                Server-Sent 事件 - 单向消息传递
+            </h4>
+
+            <p>
+                Server-Sent 事件指的是网页自动获取来自服务器的更新。
+                <br>
+                <small>所有主流浏览器均支持服务器发送事件，除了 Internet Explorer。</small>
+            </p>
+            <pre>
+                 <h5>检测用户的浏览器是否支持EventSource</h5>
+        if(typeof(EventSource)!=="undefined")
+          {
+          // Yes! Server-sent events support!
+          // Some code.....
+          }
+        else
+          {
+          // Sorry! No server-sent events support..
+        }
+            </pre>
+            <h4>例子：获得服务器时间更新<small><mark>服务器问题 无法实现 请看源文件代码</mark></small></h4>
+            <div id="result1"></div>
+            <script>
+                if (typeof(EventSource) !== "undefined") {
+                    var source = new EventSource("php/demo_php.php");
+                    source.onmessage = function (event) {
+                        document.getElementById("result").innerHTML += event.data + "<br />";
+                    };
+                }
+                else {
+                    document.getElementById("result1").innerHTML = "Sorry, your browser(IE & edge?) does not support server-sent events...";
+                }
+            </script>
+
+        </div>
+    </div>
+</div>
+<pre>
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

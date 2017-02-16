@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/handlebars.js"></script>
+    <!--
+    <script src="../../../js/json.js"></script>-->
+
+    <!--helper-->
+    <script src="script.js"></script>
+    <title>获取新闻</title>
+
+    <script id="tmp" type="text/x-handlebars-template">
+
+    </script>
+
+
+</head>
+<body>
+<div class="content">
+    <h1>
+        最新新闻，看不看
+    </h1>
+        <span class="getBtn">
+            <button>刷新以显示</button>
+        </span>
+    <div id="newsListContent">
+    </div>
+</div>
+
+</body>
+
+<script>
+
+
+    $(function() {
+
+        var data = {};
+
+        function loadContent(callback) {
+            console.log("before data");
+            //getData();
+            var source;
+            $.ajax({
+                url: "inc/tmp.html",
+                async: false,
+                dataType: "html",
+                success: function(re) {
+                    source = re;
+                }
+            });
+
+
+           // var dataCopy;
+            $.ajax({
+                url: "json.json",
+                //async:false,//
+                dataType: "json",
+                success: function(re) {
+                    callback(re,source);
+
+                }
+            });
+
+        }
+
+        $(".getBtn button").click(loadContent(function (re,source) {
+            var dataCopy = re;
+            console.log(dataCopy.news);
+
+            var template = Handlebars.compile(source);
+            console.log('---------------------------------------------------------');
+            var html = template(re);
+            console.log(html);
+            $("#newsListContent").html(html).css({
+                "display": "none"
+            });
+            $("#newsListContent").show(800);
+
+            for(var i in $(".newsContent")) {
+                $(".newsContent").eq(i).html(dataCopy.news[1].content);
+            }
+
+            if($(".oneNews a")) {
+                $(".oneNews a").hover(function() {
+                            $(this).siblings("div.newsContent").slideDown(500)
+                        },
+                        function() {
+                            $(this).siblings("div.newsContent").slideUp(500)
+
+                        });
+            }
+        }));
+
+    });
+
+</script>
+</html>
+

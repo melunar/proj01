@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/underscore.js"></script>
+    <title>深复制和浅复制（数组和对象存在的问题）</title>
+</head>
+<body>
+    <script language="JavaScript">
+        /**
+         *数组 的slice concat函数是深复制
+         * */
+        function test01() {
+            var a = [1, 2, 3, 4];
+                b = [],
+                c = [];
+
+
+            b = a.slice(0);
+            c = a.concat(c);
+            console.log(b);//1,2,3,4
+            console.log(c);//1,2,3,4
+            b[0] = 9;
+            c[1] = 8;
+            console.log(a);//same
+            console.log(b);//9,2,3,4
+            console.log(c);//1,8,3,4
+        }
+        //test01();
+
+        /**
+         * jquery extend
+         * 不推荐吧 一下子复制了整个$
+         * 深复制($ = $.extend(a)) ;  浅复制（c = $.extend(a);）
+         * */
+        function test02() {
+            var a = { k1: 1, k2: 2, k3: 3},
+                    c;
+
+            //将a对象复制到 jquery对象上(相当于$的静态属性值)，并赋值给c;
+            //第一个参数随意，都是一样的结果
+            c = $.extend(a);//相当于$.extend(a)；c = $;所以c === $;
+
+            //***c对象指向的是$对象,所以结果true****
+            console.log(c === $);
+            console.log(a === $);   // false
+
+            console.log(c.k2);       //相当于$.k2
+            console.log(c);
+
+            c.k2 = 111;
+            $.k3 = 333;
+            console.log("--a--");
+            console.log(a);// a没有被改变
+
+            console.log($);
+            console.log($.k2);//被修改了 111
+        }
+        //test02();
+
+        /**
+         * $.clone([1]) 有参数true可以克隆 定义的事件，否则不可以
+         * 行内定义的事件都可以克隆
+         * */
+            $(function() {
+                $("button").click(function(){
+                    $("body").append($("p:first").clone(true));
+                });
+                /*$("p:first").click(function(){
+                    $(this).css({"color":"blue"});
+                });*/
+            });
+
+
+
+
+        /**
+         * _.clone(o)浅拷贝
+         * */
+        function test03() {
+            var o = { k1: 1, k2: 2, k3: {k31: 31, k32: 32}};
+            //var o1 = _.clone(o);
+            var o1 = o;
+            console.log(o1);//？？？
+            o1.k1 = 0;
+            o1.k3.k31 = 310;
+            console.log(o);//
+            console.log(o1);
+        }
+       test03();
+    </script>
+
+
+
+
+    <!--onclick="javascript:alert('true clone')"-->
+    <p style="color:red" onclick="javascript:alert('true clone')">点击本段落可以增加文本的大小。事件处理器同样被复制到新的段落。</p>
+    <button>复制p元素</button>
+</body>
+</html>

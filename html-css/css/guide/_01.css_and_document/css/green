@@ -1,0 +1,5 @@
+p {
+	color: green;
+	font: 20px/40px "";
+	font-family: "宋体";
+}

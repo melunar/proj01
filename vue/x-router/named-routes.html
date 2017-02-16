@@ -1,0 +1,60 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>VUE-x-router 命名路由</title>
+    <style>
+        a {
+            font: 12px/1.3em "";
+            color: #222;
+            display: inline-block;
+            padding-right: 6px;
+        }
+
+        a:not(:last-child) {
+            border-right: 1px solid #888;
+        }
+    </style>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+        <router-link :to="{ name: 'me', params: { userId: 0 }}">Me</router-link>
+    </p>
+    <router-view></router-view>
+</div>
+</body>
+<script>
+    const User = {
+        template: '<div>User - {{ $route.params.userId }}</div>',
+        watch: {
+            //监听响应路由变化
+            '$route' (to, from) {
+                console.log("from");
+                console.log(from);
+
+                console.log("to:");
+                console.log(to);
+            }
+        }
+    };
+    const router = new VueRouter({
+        routes: [{
+            path: '/user/:userId',
+            name: 'user',
+            component: User
+        },{
+            path: '/user/:userId',
+            name: 'me',
+            component: User
+        }
+        ]
+    });
+    const app = new Vue({
+        router
+    }).$mount('#app');
+
+</script>
+</html>

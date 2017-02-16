@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <title>when done then</title>
+</head>
+<body>
+
+<!--<input id="num" type="text" size="30" maxlength="20" value="12312332">-->
+<!--<select id="num">
+    <option value="10">10</option>
+    <option value="30">30</option>
+    <option value="50">50</option>
+    <option value="70">70</option>
+    <option value="90">90</option>
+    <option value="100">100</option>
+
+
+</select>-->
+0<input id="num" type="range" min="0" max="100" value="10">100
+<progress id="progress" value="0.1"></progress><br>
+<input id="num2" type="number" size="3" min="0" max="100" value="10">
+
+<br><br>
+<span id="thanks">not full</span>
+    <script>
+
+        /**
+         * deferred对象是jQuery对Promises接口的实现。它是非同步操作的通用接口，可以被看作是一个等待完成的任务
+         *
+         * jQuery的所有Ajax操作函数，默认返回的就是一个deferred对象
+         *
+         * Promises 的主要目的就是取代回调函数，成为非同步操作的解决方案。让非同步操作返回一个对象，其他操作都针对这个对象来完成。
+         *
+         * */
+
+        //ajax操作返回一个Promise对象
+        var promise = $.get('data.json');
+
+        //然后，Promise对象有一个then方法，可以用来指定回调函数。一旦非同步操作完成，就调用指定的回调函数。
+        promise.then(function (content) {
+            //console.log(content);
+        });
+
+        //合并上面的代码
+        $.get('data.json').then(function (content) {
+            console.log(content)
+        });
+
+        /**
+         * 在1.7版之前，jQuery的Ajax操作采用回调函数(success,error等)。
+         *
+         * 1.7版之后，Ajax操作直接返回Promise对象，即then方法指定回调函数(上面的两行代码)
+         *
+         * $.deferred()方法：生成一个deferred对象
+         *
+         * */
+
+        /**
+         * $.deferred()方法：生成一个deferred对象
+         *
+         * done() 和 fail() : 用来绑定回调函数。done()指定非同步操作成功后的回调函数，fail()指定失败后的回调函数【可以采用链式写法】
+         * */
+        function t01() {
+            //var deferred = $.Deferred();
+            var deferred = $.get("data.json");
+            deferred.done(function(value) {
+                console.log("value : " + value);
+            }).fail(function() {
+                alert("error");
+            });
+        }
+        //t01();
+
+
+        /**
+         * resolve() 和 reject() 用来改变deferred对象的状态。resolve()将状态改为非同步操作成功，reject()改为操作失败
+         *
+         *
+         * 一旦调用resolve()，就会依次执行done()和then()方法指定的回调函数；一旦调用reject()，就会依次执行fail()和then()方法指定的回调函数。
+         * */
+        function t02() {
+            var deferred = $.get("data.json");
+
+            //deferred.reject("reject 触发 错误");
+            deferred.done(function(value) {
+                console.log("value : " + value);
+            }).fail(function() {
+                console.log(" 错误");
+            });
+            deferred.resolve("resolve 成功");
+        }
+        /**
+         *
+         * 没有演示成功啊！！！
+         *
+         * */
+        //t02();
+
+
+         /*
+            state()方法 该方法用来返回deferred对象目前的状态。
+              1.pending：表示操作还没有完成。
+              2.resolved：表示操作成功。
+              3.rejected：表示操作失败。
+         */
+
+        function t03() {
+            var deferred = new $.Deferred();
+            alert(deferred.state());  // "pending"
+            alert(deferred.resolve("good"));
+            alert(deferred.state());  // "resolved"
+        }
+       // t03();
+
+
+
+
+        /*
+        notify() 和 progress()
+        progress()用来指定一个回调函数(不会自己执行的吧，一般也不用这个函数)，当调用notify()方法时，该回调函数将执行。它的用意是提供一个接口，使得在非同步操作执行过程中，可以执行某些操作
+            比如定期返回进度条的进度。
+        */
+        function t04() {
+            var userProgress = $.Deferred();
+            var $profileFields = $("input#num");
+            var totalFields = 100;//$profileFields.attr("maxlength");
+            //totalFields = parseInt(totalFields);
+            console.log(totalFields);
+            userProgress.progress(function (filledFields) {
+                var pctComplete = filledFields/totalFields;
+                console.log(pctComplete);
+                $("#num2").attr("value",pctComplete*100/*.toFixed(0)*/);
+                $("#progress").attr("value",pctComplete/*.toFixed(0)*/);
+            });
+            userProgress.done(function () {
+                $("#thanks").html("FULL").show();
+            });
+            $("#num").on("change", function () {
+                var filledFields = $("#num").val();
+                //console.log(filledFields);
+                var pctComplete = (filledFields/totalFields);
+                //console.log(pctComplete);
+                userProgress.notify(filledFields);
+                if (filledFields == totalFields) {
+                    //100的时候完成
+                    userProgress.resolve();
+                }
+            });
+
+        }
+        t04();
+
+/*        var de = $.get("data.json");
+        de.progress(function() {
+           console.log("11");
+        });*/
+
+
+
+
+
+
+       /* then()的作用也是指定回调函数，它可以接受三个参数，也就是三个回调函数。第一个参数是resolve时调用的回调函数，第二个参数是reject时调用的回调函数，第三个参数是progress()方法调用的回调函数。
+
+        deferred.then( doneFilter [, failFilter ] [, progressFilter ] )
+
+        */
+/*
+
+        在jQuery 1.8之前，then()只是.done().fail()写法的语法糖，两种写法是等价的。
+        在jQuery 1.8之后，then()返回一个新的deferred对象，而done()返回的是原有的deferred对象。
+        如果then()指定的回调函数有返回值，该返回值会作为参数，传入后面的回调函数。
+
+
+        举个例子：
+             $.ajax( url1, { dataType: "json" } )
+             .then(function( data ) {
+             return $.ajax( url2, { data: { user: data.userId } } );
+             }).done(function( data ) {
+             });
+             上面代码最后那个done方法，处理的是从url2获取的数据，因为前面用了then方法。
+
+
+        再举个例子
+             利用then()会修改返回值的特性，可以在调用其他回调函数之前，对前一步操作返回的值进行处理。
+             var post = $.post("/echo/json/")
+             .then(function(p){
+             return p.firstName;
+             });
+             post.done(function(r){ console.log(r); });
+             上面代码先使用then()方法，从返回的数据中取出所需要的字段（firstName），所以后面的操作就可以只处理这个字段了。
+
+
+ */
+
+
+                function t05() {
+                    var defer = jQuery.Deferred();
+                    defer.done(function(a,b){
+                        return a * b;
+                    }).done(function( result ) {//done没有返回最新的def，这里的result仅仅是传入的第一个参数a = 4
+                        console.log("result = " + result);
+                    }).then(function( a, b ) {
+                        return a * b;
+                    }).done(function( result ) {//上面的then方法返回新的def，即（12）
+                        console.log("result = " + result);
+                    }).then(function( a, b ) {
+                        return a * b;
+                    }).done(function( result ) {
+                        console.log("result = " + result);
+                    });
+                    defer.resolve(4, 3);
+                }
+        t05();
+
+
+        /*var deferred = $.Deferred();
+        deferred.done(function(value) {
+            alert(value);
+        });
+        deferred.resolve("hello world");*/
+
+
+
+
+
+        /*console.log("123 here is 123");*/
+/*        var log = function(msg){
+            window.console && console.log(msg)
+        }*/
+        /*function asyncThing1(){
+            var dfd = $.Deferred();
+            setTimeout(function(){
+                console.log('asyncThing1 seems to be done...');
+                dfd.resolve('1000');
+            },1000);
+            return dfd.promise();
+        }
+        function asyncThing2(){
+            var dfd = $.Deferred();
+            setTimeout(function(){
+                console.log('asyncThing2 seems to be done...');
+                //dfd.resolve('1500');
+            },1500);
+            return dfd.promise();
+        }
+        function asyncThing3(){
+            var dfd = $.Deferred();
+            setTimeout(function(){
+                console.log('asyncThing3 seems to be done...');
+                dfd.resolve('2000');
+            },2000);
+            return dfd.promise();
+        }
+        /!* do it *!/
+        $.when(asyncThing1(), asyncThing2(), asyncThing3() ).done(function(res1, res2, res3){
+            console.log('all done!');
+            console.log(res1 + ', ' + res2 + ', ' + res3);
+        })*/
+    </script>
+</body>
+
+</html>

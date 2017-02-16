@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <title>链式调用</title>
+</head>
+<body>
+    <script>
+        console.log("链式调用思路：对象的方法返回this该对象，所以可以链式调用其他方法或本方法");
+
+        function Demo() {
+
+        }
+
+        //扩展它的prototype
+        Demo.prototype ={
+            setName:function (name) {
+                this.name = name;
+                //console.log(this);
+                return this;//Demo
+            },
+            getName:function () {
+                return this.name;
+            },
+            setAge:function (age) {
+                this.age = age;
+                return this;
+            }
+        };
+
+        ////工厂函数
+        function D() {
+            return new Demo();
+        }
+        //去实现可链式的调用
+        console.log(D().setAge(18).setName("CJ").setName(""));
+
+        /*
+        若没有链式调用
+        代码要这么写
+         D().setAge(18);
+         D().setAge("CJ");
+         D().setName("");
+        * */
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/underscore.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <title>demo</title>
+</head>
+<body>
+    <script>
+        /**
+         * 集合
+         *
+         * */
+
+        _.each([1,2,3],function(arr,i) {
+            //alert(i);
+        });
+
+
+
+        _.map({one: 1, two: 2, three: 3}, function(num, key){
+            console.log(key + ": (*3)" + num * 3);
+        });
+
+
+        console.log(_.reduce([1, 2, 10], function(memo, num){
+            return memo + num;
+        }, 1))
+
+
+        console.log("------[[0, 1], [2, 3], [4, 5]]");
+        console.log(_.reduce([[0, 1], [2, 3], [4, 5]], function(a, b) { return a.concat(b); }, []));
+        console.log(_.reduceRight([[0, 1], [2, 3], [4, 5]], function(a, b) { return a.concat(b); }, []));
+
+        /**
+         * 函数
+         * */
+        /*bind(fun,{},[args])
+        绑定函数 function 到对象 object 上, 也就是无论何时调用函数, 函数里的 this 都指向这个 object. 任意可选参数 arguments 可以传递给函数
+         返回一个新的函数
+         */
+        var func = function(greeting){ console.log(greeting + ': ' + this.name) };
+        _.bind(func, {name: 'under'}, 'hi')();
+
+/*
+        once_.once(function)
+        创建一个只能调用一次的函数*/
+        var funcOnce = function() {console.log("just once")};
+        var initialize = _.once(funcOnce);
+        initialize();
+        console.log(initialize());//undefined
+
+        /*after_.after(count, function)
+         创建一个函数, 只有在运行了 count 次之后才有效果
+         //从2开始少一次执行
+         */
+        var render = function() {console.log("exe");}
+        var renderNotes = _.after(2, render);
+        _.each([1,2,3,4,5,6,7], function(note) {
+            renderNotes();
+        });
+
+
+
+
+
+        /**
+         * 对象函数
+         * */
+//        _.keys(object)
+//        获取object对象所有的属性名称
+//        返回数组(字符串)
+        var oo = {1:1,2:2};
+        console.log(_.keys(oo));
+//同理 _.value(obj)
+        console.log(_.values(oo));
+
+
+/*
+        pairs_.pairs(object)
+        把一个对象转变为一个[key, value]形式的数组
+        二维数组
+*/
+        console.log(_.pairs(oo));
+
+
+        /*
+        浅复制????????/
+         _.clone(object)*/
+        var ooo = {name: 'moe'};
+        _.clone(ooo).name = "";
+        console.log(ooo.name + " ");
+
+
+
+
+        /**
+         * 工具
+         * */
+        /*_.chain(bb)返回一个封装的对象. 在封装的对象上调用方法会返回封装的对象本身, 直道 value 方法调用为止.
+        * 类似jQuery
+        * */
+        var stooges = [{name: 'curly', age: 25}, {name: 'moe', age: 21}, {name: 'larry', age: 23}];
+        var youngest = _.chain(stooges)
+                .sortBy(function(stooge){ return stooge.age; })
+                .map(function(stooge){ return stooge.name + ' is ' + stooge.age; })
+                .first()
+                .value();
+        console.log(youngest);
+
+
+
+      /*  .times(n, iteratee, [context])
+        调用给定的迭代函数n次,每一次调用iteratee传递index参数。生成一个返回值的数组。
+        注意: 本例使用 链式语法。*/
+        console.log(_(3).times(function(n){return _.random(n); }));
+
+
+        /*random_.random(min, max)
+        返回一个min 和 max之间的随机整数。如果你只传递一个参数，那么将返回0和这个参数之间的整数。
+*/
+          console.log(_.random(0, 100));
+
+    </script>
+</body>
+</html>

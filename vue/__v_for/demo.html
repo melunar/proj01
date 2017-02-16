@@ -1,0 +1,155 @@
+<html>
+	<head>
+		<title>VUE-条件渲染</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+        <h2>v-for index-parent</h2>
+        <div id="vfor">
+            <li v-for="(item, index) of items">
+               {{index}}:{{parentMessage}}-{{item.message}}
+            </li>
+            <br>
+            <!--或者使用模板template-->
+            <template>
+                <li v-for="(item, index1) of items">
+                    {{index1}}:{{parentMessage}}-{{item.message}}
+                </li>
+            </template>
+            <br>
+            <template>
+                <li v-for="item of object">
+                    {{item}}
+                </li>
+            </template>
+            <br>
+            <template>
+                <li v-for="(item, key1) of object">
+                    {{key1}}:{{item}}
+                </li>
+            </template>
+            <br>
+            <template>
+                <li v-bind:style="styleObject" v-for="(item, key) in 10">
+                    {{key}}:{{item}}
+                </li>
+            </template>
+            <hr>
+            <h3>显示过滤/排序结果</h3>
+            <span>{{numbers}}</span><br>
+            <span v-for="item in evenNumbers">{{item}},</span>
+
+            <hr>
+            <!--<select v-model="selected">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <span>Selected: {{ selected }}</span>-->
+        </div>
+
+        <div>
+            <a href="https://cn.vuejs.org/v2/guide/list.html#组件-和-v-for">组件相关-回头看</a>
+        </div>
+        <hr>
+        <div id="arrayFunc">
+            <pre>
+                注意事项
+
+                由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
+
+                1.当你利用索引直接设置一个项时，例如： vm.items[indexOfItem] = newValue
+                2.当你修改数组的长度时，例如： vm.items.length = newLength
+
+                为了避免第一种情况，以下两种方式将达到像 vm.items[indexOfItem] = newValue 的效果， 同时也将触发状态更新：
+                    // Vue.set
+                    Vue.set(example1.items, indexOfItem, newValue)
+
+                    // Array.prototype.splice`
+                    example1.items.splice(indexOfItem, 1, newValue)
+
+                避免第二种情况，使用 splice：
+                    example1.items.splice(newLength)
+            </pre>
+        </div>
+        <hr>
+	</body>
+	<script>
+        /**
+         * v-for="item in items" || v-for="item of items"
+         * 在 v-for 块中，我们拥有对父作用域属性的完全访问权限。
+         * v-for 还支持一个可选的第二个参数为当前项的索引。v-for="(item, index) in items"
+         *
+         * 你也可以用 v-for 通过一个对象的属性来迭代
+         * v-for="value in object"
+         * 提供第二个的参数为键名：v-for="(value, key) in object"
+         *
+         */
+        var vm = new Vue({
+            el: "#vfor",
+            data: {
+                styleObject: {
+                    'display': 'inline-block',
+                    'margin-right': '10px'
+                },
+                parentMessage: 'Parent',
+                items: [{
+                    message: 'Foo'
+                }, {
+                    message: 'Bar'
+                }],
+                object: {
+                    FirstName: 'John',
+                    LastName: 'Doe',
+                    Age: 30
+                },
+                numbers: [1,2,3,4,5]
+            },
+            computed: {
+                evenNumbers: function () {
+                    return this.numbers.filter(function (number) {
+                        return number % 2 === 0
+                    })
+                }
+            }
+        });
+
+        /**
+         * 数组的改变 动态绑定视图数据
+         * Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法【vm.items.push({"message": "aaaa"})】如下：
+                 push()
+                 pop()
+                 shift()
+                 unshift()
+                 splice()
+                 sort()
+                 reverse()
+
+                filter(), concat(), slice()
+         */
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

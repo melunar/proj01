@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/d3.v3.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="demo">
+</div>
+<script>
+    var dataSet = [1.2, 2.3, 0.9, 1.5, 3.3];
+    var min = d3.min(dataSet);
+    var max = d3.max(dataSet);
+
+//    d3.scale.linear() 返回一个线性比例尺
+//    将 dataset 中最小的值，映射成 0；将最大的值，映射成 300。
+    var _linear = d3.scale.linear()
+            .domain([min, max]) //比例尺的定义域
+            .range([0, 300]); //比例尺的值域
+
+    _linear(0.9);    //返回 0
+    _linear(2.3);    //返回 175
+    _linear(3.3);    //返回 300
+
+
+
+
+    /**
+     * ordinal(): 序数比例尺
+     **/
+     var index = [0, 1, 2, 3, 4];
+     var color = ["red", "blue", "green", "yellow", "black"];
+
+    var _ordinal = d3.scale.ordinal()
+            .domain(index)
+            .range(color);
+
+    _ordinal(0); //返回 red
+    _ordinal(2); //返回 green
+    _ordinal(4); //返回 black
+
+
+    /**
+     * 给柱形图添加比例尺
+     *
+     * 一般的思路为：把[0,max-data]映射到[0,画布最大值]
+     **/
+
+    var __dataSet = [ 25 , 21 , 17 , 13 , 9 ];
+    var width = 300;  //画布的宽度
+    var height = 300;   //画布的高度
+    var svg = d3.select("body")     //选择文档中的body元素
+            .append("svg")          //添加一个svg元素
+            .attr("width", width)       //设定宽度
+            .attr("height", height);    //设定高度
+    var __linear = d3.scale.linear()
+            .domain([0, d3.max(__dataSet)])
+            .range([0, 250]);
+
+    var rectHeight = 25;   //每个矩形所占的像素高度(包括空白) 实际高度为23px
+    svg.selectAll("rect")
+            .data(__dataSet)
+            .enter()
+            .append("rect")
+            .attr("x",20)
+            .attr("y",function(d,i){
+                return i * rectHeight;
+            })
+            .attr("width",function(d){
+                return __linear(d);   //在这里用比例尺
+            })
+            .attr("height",rectHeight-2)
+            .attr("fill","steelblue");
+</script>
+</body>
+</html>

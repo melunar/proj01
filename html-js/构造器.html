@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>构造器</title>
+</head>
+<body>
+    <script>
+        function Task(id){
+            this.id = id;
+        }
+        Task.prototype.status = "STOPPED";
+        Task.prototype.arr = [1, 2, 3];
+        Task.prototype.execute = function(args){
+            return "execute task_"+this.id+"["+this.status+"]:"+args + " arr:" + this.arr.toString();
+        }
+        /*
+        * 一个对象的实例把prototype属性修改（比如push） 全局性修改
+        * 这个实例重新定义的话 只会修改自己的属性 不会干扰prototype原型的值
+        * */
+        var task1 = new Task(1);
+        var task2 = new Task(2);
+        task1.status = "chnage";
+        //task1.arr = [1, 2];//不会被下一条语句的执行修改自身属性arr值
+        task2.arr.push(3);//修改* 改变prototype.arr
+        console.log(task1.execute("task1"));//1,2
+        console.log(task2.execute("task2"));//1,2,3,3
+
+        console.log(task1);
+        console.log(task2);
+
+
+    </script>
+</body>
+</html>

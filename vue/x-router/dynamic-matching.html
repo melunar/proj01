@@ -1,0 +1,54 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>VUE-x-router 动态匹配</title>
+		<style>
+            a {
+                font: 12px/2em "";
+                color: #222;
+                display: inline-block;
+                text-align: justify;
+                width: 300px;
+            }
+		</style>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/vue-router.js"></script>
+	</head>
+	<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <router-link to="/user/1">Go to /user/1</router-link>
+            <router-link to="/user/2">Go to /user/2</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+
+	</body>
+    <script>
+        const User = {
+            template: '<div>User{{ $route.params.id }}</div>',
+            watch: {
+                //监听响应路由变化
+                '$route' (to, from) {
+                    console.log("from");
+                    console.log(from);
+
+                    console.log("to:");
+                    console.log(to);
+                }
+            }
+        };
+
+        const router = new VueRouter({
+            routes: [
+                // 动态路径参数 以冒号开头
+                // $route.params.propName 获取属性值
+                { path: '/user/:id', component: User }
+            ]
+        });
+        const app = new Vue({
+            router
+        }).$mount('#app');
+
+    </script>
+</html>

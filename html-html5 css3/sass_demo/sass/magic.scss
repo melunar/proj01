@@ -1,0 +1,10 @@
+@import "compass/utilities/sprites";
+@import "magic/*.png";
+
+$magic-spacing: 5px;
+
+$magic-layout: horizontal;     // 默认布局方式为vertical   vertical/horizontal/diagonal/smart;
+
+$magic-sprite-dimensions: true; //设置sprite尺寸
+
+@include all-magic-sprites;  //加载compass sprites模块  要放在最后一行

@@ -1,0 +1,12 @@
+{
+  "Name": "奥巴马",
+  "ByName": ["小奥","小巴","小马"],
+  "Education" : {
+    "GradeSchool":  "华盛顿第一小学",
+     "MiddleSchool": ["华盛顿第一初中" , "华盛顿第一高中"],
+      "University": {
+        "Name": "哈佛大学",
+        "Specialty": ["软件工程","会计"]
+      }
+  }
+}

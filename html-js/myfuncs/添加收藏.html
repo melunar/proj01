@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义函数：加入收藏</title>
+</head>
+<body>
+<a href="#" onclick="javascript:addFavorite('http://www.baidu.com','baidu')">加入收藏</a>
+<script>
+    function addFavorite(url,title) {
+        try{
+            window.external.addFavorite(url,title);
+        }catch (e) {
+            try {
+                window.external.addPanel(title,url,"");
+            }catch (e) {
+                alert("浏览器不支持添加收藏，请使用Ctrl+D进行添加");
+            }
+        }
+
+    }
+</script>
+
+</body>
+</html>

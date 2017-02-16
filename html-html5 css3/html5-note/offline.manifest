@@ -1,0 +1,10 @@
+CACHE MANIFEST
+CACHE:
+js/workerCac.js
+fun/worker.html
+
+//需要联网的=》 不缓存的
+NETWORK:
+
+//回退措施
+FALLBACK:

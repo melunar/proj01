@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左浮动居中</title>
+</head>
+<style>
+    .whole {
+        width: 100%;
+        height: 300px;
+        background-color: antiquewhite;
+        text-align: center;
+    }
+    .one {
+        position: relative;
+        left: 50%;
+        float: left;
+        width: 300px;
+        height: 80px;
+        margin: 0 auto;
+        line-height: 80px;
+        background-color: #911001;
+    }
+
+    .div1 {
+        width: 1000px;
+        height: 500px;
+        border: 1px solid #000;
+    }
+    .div2 {
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        background: red;
+        float: left;
+        position: relative;
+        left: 50%;
+    }
+</style>
+<body>
+    <div class="whole">
+        <div class="one">我有属性float:left;居中没有?</div>
+    </div>
+
+    <div class="div1">
+        <div class="div2"></div>
+    </div>
+</body>
+</html>

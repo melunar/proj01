@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="../../../js/underscore.js"></script>
+    <script src="ajaxModel.js"></script>
+    <title>async</title>
+</head>
+<body>
+    <script>
+        var m = Model;
+        //m.getData("data.json",{},{});
+        /*
+       失败了
+        var res = $.get("data.json",'json').done(function(result) {
+            console.log(result instanceof Deferred());
+            return result;
+        });
+        alert(res);*/
+
+        var res = m.getData("data.json",{},{dataType:"json"});
+        console.log(res.state.name);
+
+    </script>
+</body>
+</html>

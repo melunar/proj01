@@ -1,0 +1,40 @@
+.magic-sprite, .magic-icon1-disabled, .magic-icon1, .magic-icon2-disabled, .magic-icon2 {
+  background-image: url('../images/magic-s5aac151b84.png');
+  background-repeat: no-repeat;
+}
+
+.magic-icon1-disabled {
+  background-position: 0 0;
+  height: 50px;
+  width: 50px;
+}
+
+.magic-icon1 {
+  background-position: 0 -50px;
+  height: 50px;
+  width: 50px;
+}
+.magic-icon1:hover, .magic-icon1.icon1-hover {
+  background-position: 0 -150px;
+}
+.magic-icon1:active, .magic-icon1.icon1-active {
+  background-position: 0 -100px;
+}
+
+.magic-icon2-disabled {
+  background-position: 0 -200px;
+  height: 50px;
+  width: 50px;
+}
+
+.magic-icon2 {
+  background-position: 0 -250px;
+  height: 50px;
+  width: 50px;
+}
+.magic-icon2:hover, .magic-icon2.icon2-hover {
+  background-position: 0 -350px;
+}
+.magic-icon2:active, .magic-icon2.icon2-active {
+  background-position: 0 -300px;
+}

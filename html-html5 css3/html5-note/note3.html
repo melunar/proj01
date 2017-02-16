@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5 note3</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        HTML5 客户端存储数据 获取地里位置 应用程序缓存(*)
+    </h1>
+    <div class="row">
+        <div class="span2">
+            <ul class="nav-list unstyled">
+                <li><a href="index.html">note day1</a></li>
+                <li><a href="note2.html">note day2</a></li>
+                <li class="active"><a href="#">note day3</a></li>
+                <li><a href="note4.html">note day4</a></li>
+                <li><a href="form.html">note of form</a></li>
+            </ul>
+        </div>
+        <div class="span10">
+            <h4>HTML5 获取地里位置（GOOGLE）</h4>
+                <a href="http://www.w3school.com.cn/html5/html_5_geolocation.asp">http://www.w3school.com.cn/html5/html_5_geolocation.asp</a>
+                <hr>
+                百度地图API：<a href="http://developer.baidu.com/map/index.php?title=webcomponent/guide/helloworld">http://developer.baidu.com/map/index.php?title=webcomponent/guide/helloworld</a>
+        </div>
+        <br><br><br>
+        <div class="span10">
+            <h4>客户端存储数据1(使用谷歌浏览器测试)
+                <small><mark>localStorage</mark> - 没有时间限制的数据存储</small>
+                <!--sessionStorage - 针对一个 session 的数据存储,。当用户关闭浏览器窗口后，数据会被删除-->
+            </h4>
+            <script type="text/javascript">
+                if (localStorage.pagecount)
+                {
+                    localStorage.pagecount=Number(localStorage.pagecount) + 1;
+                }
+                else
+                {
+                    localStorage.pagecount=1;
+                }
+               // var num = document.getElementById("num");
+                //num.innerHTML = "访问次数：" + localStorage.pagecount;
+                document.write("Visits "+ localStorage.pagecount + " time(s).");
+            </script>
+            <div id="num">localStorage：</div>
+            <br>
+            <hr>
+            <h4>客户端存储数据2(使用谷歌浏览器测试)
+                <small><mark>sessionStorage</mark> - 针对一个 session 的数据存储,。当用户关闭浏览器窗口后，数据会被删除</small>
+            </h4>
+            <script type="text/javascript">
+
+                if (sessionStorage.pagecount1)
+                {
+                    sessionStorage.pagecount1=Number(sessionStorage.pagecount1) +1;
+                }
+                else
+                {
+                    sessionStorage.pagecount1=1;
+                }
+                //var num1 = document.getElementById("num1");
+                //num1.innerHTML = "访问次数：" + sessionStorage.pagecount1;
+                document.write("Visits "+ sessionStorage.pagecount1 + " time(s).");
+            </script>
+            <div id="num1">sessionStorage ：</div>
+        </div>
+        <br><br><br>
+        <div class="span8">
+            <h4>Application Cache 应用程序缓存</h4>
+            <p>
+                HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问。<br>
+                应用程序缓存为应用带来三个优势：<br>
+                离线浏览 - 用户可在应用离线时使用它们<br>
+                速度 - 已缓存资源加载得更快<br>
+                减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源<br>
+            </p>
+            <textarea cols="600" rows="10" style="width: 600px;">
+                <!DOCTYPE HTML>
+                <html manifest="demo.appcache">
+
+                 <body>
+                    The content of the document......
+                 </body>
+
+                </html>
+                每个指定了 manifest 的页面在用户对其访问时都会被缓存。
+                如果未指定 manifest 属性，则页面不会被缓存（除非在 manifest 文件中直接指定了该页面）。
+                manifest 文件的建议的文件扩展名是：".appcache"。
+                请注意，manifest 文件需要配置正确的 MIME-type，即 "text/cache-manifest"。必须在 web 服务器上进行配置。
+            </textarea>
+            <a href="http://www.w3school.com.cn/html5/html_5_app_cache.asp">http://www.w3school.com.cn/html5/html_5_app_cache.asp</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+

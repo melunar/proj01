@@ -1,0 +1,109 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <title>Simple app</title>
+    <link type="text/css" rel="stylesheet" href="../css/common.css">
+    <script src="../../js/angular.min.js"></script>
+    <script src="controllers.js"></script>
+    <style>
+        table, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="selectCtrl">
+    <h1>Select(选择框)</h1>
+    <select ng-model="selectedSite" ng-options="x.url for x in sites">
+    </select>
+    <h3>你选择的是: {{selectedSite.site}}</h3>
+    <p>网址为: {{selectedSite.url}}</p>
+    <hr>
+
+    <p>选择一辆车:</p>
+
+    <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars"></select>
+    <p>你选择的是: {{selectedCar.brand}}</p>
+    <p>型号为: {{selectedCar.model}}</p>
+    <p>颜色为: {{selectedCar.color}}</p>
+</div>
+
+<h1>表格</h1>
+<div ng-controller="tableCtrl">
+    <table>
+        <tr ng-repeat="x in names | orderBy : 'Country'">
+            <td ng-if="$odd" style="background-color:#d3f162">{{$index + 1}}</td>
+            <td ng-if="$even">{{$index + 1}}</td>
+            <td ng-if="$odd" style="background-color:#e9f167">{{x.Name}}</td>
+            <td ng-if="$even">{{x.Name}}</td>
+            <td ng-if="$odd" style="background-color:#f1d9be">{{x.Country | uppercase}}</td>
+            <td ng-if="$even">{{x.Country | uppercase}}</td>
+            <td ng-if="$odd" style="background-color:#f17678">{{x.City}}</td>
+            <td ng-if="$even">{{x.City}}</td>
+            <!--<td ng-repeat="i in x">{{i}}</td>-->
+        </tr>
+    </table>
+</div>
+
+<h1>HTML DOM</h1>
+<div>
+    显示 隐藏 和disable 问题
+</div>
+
+<h1>事件</h1>
+<div ng-controller="clickCtrl">
+    <button ng-click="handler()">显示隐藏</button>
+    <p ng-hide="isShow">
+        名: <input type="text" ng-model="name"><br>
+        <br>
+        Full Name: {{name || "dudu"}}
+</div>
+
+<h1>表单验证</h1>
+<form novalidate name="myForm" ng-controller="validateCtrl">
+
+    <p>用户名:<br>
+        <input type="text" name="user" ng-model="user" required>
+<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+<span ng-show="myForm.user.$error.required">@</span>
+</span>
+    </p>
+
+    <p>邮箱:<br>
+        <input type="email" name="email" ng-model="email" required>
+<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+<span ng-show="myForm.email.$error.required">@</span>
+<span ng-show="myForm.email.$error.email">非法的邮箱地址</span>
+</span>
+    </p>
+
+    <p>
+        <input type="submit"
+               ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+myForm.email.$dirty && myForm.email.$invalid">
+    </p>
+</form>
+<hr>
+<hr>
+<hr>
+<hr>
+
+
+<div class="note">
+    <h2>笔记：</h2>
+    <ul>
+        <li>ng-options="x.name for(x,y) x in sites" 注意第一个参数x.name的含义：name的值,x,y标识键-值</li>
+        <li>ng-disabled="true/false" 等价disabled属性</li>
+        <li>ng-show 指令根据 value 的值来显示（隐藏）HTML 元素</li>
+        <li>ng-hide="true" 隐藏或显示 HTML 元素</li>
+        <li>novalidate 属性是在 HTML5 中新增的。禁用了使用浏览器的默认验证。</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

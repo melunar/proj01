@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <title>ajax事件</title>
+</head>
+<body>
+<div id="loading" style="display:none">
+    这里响应ajax请求的事件
+</div>
+<script>
+    $("#btn").click(function() {
+        $.ajax({
+            url: "json.json",
+            dataType: "json",
+            success: function(re) {
+                console.log(re);
+            }
+        });
+    });
+    $("#loading").ajaxStart(function(){
+        $(this).show();
+    }).ajaxStop(function(){
+        $(this).hide();
+    });
+</script>
+    <button id="btn">按钮</button>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#Button1").click(function(){
+            $.post("json.json","",function(data){
+                $("#x").text(data);
+            },"text");
+        });
+        $("#my").ajaxStart(function(){
+            $(this).show();
+        }).ajaxStop(function(){
+            $(this).hide();
+        });
+
+    });
+</script>
+
+<form id="form1" runat="server">
+
+
+    <input id="Button1" type="button" value="button"  />
+    <div id="my" style=" display:none">
+        <!--<img src="loading.gif" alt="图片没有加载"/>-->
+        <h1>hhhhhhhhhhhhhhhhhHHHHHH</h1>
+    </div>
+    <div id="x"></div>
+</form>
+</body>
+</html>

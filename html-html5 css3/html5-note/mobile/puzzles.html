@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" >
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>-->
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="../js/jquery.mobile-1.4.5.min.css" />
+    <script src="../js/jquery.mobile-1.4.5.min.js" ></script>
+    <style rel="stylesheet">
+        body {
+            font-size: 100%;
+            font-family: Arial;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.4em;
+            font-family: cursive;
+            /*white-space: nowrap;*/
+        }
+        h1,h2,h3,h4,h5,h6 {
+            font-family: monospace;
+        }
+        input[type^=submit] {
+            background-color: #ddd;
+            border: none;
+            color: #444;
+            cursor: pointer;
+        }
+        div#circle {
+            text-align: center;
+            /*vertical-align: middle;*/
+            /*padding-top: 10px;*/
+            width: 60px;
+            font-size: 0.6em;
+            height: 60px;
+            
+            /*垂直居中*/
+            line-height: 60px;
+
+            background-color: #c4e3f3;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius:30px;
+            float: right;
+        }
+        div.block {
+            float: left;
+            width: 252px;
+        }
+        /*div.right-block {
+            margin-left: 8px;
+        }*/
+        @media screen and (min-width:524px)  {
+            div.right-block {
+                margin-left: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<section id="container">
+    <header id="header">
+        <h1>PUZZLES</h1>
+    </header>
+    <section id="intro">
+        <p>This is a page to introduce the puzzles to you.Here is even some tips for you.</p>
+        <p contenteditable="true">This is a new, shortened form of the character set meta data.
+            It was added to the specification because web designers were writing the original character set meta
+            tag incorrectly and browsers were supporting it.</p>
+    </section>
+    <scetion id="login">
+        <h2>LOGIN</h2>
+        <form action="#">
+            <label for="username">UserName:</label><br />
+            <input autofocus type="text" name="username" id="username" size="12"><br /><br/>
+            <label for="password">Password:</label><br />
+            <input type="password" name="password" id="password" size="12"><br /><br />
+            <input type="submit" value="login" /><br />
+        </form>
+    </scetion>
+    <footer>
+        <h4>
+            &copy; copyright 2015; Haoyong studio.
+        </h4>
+    </footer>
+
+</section>
+<br />
+<hr />
+<hr />
+<a id="page2"></a>
+<section id="creat-puzzle">
+
+    <h2>
+        CREAT A PUZZLE
+    </h2>
+    <div id="circle">JOIN US</div>
+    <p>This is a new, shortened form of the character set meta data.
+        It was added to the specification.</p>
+
+    <form action="#">
+        <div class="block">
+            <label for="pname">Puzzle Name:</label><br/>
+            <input type="text" name="pname" id="pname" size="30" /><br/><br/>
+        </div>
+        <div class="block right-block">
+            <label for="pquestion">Puzzle Question:</label><br/>
+            <textarea name="pquestion" id="pquestion" rows="5" cols="31"></textarea><br/><br />
+        </div>
+        <br />
+        <div style="clear: both"></div>
+
+        <input type="submit" value="submit" /><br />
+    </form>
+</section>
+<footer>
+    <h4>
+        &copy; copyright 2015; Haoyong studio.
+    </h4>
+</footer>
+<br />
+<hr />
+<hr />
+<a id="page3"></a>
+<h2>contentEditable</h2>
+<div id="edit" contenteditable="true" designmode="on">123</div>
+
+<button id="bold">bold</button>
+<button id="underline">underline</button>
+<button id="italic">italic</button>
+<script language="JavaScript">
+    //var oo = document.selection.createRange();/*getElementById("edit")*/;
+   // alert(oo);
+    $(document).ready(function() {
+        function doExe(fx,extra) {
+            document.execCommand(fx,false,extra);
+
+        }
+
+        $("#bold").click(function() {
+            //console.log($("#bold"));
+            doExe("selectall","");
+            console.log("bold");
+        });
+    });
+</script>
+</body>
+</html>

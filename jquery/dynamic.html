@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        .wh100 {
+            display: block;
+            width: 100px;
+            height: 100px;
+        }
+        .c-red {
+            background-color: red;
+        }
+        .c-blue {
+            background-color: blue;
+        }
+        .c-green {
+            background-color: green;
+        }
+        .c-black {
+            background-color: black;
+        }
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <title>效果</title>
+</head>
+<body>
+    <script>
+        $(function() {
+           /* $("p").eq(0).show(1000,"swing",function() {
+                console.log("出来了！");
+            });
+            $("p").eq(0).hide(1000,"linear",function() {
+                console.log("没了！");
+            });
+            $("div").eq(0).toggle(
+                    function () {
+                        $(this).addClass("c-blue");
+                    },
+                    function () {
+                        $(this).removeClass("c-blue");
+                    }
+            );*/
+            /*
+            $("p").eq(1).toggle();
+            $("p").eq(1).toggle();*/
+            $("div").eq(1).slideDown(1000,function() {
+                console.log("滑下来了")
+            });
+
+            $("div").eq(1).slideUp(1000,function() {
+                console.log("滑上去了")
+            });
+
+            $("div").eq(2).fadeOut(1000,"linear",function() {
+                console.log("fade没了")
+            });
+
+             $("div").eq(2).fadeIn(2000,"swing",function() {
+             console.log("fade出来")
+             });
+            $("div").eq(2).fadeTo(1000,0.6,function() {
+                console.log("fade to ")
+            });
+            $("div").eq(4).animate({
+                width: "200px",
+                height: "200px",
+                fontSize: "2em",
+                color: "red"
+            },4000,"swing",function() {
+                console.log("自定义 ")
+            });
+        });
+    </script>
+    <p class="wh100 c-green" style="display: none">Hello</p>
+    <div class="wh100 c-black" style="display: none">toggle</div>
+    <div class="wh100 c-red">red</div>
+    <div class="wh100 c-green"></div>
+    <div class="wh100" style="margin-top: -100px">green</div>
+    <div class="wh100 c-black" style="color: #ffffcc;">自定义</div>
+</body>
+</html>

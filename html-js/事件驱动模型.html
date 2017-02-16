@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>事件驱动模型</title>
+    <script>
+        //document.body.onload = init();
+        function init() {
+            var btn = document.getElementById("cli");
+            btn.onclick = function() {
+                window.alert("click");
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+
+<button id="cli">button</button>
+</body>
+</html>

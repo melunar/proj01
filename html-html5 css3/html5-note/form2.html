@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        HTML5 表单属性<small>form 和 input 元素的新属性</small>（*****）
+    </h1>
+
+    <div class="row">
+        <div class="span11">
+            <h6 class="page-header">
+                autocomplete :规定 form 或 input 域应该拥有自动完成功能(on/off)
+            </h6>
+            <form class="table-bordered" autocomplete="on" id="user_form">
+                    First name: <input type="text" name="fname" autocomplete="off" /><br />
+                    E-mail:     <input type="email" name="email" autocomplete="on" /><br />
+                <br>
+                <input type="submit" value="提交"/>
+            </form>
+            <br><br>
+            <h6>
+                form :规定input输入域所属的一个或多个表单。
+            </h6>
+            <p>
+                注释：form 属性适用于所有 input 标签的类型。
+                form 属性必须引用所属表单的 id.
+            </p>
+            Last name: <input type="text" name="lname" form="user_form" value="我还属于上面表单元素" />
+            <br><br>
+            <h6>
+                表单重写属性适用于: input 标签->submit 和 image
+            </h6>
+            <p>
+                •formaction - 重写表单的 action 属性<br>
+                •formenctype - 重写表单的 enctype 属性<br>
+                •formmethod - 重写表单的 method 属性<br>
+                •formnovalidate - 重写表单的 novalidate 属性<br>
+                •formtarget - 重写表单的 target 属性<br>
+            </p>
+            <textarea style="display: block;width: 800px; height: 100px;">
+    <form action="demo_form.asp" method="get" id="user_form">
+        E-mail: <input type="email" name="userid" /><br />
+        <input type="submit" value="Submit" />
+        <br />
+        <input type="submit" formaction="demo_admin.asp" value="Submit as admin" />
+        <br />
+        <input type="submit" formnovalidate="true" value="Submit without validation" />
+        <br />
+    </form>
+            </textarea>
+        <h6>
+            height 和 width :规定仅仅用于 image 类型的 input 标签的图像高度和宽度。
+        </h6>
+            <br><br>
+        <h6>
+            list 属性:规定输入域的 datalist。datalist 是输入域的选项列表。<br>
+            <mark>list 属性适用于以下类型的 input 标签：text, search, url, telephone, email, date pickers, number, range 以及 color。</mark>
+            <br>参考<a href="form.html">笔记相关/右侧</a>
+        </h6>
+        <pre>
+    <b>min、max 和 step 属性</b>
+    min、max 和 step 属性用于为包含数字或日期的 input 类型规定限定（约束）。
+    max 属性规定输入域所允许的最大值。
+    min 属性规定输入域所允许的最小值。  </pre>
+
+            <br><br>
+            <h6>
+                novalidate 属性(=true/false)
+            </h6>
+            <p>
+                novalidate 属性规定在提交表单时不应该验证 form 或 input 域。
+                注释：novalidate 属性适用于 form 以及以下类型的 input 标签：text, search, url, telephone, email, password, date pickers, range 以及 color.
+            </p>
+            <form novalidate="true">
+                E-mail: <input type="email" name="user_email" />
+                <input type="submit" />
+            </form>
+            <br><br>
+            <pre>
+<b>pattern 属性</b>
+pattern 属性规定用于验证 input 域的模式（pattern）。
+模式（pattern） 是正则表达式;
+注释：pattern 属性适用于以下类型的 input 标签：text, search, url, telephone, email 以及 password。
+            下面的例子显示了一个只能包含三个字母的文本域（不含数字及特殊字符）：<mark>pattern="[A-z]{3}"</mark>
+            </pre>
+            <form class="table-bordered">
+                Country code: <input type="text" name="country_code" pattern="[A-z]{3}"
+                                     title="Three letter country code" />
+                <input type="submit" />
+            </form>
+            <br><br>
+            <pre>
+<b>placeholder 属性</b>
+placeholder 属性提供一种提示（hint），描述输入域所期待的值。
+注释：placeholder 属性适用于以下类型的 input 标签：text, search, url, telephone, email 以及 password。
+            </pre>
+            <pre>
+<b>required 属性:required="required" </b>
+required 属性规定必须在提交之前填写输入域（不能为空）。
+注释：required 属性适用于以下类型的 input 标签：text, search, url, telephone, email, password, date pickers, number, checkbox, radio 以及 file。
+
+<b>contenteditable（规定元素内容是否是可编辑） :contenteditable="false/true" </b>
+            </pre>
+            <form  class="table-bordered">
+                Name: <input type="text" name="usr_name" required="required" placeholder="必填" contenteditable="false" />
+                <p contenteditable="true">这是一段可编辑的段落。请试着编辑该文本。</p>
+                <input type="submit" />
+            </form>
+        </div>
+    </div>
+</div>
+<pre>
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

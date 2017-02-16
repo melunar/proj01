@@ -1,0 +1,112 @@
+<html>
+<head>
+    <title>VUE-组件component:prop</title>
+    <style>
+        <!--
+        /*css*/
+        -->
+    </style>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+    <h2>组件Prop</h2>
+    <div id="app0">
+        <child mssage="hello!"></child>
+    </div>
+    <div id="example">
+        <add></add>
+        <delete></delete>
+    </div>
+    <br>
+    <div id="example2">
+        <add my-message="hhhh"></add>
+        <!--<add v-bind:btn="hhhh333"></add>-->
+    </div>
+</body>
+<script>
+    /**
+     * 父子组件的关系可以总结为 props down, events up 。
+     */
+
+
+    /**
+     * 父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。
+     *
+     * prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 props 选项声明 “prop”
+     */
+
+    Vue.component('child', {
+        // declare the props
+        props: ['msg', 'nihao', 'nisha'],
+        // the prop can be used inside templates, and will also
+        // be set as `this.msg`
+        template: '<span>{{ msg }}{{nihao}}{{nisha}}</span>',
+        /*data: function () {
+            return {
+                mssage: 'boy'
+            }
+        }*/
+    });
+    var vm0 = new Vue({
+        el: '#app0'
+    });
+
+    // 组件实例的作用域：
+    var vm = new Vue({
+        el: '#example',
+        components: {
+            "add": {
+                template: "<button>btn：{{btn}}</button>",
+                data: function () {
+                    return {btn: "123"};
+                }
+            },
+            delete: {
+                template: "<button>btn：{{btn}}</button>",
+                data: function () {
+                    return {btn: "456"};
+                }
+            }
+        }
+    });
+
+    var vm2 = new Vue({
+        el: '#example2',
+        data: {
+            h: "hello"
+        },
+        //子组件
+        components: {
+            "add": {
+                //声明
+                props: ['myMessage'],
+                template: "<button>btn：{{myMessage}}</button>",
+                data: function () {
+                    return {myMessage: "123"}; //子组件同名的值被覆盖了
+                }
+            }
+        }
+    });
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

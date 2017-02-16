@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <!-- <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.js"></script>-->
+    <script src="../bootstrap/js/jquery-1.7.1.min.js"></script>
+<style rel="stylesheet">
+    #colorfulbox {
+        width: 100px;
+        height:100px;
+        border: 0.1em solid #0081c2;
+        /*background-color: red;*/
+    }
+</style>
+</head>
+<body>
+<p id="browser">
+    <strong>browser</strong><br />
+</p>
+<p id="version">
+    <strong>version</strong><br />
+</p>
+<p id="platform">
+    <strong>platform</strong><br />
+</p>
+<p id="userAgent">
+    <strong>userAgent</strong><br />
+</p>
+<p id="userLanguage">
+    <strong>userLanguage</strong><br />
+</p>
+
+
+
+<script>
+    var browser = window.navigator.appName;
+    var version = window.navigator.appVersion;
+    var platform = window.navigator.platform;
+    var userAgent = window.navigator.userAgent;
+    var userLanguage = window.navigator.userLanguage;
+
+    $("#browser").append("window.navigator.appName:" + browser);
+    $("#version").append("window.navigator.appVersion" + version);
+    $("#platform").append("window.navigator.platform" + platform);
+    $("#userAgent").append("window.navigator.userAgent" + userAgent);
+    $("#userLanguage").append(userLanguage);
+
+</script>
+
+
+
+
+
+
+
+<div id="colorfulbox"></div>
+<!--切勿多次点击-->
+<button onclick="startColor();">开始</button>
+<button onclick="stopColor();">停止</button>
+
+<script language="JavaScript">
+    var inter;
+    function startColor() {
+        inter = setInterval(colorChange,1000);
+    }
+    function stopColor() {
+        clearInterval(inter);
+    }
+    function colorChange() {
+        console.log("start");
+        var box = document.getElementById("colorfulbox");
+        if(box.style.backgroundColor == 'red') {
+            box.style.backgroundColor = 'blue';
+            console.log("blue");
+        }
+        else {
+            box.style.backgroundColor = 'red';
+            console.log("red");
+        }
+    }
+</script>
+
+
+
+<!--contextmenu 无法测试  浏览器基本不支持contextmenu-->
+<!--    <a href="#" contextmenu="menu">超链接</a>
+    <menu id="menu">
+        <command label="home" onclick="window.location='/'"></command>
+        <command label="contact" onclick="window.location='/'"></command>
+    </menu>-->
+</body>
+</html>

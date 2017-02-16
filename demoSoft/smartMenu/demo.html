@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>右键菜单</title> 
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <script src="linkedlist.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/rightmenu/jquery-smartMenu.js"></script>
+    <style>
+        .wrap {
+            clear: both;
+            height: auto;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(20, 20, 20, .2);
+            float: left;
+        }
+        .item {
+            display: inline-block;
+            box-sizing: border-box;
+            height: 40px;
+            width: 120px;
+            margin: 5px 10px;
+            /*line-height: 40px;*/
+            text-align: center;
+            font-size: 9px;
+            cursor: pointer;
+            font-family: "微软雅黑";
+            /*outline: none;*/
+            border: none;
+            float: left;
+        }
+        .item:hover {
+            border: 5px solid #111;
+        }
+        div.box {
+            display: inline-block;
+            box-sizing: border-box;
+            width:50%;
+            border:7px solid red;
+            /*float:left;*/
+        }
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            let $l = $(".item").length,
+                $items = $(".item"),
+                _color = "",
+                _random_num = function() {
+                    return parseInt(Math.random() * 255);
+                };
+            $items.each(function(index, item) {
+                _color += "rgb(" + _random_num() + ", " + _random_num() + ", " + _random_num() + ")";
+                $(item).css({
+                    "background-color": _color
+                }).text(_color)/*.mouseenter(function() {
+                    $(this).css({
+                        // "border": "solid 2px rgba(20, 20, 20, .6)",
+                        //"outline": "solid 2px rgba(20, 20, 20, .6)",
+                        //"outline-offset": "0",
+                        //"border-radius": "2px"
+                    });
+                }).mouseleave(function() {
+                    $(this).css({
+                        "border": "none",
+                        "outline": "none"
+                    });
+                });*/
+               ; _color = "";
+            });
+        });
+        /**
+         * mouseover 事件在鼠标移动到选取的元素及其子元素上时触发 ;
+         * mouseenter 事件只在鼠标移动到选取的元素上时触发。
+         *
+         * mouseout 事件在鼠标离开任意一个子元素及选的元素时触发;
+         * mouseleave 事件只在鼠标离开选取的的元素时触发。
+         */
+        
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+    </div>
+    <div class="wrap">
+        <div class="box">
+            left div
+        </div>
+        <div class="box">
+            right div
+        </div>
+    </div>
+</body>
+</html>

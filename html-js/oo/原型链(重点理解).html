@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型链-重点</title>
+</head>
+<body>
+    <script>
+        /**/
+        console.log("每个由构造器创建的对象拥有一个指向构造器 prototype 属性值的隐式引用，这个引用为原型（prototype）。" +
+                "进一步，每个原型可以拥有指向自己原型的隐式引用（即该原型的原型），如此下去，" +
+                "这就是所谓的原型链（prototype chain）。" +
+                "在具体的语言实现中，每个对象都有一个 __proto__ 属性来实现对原型的隐式引用。");
+        function Person(name) {
+            this.name = name;
+        }
+
+        //Person.prototype = new Date(); 修改Person的原型 第二次输出将会是 false，
+        // 这里默认是Person.prototype = new Object();
+
+        var per = new Person("proto");
+
+        //对象的隐式引用指向了构造器的 prototype 属性，所以此处打印 true
+        console.log(Person.prototype === per.__proto__);
+        console.log(per.__proto__);
+
+        //原型本身是一个 Object 对象，所以他的隐式引用指向了Object 构造器的 prototype 属性 , 故而打印 true
+        console.log(Person.prototype.__proto__ === Object.prototype);
+        console.log(Person.prototype.__proto__);
+
+        //构造器 Person 本身是一个函数对象，所以此处打印 true
+        console.log("Person 是什么类型：" + typeof Person + " ，不是Object类型！");//function
+        console.log("Person is:" + Person);
+        console.log(Person.__proto__ === Function.prototype);
+        console.log(Person.__proto__ === Object.prototype);//false
+
+    </script>
+    <script>
+        console.log("：以上是知识点；以下是例子：");
+
+        function Animal() {
+            this.age = 10;
+        }
+
+        Animal.prototype = {
+            name: "animal",
+            weight: 0,
+            type: "animal",
+            eat: function() {
+                alert("animal is eating...");
+            }
+        }
+
+        function Mammal() {
+            this.name = "mammal";
+        }
+        Mammal.prototype = new Animal();
+
+        function Horse(height,weight) {
+            this.name = "horse";
+            this.weight = weight;
+            this.height = height;
+        }
+
+        Horse.prototype = new Mammal();
+        Horse.prototype.eat = function() {
+            alert( "Horse is eating grass!" );
+        };
+
+        // 验证并理解原型链
+        var horse = new Horse(100, 300);
+        console.log( horse.__proto__ === Horse.prototype );//true
+        console.log( Horse.prototype.__proto__ === Mammal.prototype );//true
+        console.log( Mammal.prototype.__proto__ === Animal.prototype );//true
+
+        console.log( Mammal.__proto__ === Function.prototype );//true
+
+        console.log(horse);//{age: 10, height: 100, name: "horse", type: "animal", weight: 300}
+    </script>
+
+    <script>
+        console.log("原型模式的缺点，它省略了为构造函数传递初始化参数，这在一定程序带来不便；另外，最主要是当对象的属性是引用类型时，它的值是不变的，总是引用同一个外部对象，所有实例对该对象的操作都会影响其它实例：");
+        function Person1() {
+        }
+        Person1.prototype.name = 'Jack';
+        Person1.prototype.lessons = ['Math','Physics'];
+        var person1 = new Person1();
+        person1.lessons.push('Biology');
+        var person2 = new Person1();
+        console.log(person2.lessons);//Math,Physics,Biology，person1修改影响了person2
+    </script>
+</body>
+</html>

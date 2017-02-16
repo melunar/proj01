@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #00cbcb;
+        }
+    </style>
+    <script src=""></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div id="box" class="box"></div>
+</body>
+<script>
+    function slideDown(elem) {
+//从 0 开始扩张
+        elem.style.height = '0px';
+//显示元素(但你看不到它，因为高度为零)
+        show( elem );
+//得到元素的完整的潜在高度
+        var h = fullHeight( elem );
+//我们将做一个在一秒钟内播放的 20"帧"的动画
+        for ( var i = 0; i <= 100; i += 5 ) {
+//保证我们有一个正确的 i 的闭包
+            (function(){
+                var pos = i;
+//设置未来特定时间的定时器
+                setTimeout(function(){
+//设置元素的新高度
+                    elem.style.height = ( pos / 100 ) * h + "px";
+                }, ( pos + 1 ) * 10 );
+            })();
+        }
+    }
+    var el = document.getElementById("box");
+    slideDown(el);
+</script>
+</html>

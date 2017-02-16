@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>VUE-条件与循环</title>
+		<style>
+
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="app-3">
+            <!--
+                v-if指令不满足条件时 dom结点是不存在的
+            -->
+            <p id="pDom" v-if="seen">now, you see me.</p>
+		</div>
+        <hr>
+        <!--
+            v-for 指令: 绑定数据到数组来渲染一个列表
+        -->
+        <div id="app-4">
+            <ol>
+                <li v-for="item in list">
+                    {{item.unit}}
+                </li>
+            </ol>
+        </div>
+	</body>
+	<script>
+        /**
+         */
+        var app3 = new Vue({
+            el: "#app-3",
+            data: {
+                seen: true
+            }
+        });
+        var app4 = new Vue({
+            el: "#app-4",
+            data: {
+                list: [{
+                    unit: "unit one"
+                }, {
+                    unit: "unit two"
+                },{
+                    unit: "unit three"
+                }]
+            }
+        });
+        //三秒后在循环列表添加一项
+        setTimeout(function() {
+            app4.list.push({unit: "unit append..."})
+        },3000);
+	</script>
+</html>

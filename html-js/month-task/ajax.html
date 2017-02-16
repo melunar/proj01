@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <title>ajax</title>
+</head>
+<body>
+<script>
+
+    /**
+     * 1.创建一个异步对象
+     * 2.打开open("Get/post", url, true);   //1.发送请求的方式 2.样请求的页面 3.是否异步
+     * 3.发送send()
+     *
+     *
+     * http请求状态码readyState：
+     *   0：未初始化。对象已经创建，但还未初始化，即还没调用open方法；
+     *   1：已打开。对象已经创建并初始化，但还未调用send方法；
+     *   2：已发送。已经调用send 方法，但该对象正在等待状态码和头的返回；
+     *   3：正在接收。已经接收了部分数据，但还不能使用该对象的属性和方法，因为状态和响应头不完整；
+     *   4：已加载。所有数据接收完毕
+     *
+     *
+     * HTTP请求的返回值status（服务器返回报文的状态码）：
+     2xx     成功
+     200     正常;请求已完成。
+
+     3xx     重定向
+     301     已移动 — 请求的数据具有新的位置且更改是永久的。
+     302     已找到 — 请求的数据临时具有不同 URI。
+     303     请参阅其它 — 可在另一 URI 下找到对请求的响应，且应使用 GET 方法检索此响应。
+     304     未修改 — 未按预期修改文档。
+
+     4xx     客户机中出现的错误
+     400     错误请求 — 请求中有语法问题，或不能满足请求。
+     401     未授权 — 未授权客户机访问数据。
+     402     需要付款 — 表示计费系统已有效。
+     403     禁止 — 即使有授权也不需要访问。
+     404     找不到 — 服务器找不到给定的资源;文档不存在。
+
+     5xx     服务器中出现的错误
+     500     内部错误 — 因为意外情况，服务器不能完成请求。
+     501     未执行 — 服务器不支持请求的工具。
+     502     错误网关 — 服务器接收到来自上游服务器的无效响应。
+     503     无法获得服务 — 由于临时过载或维护，服务器无法处理请求。
+     * */
+    function initxhr(xhr){
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();//全局的
+
+        }else if(window.ActionXObject){
+            xhr = new ActiveXObject("Msxml2.XMLHTTP");
+        }else{
+            throw new Error("xhr is not supported");
+        }
+        return xhr;
+    }
+    function doajax() {
+        var xhr = null;
+        if(xhr == null) {
+            xhr = initxhr(xhr);
+        }
+
+        xhr.open("get","http://localhost:801/ajax/deal.php?name=aa",true);
+        xhr.send();
+        xhr.onreadystatechange =  function() {
+            if(xhr.readyState == 0) {
+                alert("未初始化。对象已经创建，但还未初始化，即还没调用open方法；");
+            } else if(xhr.readyState == 1) {
+                alert("已打开。对象已经创建并初始化，但还未调用send方法；");
+            } else if(xhr.readyState == 2) {
+                alert("已发送。已经调用send 方法，但该对象正在等待状态码和头的返回；");
+            } else if(xhr.readyState == 3) {
+                alert("正在接收。已经接收了部分数据，但还不能使用该对象的属性和方法，因为状态和响应头不完整；");
+            }
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                alert("4");
+                var response = xhr.responseText;
+                alert(response);
+            }
+        }
+
+    }
+
+    function jajax() {
+        jQuery.ajax({
+            url: "http://localhost:801/ajax/deal.php",
+            data: {
+                name: "name"
+            },
+            type: 'get',
+            success: function() {
+                alert("good");
+            }
+        });
+    }
+
+    function jajax0() {
+        jQuery.ajax({
+            url: "json.json",
+            data: {
+                name: "name"
+            },
+            type: 'get',
+            success: function(re) {
+                alert(re);
+            }
+        });
+    }
+
+
+    /**
+     *
+     * load(url,[data],[callback])
+         载入远程HTML文件代码并插入至DOM中，默认使用GET方式，传递参数时自动转换为POST方式。
+         url:要载入的远程url地址
+         data:发送至服务器的key/value 数据
+         callback:载入成功时的回调函数
+     * */
+
+    //无参数、无回调函数
+    //$("#showload").load("load.html");
+    //无回调函数
+    //$("#showload").load("load.html", { "para": "para-value" });
+   $(function() {
+       $("#showload").load("load.html", { "para": "para-value" },
+               function() {
+                   console.log("load加载完成");
+               }
+       );
+   });
+
+
+
+
+
+
+    /**
+     * Query.get(url, [data], [callback])
+         使用get方式从服务器端获取数据。
+         发送请求的URL地址
+         要发送给服务器的数据
+         载入成功时回调函数
+
+     jQuery.post(url, [data], [callback])同理
+     *
+     * */
+
+    $(function() {
+        $.get("load.html", { "id": this.id },
+                function(req) {
+                    //成功时的回调方法
+                    $("#showget").html(req);
+                }
+        );
+    });
+
+
+
+
+
+    /**
+     * jQuery.getJSON(url,[data],[callback])
+     *   通过get方式获取json格式的数据。
+     * */
+
+    $(function() {
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?", function(req) {
+            console.log(req);
+        });
+    });
+
+
+
+    function jajax2() {
+        $.ajax({
+            url: "deal.php",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+            data: { "id": "value" },    //参数值
+            type: "GET",   //请求方式
+            beforeSend: function() {
+                alert("before send");
+            },
+            success: function(req) {
+               alert("OK");
+            },
+            complete: function() {
+                alert("Over");
+            },
+            error: function() {
+                alert("bad");
+            }
+        });
+    }
+
+</script>
+<button onclick="doajax()">发送ajax</button>
+<button onclick="jajax()">发送jajax</button>
+<button onclick="jajax2()">发送jajax2</button>
+<div id="showload"></div>
+<div id="showget"></div>
+<!--<form onsubmit="doajax()">
+    <input type="text" name="name" value="123123" />
+    <input type="submit" value="ajax" />
+</form>-->
+</body>
+</html>

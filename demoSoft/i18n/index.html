@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title class="i18n" name='title'>i18next</title>
+    <meta id="i18n_pagename" content="index-common">
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<!--
+1、meta id=”i18n_pagename” content=”index-common” 这里面的index-common写法，这里是引 入了两个资源文件index和common，这样做的好处就是，我们可以把公用部分的资源文件放到common里面，例如页头，页脚等，而且不需在每个页面都复制这部分内容，当共有内容有所变化，只需要修改common.properties就可以全部修改啦。
+2、获取方式一：label class=”i18n” name=”hellomsg1”这里面class=”i18n”写法，下边在js里面我们可以根据类选择器获取需要国际化的地方，然后name=”hellomsg1”这里面的hellomsg1跟资源文件里面的key保持一致。获取方式二：input type=”search” class=”i18n-input” selectname=”searchPlaceholder” selectattr=”placeholder”这里面的class=”i18n-input”写法，跟上边的区别就是可以给html标签的任何属性可以赋值，例如placeholder，name，id什么的都可以，selectattr=”placeholder”里面的placeholder就是要赋值的属性，selectname=”searchPlaceholder”里面的searchPlaceholder跟资源文件里面的key保持一致。
+-->
+    <div class="lan">
+        <div class="lan1"><label class="i18n" name="lan"></label></div>
+        <div class="lan2">
+            <select id="language">
+                <option value="zh-CN">中文简体</option>
+                <option value="zh-TW">中文繁體</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div><label class="i18n" name="hellomsg1"></label><label class="i18n" name="hellomsg2"></label></div><br>
+    <div><label class="i18n" name="commonmsg1"></label><label class="i18n" name="commonmsg2"></label></div><br>
+    <div>
+        <input type="search" class="i18n-input" selectname="searchPlaceholder" selectattr="placeholder">
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <!-- 加载语言包文件 -->
+    <script src="../../js/jquery.i18n.properties.js"></script>
+    <script src="js/language.js"></script>
+</body>
+</html>

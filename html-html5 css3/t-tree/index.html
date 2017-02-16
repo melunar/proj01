@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/t-tree.css">
+    <script src="../../js/jquery.min.js"></script>
+    <title>组织树的测试</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+<div class="transDiv skew"> transform skew 倾斜</div>
+<div class="transDiv scale"> transform scale 缩放</div>
+<div class="transDiv rotate"> transform rotate 旋转</div>
+<div class="transDiv translate"> transform translate 平移</div>
+<div class="transDiv all_in_one_transform"> transform all_in_one_transform 综合</div>
+
+
+
+<div class="anim1Div transDiv"> animation </div>
+
+<div class="transStart"> transition </div>
+<script>
+    $(".transStart").click(function() {
+        $(this).toggleClass("transEnd");
+    });
+</script>
+<div class="box">
+    <div class="boxcontainer"> 
+            <div class="item"> 
+                1 
+            </div> 
+            <div class="item flex2">
+                2 
+            </div> 
+            <div class="item"> 
+                3 
+            </div> 
+            <div class="item flex1">
+                4 
+            </div> 
+        </div>
+</div>
+<br>
+<br>
+<br>
+<!--<div id="tree-container"></div>-->
+<div class="css-column" style="display: none">
+    <p>
+        几行简单的 CSS 代码便可实现一系列令人眼前一亮的效果，比用 JavaScript 去模拟这样的效果要好得多，不仅降低了复杂度，变得易维护，在性能上也突飞猛进了
+    </p>
+    <p>
+        ## 选择器
+
+        1. 定位到div下的第4个标签为span的元素。
+        ``` css
+        body>.main div span[4] {
+        /*props: values;*/
+        }
+        ```
+
+        2. 定位到元素集的奇数或偶数索引 `tr:nth-child(odd||even)`
+        3. 非选择器 `:not(E)`
+        4. 第一个、最后一个子元素`E:first-child E:last-child`
+        5. 其他选择器
+
+        ```
+    </p>
+    <p>
+        E:nth-last-child(n)
+        E:nth-of-type(n)
+        E:nth-last-of-type(n)
+        E:last-child
+        E:first-of-type
+        E:only-child
+        E:only-of-type
+        E:empty
+        E:checked
+        E:enabled
+        E:disabled
+        E::selection
+        E:not(s)
+        ```
+    </p>
+
+
+</div>
+
+<div id="gradient-demo"  style="display: none">
+    <div class="linear-gradient">
+        线性渐变
+    </div>
+    <div class="radial-gradient">
+        径像渐变
+    </div>
+</div>
+
+<div class="bg1">两个背景图片,还有背景色</div>
+<div class="bg"  style="display: none">
+    <span class="background-break">
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+        CSS 3中, 元素能分拆成多个部分(例如inline元素span能占多个行)。background-break属性控制背景图像如何在多个部分展示。
+
+
+   <!--     <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>-->
+    </span>
+</div>
+<script type="text/javascript" data-main="/require-conf.js" src="/libs/requirejs/require.js"></script>
+<script type="text/javascript">
+    //require(["/module/inspect/t-tree/js/main.js"]);
+</script>
+
+</body>
+</html>

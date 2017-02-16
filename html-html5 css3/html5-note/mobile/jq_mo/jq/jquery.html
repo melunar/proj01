@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>HTML5</title>
+    <!-- <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <link href="../js/jquery.mobile-1.4.5.min.css" rel="stylesheet">
+    <script src="../bootstrap/js/bootstrap.js"></script>-->
+    <script src="../../../bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="json.js"></script>
+
+    <style>
+        .myClass {
+            color:darkred;
+            font-size:1.2em;
+        }
+    </style>
+</head>
+<body>
+<button id="a">addClass</button>
+<button id="b">removeClass</button>
+<button id="c">toggleClass</button>
+<br>
+<p id="p">
+    这里是会变化的文字。
+</p>
+<script>
+    $(document).ready(
+            function(){
+                $('#a').click(function(){
+                    $('#p').addClass('myClass');
+                });
+                $('#b').click(function(){
+                    $('#p').removeClass('myClass');
+                });
+                $('#c').click(function(){
+                    $('#p').toggleClass('myClass');
+                });
+            }
+    );
+</script>
+
+<br>
+<hr>
+<br>
+<button id="p1">图片1</button>
+<button id="p2">图片2</button>
+<button id="pc">改变图片1</button>
+<button id="p3">文字</button>
+<br>
+<p id="pic">
+    <img width="100" height="140" id="pic1" src="../../../images/img01.jpg" />
+    <img hidden width="100" height="140" id="pic2" src="../../../images/img02.jpg" />
+</p>
+<h2 id="word">Toggle：让文字显示隐藏</h2>
+<script>
+
+    var block = $("<div/>",{
+        /*css()方法*/
+        css:{
+            background:'red',
+            color:"blue"
+        },
+        /*html方法*/
+        html:"A block with parameters<br />",
+        click:function() {
+            $(this).fadeOut("2000");
+        }
+    });
+    var img = $("<img/>",{
+        src:"../../../images/1.png"
+    });
+    var h1 = $("<h1/>",{
+        /*text方法*/
+        text:"This is title 1"
+    });
+    block.appendTo("body");
+    img.appendTo("body");
+    h1.appendTo("body");
+    $("img").get(-2).src = "../../../images/2.png";
+    alert($("img").get(-1).src);
+
+
+
+    /*$(document).ready(
+            function(){
+                $('#p1').click(function(){
+                    $('#pic1').slideToggle('slow',function(){
+                        alert("slow");
+                    });
+                });
+                $('#pc').click(function(){
+                    $('#pic1').attr({src:"../../../images/1.png"});
+                });
+                $('#p2').click(function(){
+                    $('#pic2').slideDown('normal','linear');
+                });
+                $('#p3').click(function(){
+                    /!*显示或隐藏*!/
+                    $('#word').toggle('fast');
+                });
+            }
+    );*/
+</script>
+</body>
+</html>

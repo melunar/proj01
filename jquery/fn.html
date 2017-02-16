@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../js/jquery.min.js"></script>
+    <title>fn</title>
+</head>
+<body>
+    <script>
+        /**
+         * $extend():扩展静态方法
+         * $.fn : 给$提供扩展公用方法，会对jquery实例每一个有效
+         *
+         * jQuery.fn.init.prototype = jQuery.fn
+         *
+         * */
+
+        /*fn 在jQuery中的定义
+        jQuery.fn = jQuery.prototype = {
+            init: function( selector, context ) {//....　
+                //......
+            };*/
+        $.fn.ab = function() {
+            console.log("ab");
+        }
+
+        $.extend({
+            add:function(a,b){ return a + b; }
+        });
+
+/*
+        $("div").ab();
+        $("div.abc").ab();*/
+        $.fn.init("div.abc").ab();
+        $("div.abc").ab();
+        $.prototype.init("div.abc").ab();
+       // $.init("div.abc").ab(); 错误
+        console.log(jQuery.fn.init.prototype);
+
+        alert($("div.abc").add(1,2));//object
+        alert($.add(1,2));//3
+
+
+
+        /**
+         * @question:
+         * jQuery.fn.init.prototype = jQuery.fn
+         * jQuery.fn 为一个对象的话 对象的其中一个方法的原型 是对象自己
+         * 而且new jQuery对象为什么非要套在 jQuery.prototype里面其中的一个方法init上来做构造,用个其他的函数是不是更清晰些 ?
+         *
+         * */
+
+        /*function F(selector, context, rootjQuery){
+            return this;
+        }
+        F.prototype={
+            each:function(){
+            },
+                ....
+        };
+        var jQuery = function(selector, context ) {
+            // return new jQuery.fn.init( selector, context, rootjQuery );
+            return new F( selector, context, rootjQuery );
+        }*/
+    </script>
+    <div class="abc">abc</div>
+</body>
+</html>

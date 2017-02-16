@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script language="javascript" type="text/javascript">
+        //        http://domain2/TestCross.html:
+        var url = "http://domain1/TestCross.html";
+        var oldHash = null;
+        var timer = null;
+        function getHash() {
+            var hash = window.location.hash;
+            if ((hash.length >= 1) && (hash.charAt(0) == '#')) {
+                hash = hash.substring(1);
+            }
+            return hash;
+        }
+        function sendRequest() {
+            var d = document;
+            var t = d.getElementById('request');
+            var f = parent;
+//alert(f.document); //试着去掉这个注释，你会得到“Access is denied”
+            f.location.href = url + "#" + t.value + "<br/>" + new Date();
+        }
+        function setDivHtml(v) {
+            var d = document;
+            var dv = d.getElementById('response');
+            dv.innerHTML = v;
+        }
+        function idle() {
+            var newHash = getHash();
+            if (newHash != oldHash) {
+                setDivHtml(newHash);
+                oldHash = newHash;
+            }
+            timer = window.setTimeout(idle, 100);
+        }
+        function window
+        .onload()
+        {
+            timer = window.setTimeout(idle, 100);
+        }
+    </script>
+</head>
+<body>
+请求：<input type="text" id="request"> <input type="button" value="发送" onclick="sendRequest()"/><br/>
+回复：
+<div id="response"></div>
+</body>
+</html>
+<!--
+
+两个网页基本相同，第一个网页内嵌一个IFRAME，在点击“发送”按钮后，会将文本框里的内容通过hash fragment传给IFRAME。点击IFRAME里的“发送”按钮后，它会将文本框里的内容通过hash fragment传给父窗口。因为是只改动了hash fragment，浏览器不会重新load网页内容，这里使用了一个计时器来检测URL变化，如果变化了，就更新其中一个div的内容 。
+
+-->

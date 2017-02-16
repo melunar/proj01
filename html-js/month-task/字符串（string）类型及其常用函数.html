@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>字符串（string）类型及其常用函数</title>
+</head>
+<body>
+    <script>
+        var str = "a string is string";
+        /**
+         * 构造函数
+         * String(s), new String(s)
+         * */
+        function test01() {
+            var str01 = new String("abc"),
+                    str02 = String(str01),
+                    str03 = "abcd";
+            console.log(typeof str01 + " " + typeof str02 + " " + typeof str03);//object string string
+        }
+        //test01();
+
+
+        /**
+         * charAt(index) 返回字符串string的第n个字符
+         * charCodeAt(index) 返回第n个字符的Unicode编码
+         *
+         * indexOf(substring[,start])
+         *      --在string中的start位置之后存在substring返回出现的第一个substring 的位置
+         * 同理lastIndexOf()
+         * */
+        function test02() {
+            console.log(str.charAt(1));
+            console.log(str.charCodeAt(0));
+
+            console.log(str.indexOf("str",3));
+            console.log(str.lastIndexOf("str"));
+            console.log(str.indexOf("null"));
+        }
+        //test02();
+
+
+        /**
+         * substring(from[, to = end])
+         *      --返回一个新字符串，包含的字符是从string中的from处到to-1处复制的。
+         *
+         * substr(from, to)
+         *      //from负数往后计算
+         *
+         * slice(start, end) 返回包括字符串从start开始(包括start)到end为止(不包 括end)的所有字符
+         *
+         * split("?") 返回截取字符串段的数组
+         *
+         * concat(s) 连接字符串 一般使用 “+”
+         * */
+        function test03() {
+            console.log(str.substring(0,5));
+            console.log(str.substring(1));
+            console.log(str.substr(0,5));
+            console.log(str.substr(-5,5));
+
+            console.log(str.slice(-5,-1));
+            console.log(str.split(" "));
+        }
+        //test03();
+
+        /**
+         * toUpperCase(),toLowerCase()
+         * length
+         * toString()
+         * ValueOf()返回字符串 偏向于数字型
+         *
+         * */
+        function test04() {
+            console.log(str.toUpperCase());
+            console.log(str.valueOf() === str.toString());//true
+            console.log(Number(1).valueOf() === Number(1).toString());//false
+        }
+       // test04();
+
+
+        /**
+         * replace(regexp, replacement) 替换匹配的第一个
+         * match(reg) 返回匹配结果的数组
+         * */
+        function test05() {
+            console.log(str.replace("string","String"));
+            console.log(str.replace(/(\w+)\s*/,"-String-"));
+            console.log(str.match(/(\w+)\s/));
+        }
+        test05();
+    </script>
+</body>
+</html>

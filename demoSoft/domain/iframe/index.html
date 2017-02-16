@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jiaju.com iframe proxy</title>
+</head>
+<body>
+<script>
+var hash_url = window.location.hash,
+      datas = hash_url.split("#")[1].split("&"),
+      data = {};
+
+for(var i = 0;i<datas.length;i++){
+    var t = datas[i].split("=");
+    data[t[0]] = decodeURIComponent(t[1]);
+}
+document.domain = "jiaju.com";
+switch(data["JJtype"])
+    {
+        case "height":
+            try{top.window.document.getElementByI d(data["iframeID"]).height = data["height"];}catch(e){}
+            break
+        case "width":
+            try{top.window.document.getElementByI d(data["iframeID"]).width = data["width"];}catch(e){}
+            break
+        case "callback":
+            try{top.window[data["fn"]].call(document,data);}catch(e){}
+            break
+        default:
+    }
+</script>
+</body>
+</html>

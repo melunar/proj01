@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/json.js" ></script>
+    <title>asc转码</title>
+</head>
+<body>
+    <script>
+        /*
+         字符转ascii码：用str.charCodeAt();
+         ascii码砖字符：用String.fromCharCode();
+        */
+        str="abc";
+        code = str.charCodeAt(0);
+        console.log(code);
+        str2 = String.fromCharCode(code);
+        str3 = String.fromCharCode(0x60+26);
+        document.write(code+'<br />');
+        document.write(str2+'<br />');
+        document.write(str3);
+
+
+        var t = "",
+                dom = document.getElementById("in");
+        for(var i = 10; i < 90; i++) {
+
+            t += '\f0' + i;
+        }
+        dom.textContent(t);// = t;
+
+
+    </script>
+<div id="in" >内容</div>
+</body>
+</html>

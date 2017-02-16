@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<title>VUE-class_style绑定</title>
+		<style>
+            .active {
+                background-color: #73b53d;
+            }
+            .text-danger {
+                color: #b50613;
+            }
+            .bold {
+                font-weight: 600;
+            }
+            .red {
+                display: block;
+                color: red;
+                -webkit-transform: rotate(1deg);
+            }
+		</style>
+		<script src="../../js/vue.js"></script>
+	</head>
+	<body>
+        <div id="example">
+            <h2>绑定html class</h2>
+            <div v-bind:class="{'active': isActive, 'text-danger': isError}">__绑定html class__[0: false, 1: true]</div>
+            isActive-val: <input type="text" v-model="isActive"> <br>
+            isActive-set: <input type="text" v-model="isError">
+            <br><br>
+            <span v-bind:class="classObject">推荐：计算属性-class</span>
+            <br><br>
+            <span v-bind:class="[is_bold,color]">数组的方式 v-bind:class="[prop1,prop2...]</span>
+        </div>
+
+        <hr>
+        <div>
+            <h3>内联样式的绑定</h3>
+            <p>好处之一：当 v-bind:style 使用需要特定前缀的 CSS 属性时，如 transform ，Vue.js 会自动侦测并添加相应的前缀。</p>
+            <a v-bind:style="styleObjectOfCss3" href="https://cn.vuejs.org/v2/guide/class-and-style.html">更多关于内联样式的绑定方式【不推荐使用】</a>
+        </div>
+
+	</body>
+	<script>
+        /**
+         *
+         * 动态数据绑定
+         */
+        var vm = new Vue({
+            el: "#example",
+            data: {
+                isActive: '1',
+                isError: "0",
+                color: "red",
+                bold: "600",
+                is_bold: "bold",
+                styleObjectOfCss3: {
+                    transform: "rotate(3deg)"
+                }
+            },
+            watch: {
+                //监听 isError
+                isError: function(val) {
+                    this.isActive = parseInt(val) > 0;
+                    console.log(this.isActive);
+                }
+            },
+            computed: {
+                /**
+                 * 推荐此种方式绑定class
+                 * @returns {{red: boolean, bold: boolean}}
+                 */
+                classObject: function() {
+                    return {
+                        red: this.color === "red",
+                        bold: parseInt(this.bold) > 400
+                    };
+                }
+            }
+        });
+
+        console.log("---------------------------------------------------------------------------------------------");
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

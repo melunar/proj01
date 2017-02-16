@@ -1,0 +1,40 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <title>Simple app</title>
+    <link type="text/css" rel="stylesheet" href="../css/common.css">
+    <script src="../../js/angular.min.js"></script>
+    <script src="controllers.js"></script>
+    <style>
+    </style>
+</head>
+<body ng-app="myApp">
+<h1>全局 API</h1>
+<div ng-controller="">
+    angular.lowercase()	转换字符串为小写 <br>
+    angular.uppercase()	转换字符串为大写<br>
+    angular.isString()	判断给定的对象是否为字符串，如果是返回 true。<br>
+    angular.isNumber()	判断给定的对象是否为数字，如果是返回 true。<br>
+</div>
+<hr>
+
+<h1>包含</h1>
+<div>
+    <div ng-include="page1.html"></div>
+    <div ng-include="page2.html"></div>
+</div>
+<hr>
+<hr>
+
+
+<div class="note">
+    <h2>笔记：</h2>
+    <ul>
+        <li>ng-include 指令来包含 HTML 内容 </li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/mootools.js"></script>
+    <script src="../../js/handlebars.js"></script>
+    <title>note</title>
+</head>
+<body>
+    <script>
+        console.log(String.fromCharCode(87));
+        console.log("We".charCodeAt(0));
+        console.log("b".charCodeAt(0));
+
+        function countByte(str) {
+            var size = 0;
+            for (var i = 0, l = str.length; i < l; i++) {
+                size += str.charCodeAt(i) > 255 ? 2 : 1;
+            }
+
+            console.log(size);
+            return size;
+        }
+        countByte("123\n");//4
+        countByte("我");//2
+        countByte("123我");//5
+
+
+
+        function paramOfUrl() {
+            var url = location.href;
+            var paramSuit = url.substring(url.indexOf('?') + 1).split("&");
+            var paramObj = {};
+            for (var i = 0; i < paramSuit.length; i++) {
+                var param = paramSuit[i].split('=');
+                /*if (param.length == 2) {
+                 var key = decodeURIComponent(param[0]),
+                 val = decodeURIComponent(param[1]);
+                 if (paramObj.hasOwnProperty(key)) {
+                 paramObj[key] = jQuery.makeArray(paramObj[key]);
+                 paramObj[key].push(val);
+                 } else {
+                 paramObj[key] = val;
+                 }
+                 } else */
+                if (param.length >= 2) {
+                    param = $.map(param, function(item, index) {
+                        return decodeURIComponent(item);
+                    });
+                    var key = param.shift(),
+                            val = param.join('=');
+                    if (paramObj.hasOwnProperty(key)) {
+                        paramObj[key] = jQuery.makeArray(paramObj[key]);
+                        paramObj[key].push(val);
+                    } else {
+                        paramObj[key] = val;
+                    }
+                }
+            }
+            console.log(paramObj);
+            return paramObj;
+        }
+        paramOfUrl();
+
+
+        var O = {
+            getCurDate: function() {
+                var date = new Date();
+                return date.getFullYear() + '-' + this.formatLenth(date.getMonth() + 1) + '-' + this.formatLenth(date.getDate())
+            },
+
+            //补零
+            formatLenth: function(x, len) {
+                x = '' + x;
+                len = len || 2;//默认是2位（可选参数）
+                while (x.length < len) {
+                    x = '0' + x;
+                }
+
+                return x;
+            },
+
+
+           /* mootools Hash类
+            get：按键取值
+
+            hasKey：判断是否有指定的键
+
+            set：把键值对存放入Hash
+
+            remove：删除指定键的键值对
+
+            each：用法和Array的each相似，每个键值对的通过each中指定的函数
+
+            的第一个参数(值)和第二个参数(键)传入。
+
+            extend：把一个包含键值对的对象合并到当前Hash中，相同键的值将被新    的值覆盖。
+
+            empty：这个方法的功能在mootools1.0和1.1dev版本中是完全不一样的，
+
+            1.0中是判断Hash中是否已经没有键值对，而在1.1dev中是清空 Hash中的所有键值对，请注意区别。
+
+            keys：获取Hash中的所有键
+
+            values：获取Hash中的所有值*/
+            loadTempl: function(url, force) {
+                this.templHash = this.templHash || new Hash();
+
+                if (this.templHash.has(url) && !force) {
+                    return this.templHash.get(url);
+                }
+
+                var self = this;
+                return jQuery.get(url, function(templ) {
+                    self.templHash.set(url, templ);
+                });
+            },
+            getHashOfUrl: function(url, array) {
+                url = url || location.href;
+               // console.log(url);
+                var hash = url.split("#")[1];
+                if (array && hash) {
+                    return hash.split("/");
+                }
+                return hash;
+            }
+        };
+        console.log(O.getCurDate());
+        console.log("data/templ1.html");
+        console.log(O.loadTempl("data/templ1.html",0));
+
+        $.when(O.loadTempl("data/templ1.html")).done(function (timeTemplate) {
+            console.log(typeof timeTemplate);
+            var compiler = Handlebars.compile(timeTemplate);
+            console.log(compiler);
+        });
+        var json1 =
+                {
+                    "news": [
+                        {
+                            "title": "新闻标题1",
+                            "author": "admin",
+                            "time": "2016-02-19 18:10:43",
+                            "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+                        },
+                        {
+                            "title": "新闻标题2",
+                            "author": "admin",
+                            "time": "2016-02-19 18:10:43",
+                            "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+                        },
+                        {
+                            "title": "新闻标题3",
+                            "author": "admin",
+                            "time": "2016-02-19 18:10:43",
+                            "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+                        },
+                        {
+                            "title": "新闻标题4",
+                            "author": "admin",
+                            "time": "2016-02-19 18:10:43",
+                            "content": "<p>中央新下发文件，请各单位注意遵守。</p><ul><li>文件1</li><li>文件2</li><li>文件3</li><li>文件4</li></ul>"
+                        }
+
+                    ]
+                }
+                ;
+        function loadTemplate(url, callbackSuccess, callbackError) {
+            var compiler = null;
+            //加载模板
+            $.when(O.loadTempl(url)).done(function (timeTemplate) {
+                console.log(typeof timeTemplate);
+                console.log(timeTemplate);
+
+                if (timeTemplate instanceof Array) {
+                    timeTemplate = timeTemplate[0];
+                }
+                //模板加载成功
+                compiler = Handlebars.compile(timeTemplate);
+                //成功的回调函数
+                if (callbackSuccess && typeof callbackSuccess === "function") {
+                    console.log("回调开始");
+                    console.log(compiler);
+                    callbackSuccess(compiler);
+
+
+
+
+                    console.log("回调结束");
+                }
+            }).fail(function () {
+                //错误的函数
+                if (callbackError && typeof callbackError === "function") {
+                    callbackError();
+                }
+            });
+        }
+
+        loadTemplate("data/templ1.html",  function(compiler) {
+            var html = compiler(json1);
+            console.log("html");
+            console.log(compiler);
+
+            console.log(html);
+        },function() {
+            alert("fail");
+        });
+
+        console.log(O.getHashOfUrl());
+
+
+       /* $(document).on('mousewheel', function(ev) {
+            //滚动一次（+-）120
+            console.log(ev.originalEvent.wheelDelta);
+        });*/
+
+
+
+
+
+        /**
+         *
+         *
+         * */
+    </script>
+</body>
+</html>

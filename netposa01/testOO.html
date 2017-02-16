@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>测试对象</title>
+</head>
+<body>
+    <script>
+        var OO = function() {
+            this.initial();
+        };
+        OO.prototype = {
+            initial:function(){
+                console.log("monitorInit")
+            }
+        };
+        var oo = new OO();
+        oo.initial();
+    </script>
+</body>
+</html>

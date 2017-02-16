@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <base href="http://www.baidu.com" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>错误处理</title>
+</head>
+<body>
+    <script>
+        function init() {
+            try {
+               /* var dom = document.getElementById("V");
+                dom.setAttribute("title","TITLEV");*/
+
+                //EvalError
+                //var e = new eval();
+
+                //RangeError
+                /*var items = new Array(-3);
+                console.log(items[10]);*/
+
+                //ReferenceError
+                //var obj = o1;
+
+                /*var a = 1,
+                        b = 2;
+                console.log(eval("a + b"));
+                //syntaxError
+                console.log(eval("a [][] b"));*/
+
+                //typeError
+                console.log("index" in true);
+
+            } catch(e) {
+                console.log("ERROR:" + e.error + " " + e.message);
+            } finally {
+                /*finally 语句块一定会执行，就算是在try里有return语句*/
+                //console.log(dom.childElementCount);
+            }
+
+        }
+        function init2() {
+            try {
+                //throw  new Error("something bad happened");
+                throw new NewError("咋了？？？？");
+            } catch(e) {
+                console.error("ERROR:" + e.message + " " + e.name);
+/*                window.onerror = function() {
+                    console.log("window error");
+                }*/
+            }
+            //抛出异常 停止执行
+            //throw "hann";
+        }
+        init2();
+        function NewError(message) {
+            this.name = "新的错误";
+            this.message = message;
+        }
+        NewError.prototype = new Error();
+    </script>
+<div id="V">
+    <p>ppp</p>
+    <a href="#">AAA</a>
+</div>
+</body>
+</html>

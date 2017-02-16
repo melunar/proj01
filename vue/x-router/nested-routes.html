@@ -1,0 +1,111 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>VUE-x-router 嵌套路由</title>
+    <style>
+        a {
+            font: 12px/1.3em "";
+            color: #222;
+            display: inline-block;
+            padding-right: 6px;
+        }
+
+        a:not(:last-child) {
+            border-right: 1px solid #888;
+        }
+    </style>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <router-link to="/user/1/profile">Go to /user/1-profile</router-link>
+        <router-link to="/user/1/profile/third">Go to /user/1-profile/third</router-link>
+        <router-link to="/user/1/posts">Go to /user/1-posts</router-link>
+        <router-link to="/user/2/profile">Go to /user/2-profile</router-link>
+        <router-link to="/user/2/posts">Go to /user/2-posts</router-link>
+    </p>
+    <router-view></router-view>
+</div>
+</body>
+<script>
+    /*
+     /user/foo/profile                     /user/foo/posts
+     +------------------+                  +-----------------+
+     | User             |                  | User            |
+     | +--------------+ |                  | +-------------+ |
+     | | Profile      | |  +------------>  | |             | |
+     | |+------------+| |                  | |             | |
+     | || third      || |                  | |             | |
+     | || third1     || |                  | |             | |
+     | || third2     || |                  | |   Posts     | |
+     | || ...        || |                  | |             | |
+     | |+------------+| |                  | |             | |
+     | |              | |                  | |             | |
+     | +--------------+ |                  | +-------------+ |
+     +------------------+                  +-----------------+
+     */
+
+
+    //外层组件
+    const User = {
+        template: `
+                <div class="user">
+                  <h2>User {{ $route.params.id }}</h2>
+                  <router-view></router-view>
+                </div>
+             `
+    };
+    //        内层组件（第二层）
+    const UserHome = {template: '<div>Home</div>'};
+    const UserProfile = {
+        template: '<div> ' +
+        '<router-link to="/user/1/profile/third1">Go to /user/1-profile/third1</router-link>' +
+        '<router-link to="/user/1/profile/third2">Go to /user/1-profile/third2</router-link>' +
+        ' <router-view></router-view> ' +
+        '</div>'
+    };
+    const UserPosts = {template: '<div>Posts</div>'};
+
+    const ThirdPage = {template: '<div>ThirdPage</div>'};
+    const ThirdPage1 = {template: '<div>ThirdPage1</div>'};
+    const ThirdPage2 = {template: '<div>ThirdPage2</div>'};
+
+    const router = new VueRouter({
+        routes: [{
+            path: '/user/:id',
+            component: User,
+            //要在嵌套的出口中渲染组件，需要在 VueRouter 的参数中使用 children 配置
+            children: [{
+                // 当 /user/:id/profile 匹配成功，
+                // UserProfile 会被渲染在 User 的 <router-view> 中
+                path: 'profile',
+                component: UserProfile,
+                children: [{
+                    path: 'third',
+                    component: ThirdPage
+                }, {
+                    path: 'third1',
+                    component: ThirdPage1
+                }, {
+                    path: 'third2',
+                    component: ThirdPage2
+                }]
+            }, {
+                // 当 /user/:id/posts 匹配成功
+                // UserPosts 会被渲染在 User 的 <router-view> 中
+                path: 'posts',
+                component: UserPosts
+            }
+            ]
+        }
+
+        ]
+    });
+    const app = new Vue({
+        router
+    }).$mount('#app');
+
+</script>
+</html>
