@@ -1,0 +1,23 @@
+{
+  "code": 200,
+  "message": "获取admin列表成功",
+  "data": [
+    {
+      "id": "1",
+      "NO": "1",
+      "name": "admin",
+      "password": "1rwer23423regrer5"
+    },
+    {
+      "id": "3",
+      "NO": "2",
+      "name": "yong",
+      "password": "1rwer23423regrer5"
+    },
+    {
+      "id": "2",
+      "NO": "3",
+      "name": "administrator",
+      "password": "1rwer23423regrer5"
+    }]
+}

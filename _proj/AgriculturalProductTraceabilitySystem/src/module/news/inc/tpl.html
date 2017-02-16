@@ -1,0 +1,28 @@
+{{#if newsList}}
+{{#each data}}
+<li><a data-id="{{id}}" data-event="click" data-handler="showOneNews" href="">{{title}}<span>{{time}}</span></a></li>
+{{/each}}
+<div id="pagination"></div>
+{{/if}}
+
+
+
+{{#if news}}
+<h2 class="new-title">
+    {{data.title}}
+</h2>
+<!--news-back-->
+<button class="news-back button" data-event="click" data-handler="showOneNewsList" >返回列表</button>
+<div class="cb"></div>
+<div class="news-time">{{data.time}}</div>
+<div class="news-content">
+    {{data.content}}
+</div>
+<div class="cb h10"></div>
+<div class="news-prev-next">
+    <div data-id="{{data.id}}" class="news-prev" data-event="click" data-handler="showOneNewsPrev">上一篇</div>
+    <div data-id="{{data.id}}" class="news-next" data-event="click" data-handler="showOneNewsNext">下一篇</div>
+</div>
+{{/if}}
+
+

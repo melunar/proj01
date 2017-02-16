@@ -1,0 +1,129 @@
+/*navigation 样式*/
+
+/*772px 是搜索框显示位置变化的临界点*/
+
+header {
+    min-width: 710px;
+}
+#header {
+    overflow: visible;
+}
+.header-search {
+    float: right;
+    margin: 20px 16% 0 0;
+}
+/*
+@media only screen and (min-width: 773px) {
+    .header-search {
+        display: block;
+
+        position: absolute;
+        top: 20px;
+        right: 0;
+        z-index: 10000000000;
+    }
+}*/
+
+/*!*窄屏加上搜索框*!*/
+/*@media only screen and (max-width: 772px) {
+    .header-search {
+        display: inline-block;
+    }
+}*/
+
+.site-logo {
+    display: inline-block;
+    /*padding: 20px 0 60px 0;*/
+    margin-left: 5%;
+    float: left;
+    line-height: 66px;
+    height: 66px;
+    width: 258px;
+    background: url("../images/logo-258-66.png") no-repeat;
+}
+
+.site-navigation {
+    display: inline-block;
+    float: left;
+    margin-top: 23px;
+    /*width: 100%;*/
+    padding-left: 5%;
+}
+
+.nav-menu {
+    /*width: 100%;*/
+    white-space: nowrap;
+}
+
+.nav-menu-item {
+    display: inline;
+    margin: 0 26px 0 0;
+    font-size: 1.2em;
+    padding-left: 2px;
+    padding-bottom: 4px;
+    /*
+        border-bottom: 4px solid white;*/
+    color: #331;
+}
+
+.tiny-item {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.tiny-item a {
+    color: #5cb74b;
+}
+
+.tiny-item:after {
+    content: '|';
+}
+
+.tiny-item:last-child:after {
+    content: '|';
+    display: none;
+}
+
+.nav-menu-item:hover {
+    border-bottom: 4px solid #1bff25;
+    transition: 150ms;
+}
+
+.tiny-item:hover {
+    border: none;
+    transition: 150ms;
+}
+
+.nav-menu-item a:hover {
+    color: #2d9210;
+    transition: 200ms;
+}
+
+.nav-menu-item.active {
+    border-bottom: 4px solid #1cdaff;
+    color: #111;
+}
+
+
+footer {
+    /*相对于body重新固定定位*/
+   /* position: fixed;*/
+/*    bottom: 0;
+    left: 0;*/
+    margin-top: 55px;
+    padding: 9px 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #d4ffd8;
+    z-index: 10;
+}
+
+footer div {
+    font-size: 13px;
+    color: #1b1c1a;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: #999999;
+    line-height: 21px;
+}

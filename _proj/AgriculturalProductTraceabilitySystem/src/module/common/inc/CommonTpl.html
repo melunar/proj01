@@ -1,0 +1,50 @@
+{{#if commonHeader}}
+<header class="ez-wr ez-mw" id="header">
+<!--    <div class="header-search hide">
+        <input class="inputText" type="number" value="" placeholder="输入23位溯源编号" name="s" id="s">
+        <button class="ui button" data-event="click" data-handler="mainSearch">搜索</button>
+    </div>-->
+    <div class="site-logo"></div>
+    <nav id="site-navigation" class="site-navigation" data-module="main">
+        <div class="menu-container">
+            <ul id="menu" class="nav-menu">
+                <li class="nav-menu-item" data-module="home">
+                    <a href="/src/module/home/index.html">首页</a>
+                </li>
+                <li class="nav-menu-item" data-module="company">
+                    <a href="/src/module/company/index.html">企业详情</a>
+                </li>
+                <li class="nav-menu-item" data-module="verify">
+                    <a href="/src/module/verify/index.html">监管产品</a>
+                </li>
+                <li class="nav-menu-item" data-module="news">
+                    <a id="news-panel" href="/src/module/news/index.html">新鲜资讯</a>
+                </li>
+                <li class="nav-menu-item tiny-item" data-module="login">
+                    <a id="login" href="javascript:void(0)" data-event="click" data-handler="loginLink">登录</a>
+                    <a id="userName" href="javascript:void(0)">欢迎 <i style="font-style: normal"></i><span></span></a>
+                </li>
+                <li class="nav-menu-item tiny-item" data-module="register">
+                    <a id="register" href="javascript:void(0)" data-event="click" data-handler="registerLink">企业入驻</a>
+                    <a id="logout" href="javascript:void(0)" data-event="click" data-handler="logoutLink">退出</a>
+                </li>
+                <li class="nav-menu-item tiny-item" data-module="register">
+                    <a href="javascript:void(0)">{{locationCity}}:</a>
+                    <a id="weatherInfo" title="本地天气" href="javascript:void(0)">网络断开</a>
+                    <a id="timeInfo" class="font-LCD-digital color-ff871e" title="当前时间" href="javascript:void(0)"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="cb h10"></div>
+{{/if}}
+
+{{#if commonFooter}}
+<footer>
+    <div>
+        版权所有 &copy;有机农产品溯源系统 - 信息工程学院 - 12级 联系方式: 15229282527<br>
+        <address>陕西省 杨凌示范区 西北农林科技大学 邮编：712100</address>
+    </div>
+</footer>
+{{/if}}

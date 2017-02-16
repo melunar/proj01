@@ -1,0 +1,71 @@
+html, body {
+    background-color: #e4e8e4;
+}
+
+.accordion-toggle {
+    background-color: #946E57 !important;
+    color: #fffde7;
+}
+.accordion-inner {
+    background-color: #faffe7 !important;
+    text-align: right;
+    cursor: pointer;
+}
+.accordion-inner:hover {
+    background-color: #a4ffaa;
+}
+.accordion-inner.selected:hover {
+    background-color: #a4ffaa !important;
+}
+
+
+header {
+    width: 100%;
+    height: 66px;
+    background-color: #939461;
+}
+.site-logo {
+    display: block;
+    margin-left: 5%;
+    float: left;
+    line-height: 66px;
+    height: 66px;
+    width: 258px;
+    background: url("../../../common/images/logo-258-6-white.png") no-repeat;
+}
+
+.header-info div,.header-info div a{
+    float: right;
+    font-weight: 600;
+    line-height: 66px;
+    width: 100px;
+    height: 66px;
+    color: #e0ffe1;
+}
+
+.admin-button-fun {
+    width: 100%;
+    float: left;
+    clear: both;
+    /*height: 100px;*/
+    vertical-align: middle;
+}
+.admin-button-fun button {
+    float: right;
+    margin: 20px;
+}
+
+
+/*序号*/
+tbody {
+    counter-reset: tr;
+}
+td[data-name="NO"]:before {
+    counter-increment: tr;
+    content: counter(tr);
+    position: relative;
+    left: 10px;
+}
+h2.text-center {
+    margin: 20px 0 !important;
+}

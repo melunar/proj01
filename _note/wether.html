@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<title></title>
+		<style type="text/css">
+			table{
+				border:10px solid #a9e4e5;
+				border-collapse: collapse;
+			}
+			td {
+				border:5px solid #c4f2f3;
+				width: 100px;
+				text-align: center;
+			}
+			caption{
+				font-size: 20px;
+				font-weight: bold;
+				padding-bottom: 10px;
+				color: #0d1167;
+			}
+			
+			.main{
+				padding-bottom: 20px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<!--用本地的js文件，来模拟JSONP-->
+		<div class='main'>
+			<span>请输入要查询天气的城市:</span><input type='text' value='北京' />
+			<input type='submit' value='查询' />
+		</div>
+		
+		<table>
+			<caption></caption>
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>星期</th>
+					<th>城市</th>
+					<th>气温</th>
+					<th>图标</th>
+					<th>天气</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+
+		<script type="text/javascript">
+			function processData (data) {
+				// alert(JSON.stringify(str));
+				if (data.success === '1') {
+					var caption=document.getElementsByTagName('caption')[0];
+					caption.innerHTML=cityName.value+'未来一周天气';
+					var weatherArr = data.result;
+					var len = weatherArr.length;
+					for (var i=0; i<len; i++) {
+						createTR(weatherArr[i]);
+					}
+				} else {
+					alert('服务器出错，请稍后尝试！！');
+				}
+			}
+
+			function createTR(oneDayWeather) {
+				var tr = document.createElement('tr');
+				
+				createTD(tr, oneDayWeather.days);
+				createTD(tr, oneDayWeather.week);
+				createTD(tr, oneDayWeather.citynm);
+				createTD(tr, oneDayWeather.temperature);
+				var iconContent = '<img src=' + oneDayWeather.weather_icon + ' />'+'<img src=' + oneDayWeather.weather_icon1 + ' />';
+				createTD(tr, iconContent);
+				createTD(tr, oneDayWeather.weather);
+
+				var tbody = document.getElementsByTagName('tbody')[0];
+				tbody.appendChild(tr);
+			}
+
+			function createTD (tr, content) {
+				var td = document.createElement('td');
+				td.innerHTML = content;
+				tr.appendChild(td);
+			}
+			function loadWetherData(city) {
+				//通过新建一个script标签，加载一个script文件
+				var script = document.createElement('script');
+				//文件加载完成后，浏览器就会自动的解析，并执行这个文件中的代码。
+				script.src = 'http://api.k780.com:88/?app=weather.future&weaid='+city+'&&appkey=18992&sign=846e3edba3c2b81917a6fdc255e08ebe&format=json&jsoncallback=processData';
+
+				document.body.appendChild(script);
+				//如果执行的这段代码中，调用的是我们在全局作用域定义好的函数，
+
+				//那么，我们请求的数据，就可以通过这个函数的参数，传递进来。
+			}
+
+			var cityName=document.getElementsByTagName('input')[0];
+			var btn=document.getElementsByTagName('input')[1];
+			var tbody=document.getElementsByTagName('tbody')[0];
+
+			window.onload = function () {
+				ajax({
+					url: "http"//e2134",
+					type: "json",
+					success:function(res) {
+	// alert(JSON.stringify(str));
+				if (data.success === '1') {
+					var caption=document.getElementsByTagName('caption')[0];
+					caption.innerHTML=cityName.value+'未来一周天气';
+					var weatherArr = data.result;
+					var len = weatherArr.length;
+					for (var i=0; i<len; i++) {
+						createTR(weatherArr[i]);
+					}
+					}
+				})
+				
+				loadWetherData('北京');
+
+				btn.onclick=function()
+				{
+					tbody.innerHTML='';
+					loadWetherData(cityName.value);
+				}
+
+				
+
+			}
+		</script>
+		
+	</body>
+</html>

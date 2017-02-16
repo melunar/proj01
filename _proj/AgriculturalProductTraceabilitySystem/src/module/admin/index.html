@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/src/module/common/images/icon/favicon.ico" type="image/x-icon" media="screen" />
+    <link rel="stylesheet" href="../../libs/ez/ez.css">
+    <link rel="stylesheet" href="../../libs/layer/skin/layer.css">
+    <link rel="stylesheet" href="../../libs/jquery/ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../libs/jquery/pagination/jquery.pagination.css">
+    <link rel="stylesheet" href="../common/css/base.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="css/bootstrap-combined.min.css">
+
+    <link rel="stylesheet" href="css/admin/index.css">
+
+
+
+    <style type="text/css">
+        .selected {
+            background: #a4ffaa !important;
+        }
+    </style>
+
+
+    <link type="text/css" rel="stylesheet" href="/src/libs/xhEditor/xheditor_skin/default/ui.css"/>
+    <script type="text/javascript"
+            src="/src/libs/xhEditor/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript"
+            src="/src/libs/xhEditor/js/xheditor-1.2.2.min.js"></script>
+
+    <script src="js/jquery-2.0.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="../../libs/layer/layer.js"></script>
+    <title>农产品溯源管理系统-后台管理</title>
+</head>
+<body>
+<header>
+    <div class="admin-header">
+        <div class="site-logo">
+
+        </div>
+        <div class="header-info">
+            <div class="logout">
+                <a id="logout" href="javascript:void(0)">退出登录</a>
+            </div>
+            <div class="userName">欢迎<span>??</span>登录</div>
+            <div>
+                <a id="home" href="/src/module/home/index.html">网站主页</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="cb h10"></div>
+<div class="container-fluid" id="LG">
+    <div class="row-fluid">
+        <div class="col-xs-6 span3">
+            <div class="cb h20"></div>
+            <div class="accordion" id="accordion-561474">
+                <div class="accordion-group">
+                    <div class="accordion-heading"  data-event="click" data-handler="adminWelcome">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="">后台欢迎页</a>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="#accordion-element-895022">管理者</a>
+                    </div>
+                    <div id="accordion-element-895022" class="accordion-body collapse">
+                        <div id="adminList" class="accordion-inner" data-type="admin" data-event="click"
+                             data-handler="showAdminList">
+                            管理员
+                        </div>
+                        <div id="verifyList" class="accordion-inner" data-type="verify" data-event="click"
+                             data-handler="showVerifyList">
+                            监管人员
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="#accordion-element-89530212">企业管理</a>
+                    </div>
+                    <div id="accordion-element-89530212" class="accordion-body collapse">
+
+                        <div id="companyList" class="accordion-inner" data-event="click" data-handler="showCompanyList">
+                            企业列表
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="#accordion-element-907706">新闻资讯</a>
+                    </div>
+                    <div id="accordion-element-907706" class="accordion-body collapse">
+                        <div id="newsList" class="accordion-inner" data-event="click" data-handler="showNewsList">
+                            咨询列表
+                        </div>
+                        <div class="accordion-inner" data-event="click" data-handler="showNewsEditOrAdd">
+                            添加资讯
+                        </div>
+                        <div class="accordion-inner" data-event="click" data-handler="showNewsTypeList">
+                            资讯类别
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="#accordion-element-907707">企业产品</a>
+                    </div>
+                    <div id="accordion-element-907707" class="accordion-body collapse">
+                        <div id="productList" class="accordion-inner" data-event="click" data-handler="showProductList">
+                            产品列表
+                        </div>
+                        <div id="productLogTypeList" class="accordion-inner"  data-event="click" data-handler="showProductLogTypeList">
+                            生产环节
+                        </div><!--
+                        <div id="productLogList" class="accordion-inner"  data-event="click" data-handler="showProductLogList">
+                            批产列表
+                        </div>-->
+                    </div>
+                </div>
+                <!--<div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="#accordion-element-907705">资源管理</a>
+                    </div>
+                    <div id="accordion-element-907705" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            图片列表
+                        </div>
+                    </div>
+                </div>-->
+
+                <!--<div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-561474"
+                           href="#accordion-element-907701">留言管理</a>
+                    </div>
+                    <div id="accordion-element-907701" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            留言列表
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div id="admin-content" class="col-xs-6 span9">
+            <div class="cb h20"></div>
+            <h2 class="text-center">
+                欢迎使用溯源管理系统后台管理系统
+            </h2>
+            <p style="text-align: right; padding-right: 250px">
+                请点击左侧功能菜单，操作对应的功能
+            </p>
+            <div class="cb h20"></div>
+            <img src="images/farmer.png">
+            <img src="images/fruits_vegetables.png">
+        </div>
+        <div id="pagination"></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../libs/requirejs/require.js" data-main="../../require-conf.js"></script>
+<script type="text/javascript">
+    require(['./js/main.js']);
+    $(function () {
+        $(".accordion-inner").click(function () {
+            $(".accordion-inner").removeClass("selected");
+            $(this).addClass("selected");
+        });
+
+        var $root = $(".header-info");
+        var userName = localStorage.getItem("userName");
+        if(userName) {
+            $($root).find(".userName span").text(userName);
+        } else {
+
+        }
+    });
+    $("#logout").click(function () {
+        layer.msg("真的要退出吗", {
+            time: 0,//不自动关闭
+            btn: ["确定", "取消"],
+            yes: function (index) {
+                layer.close(index);
+                localStorage.removeItem("userName");
+                localStorage.removeItem("userId");
+                localStorage.removeItem("userType");
+
+                localStorage.removeItem("companyName");
+                localStorage.removeItem("companyId");
+                localStorage.removeItem("companyStatus");
+
+                history.back();
+            }
+        });
+    });
+
+</script>
+</html>

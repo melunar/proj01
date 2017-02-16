@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/src/module/common/images/icon/favicon.ico" type="image/x-icon" media="screen" />
+    <link rel="stylesheet" href="../../libs/ez/ez.css">
+    <link rel="stylesheet" href="../../libs/layer/skin/layer.css">
+    <link rel="stylesheet" href="../../libs/jquery/ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../libs/jquery/pagination/jquery.pagination.css">
+    <link rel="stylesheet" href="../common/css/base.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/header.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+
+    </style>
+    <script>
+        if(localStorage.getItem("userType") !== "verify") {
+            window.location = "/src/module/home/index.html";
+        }
+    </script>
+
+    <title>农产品溯源管理系统-监管审核管理</title>
+</head>
+<body data-module="verify">
+<!--通用模块 隐藏显示-->
+<div id="common-dom-panel" class="ez-box">
+</div>
+<!--主体内容-->
+<div class="page">
+    <!--page-container前插入header-->
+    <!--page-container-->
+    <div class="page-container ez-wr">
+        <div class="cb h10"></div>
+        <div class="pab-panel ez-fl ez-20">
+            <ul class="ez-box">
+                <li class="tab-item ez-fl ez-wr ez-100 ez-negmx active" data-type="companyList" data-event="click"
+                    data-handler="showCompanyList">
+                    所有企业
+                </li>
+                <!--<li class="tab-item ez-fl ez-wr ez-100 ez-negmx" data-type="checkAll" data-event="click"
+                    data-handler="showCheckAll">
+                    审核产品
+                </li>
+                <li class="tab-item ez-fl ez-wr ez-100 ez-negmx" data-type="checkAll" data-event="click"
+                    data-handler="showCheckHistoryGood">
+                    合格批次
+                </li>
+                <li class="tab-item ez-fl ez-wr ez-100 ez-negmx" data-type="checkAll" data-event="click"
+                    data-handler="showCheckHistoryBad">
+                    劣质批次
+                </li>-->
+      <!--          <li class="tab-item  ez-fl ez-wr  ez-100 ez-negmx" data-type="detail" data-event="click"
+                    data-handler="showReportAll">
+                    报表审查
+                </li>-->
+                <li class="tab-item ez-fl ez-wr  ez-100" data-type="libs" data-event="click"
+                    data-handler="showReportOne">
+                    有机认证
+                </li>
+                <li class="tab-item ez-fl ez-wr  ez-100" data-type="checkCompany" data-event="click"
+                    data-handler="showCheckCompany">
+                    待审核企业
+                </li>
+                <li class="tab-item ez-fl ez-wr  ez-100" data-type="checkCompanyHistory" data-event="click"
+                    data-handler="showCheckCompanyHistory">
+                    已入驻企业
+                </li>
+            </ul>
+        </div>
+        <!--tab-container 结束-->
+        <div id="panel-content" class="panel-content ez-fl ez-75 ez-mw">
+            <!--company-list-penal 开始-->
+            <div class="company-list-penal hide" data-type="company-list">
+                <div class="ez-wr search-company-top-penal">
+                    <input type="text" class="inputText" placeholder="检索商家名称">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="button hide" data-event="click" data-handler="checkTheCompanyProduct">产品审核</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="button" data-event="click" data-handler="goToCompanyDetail">查看详情</button>
+                </div>
+                <div class="ez-wr h20"></div>
+                <div class="company-lists ez-wr">
+                    <!--渲染商家列表tpl-->
+                </div>
+                <!--分页-->
+                <div class="pagination">
+
+                </div>
+                <!--分页 end-->
+            </div>
+            <!--company-list-penal 结束-->
+
+            <!--checkALL tpl-->
+            <div class="check-all-penal hide" data-type="check-all">
+                <div class="check-lists ez-wr">
+                    <div class="check-lists-title">
+                        <!--<select class="inputSelect" data-event="change" data-handler="searchProduct">
+                            <option data-id="0" value="0">所有</option>
+                        </select>-->
+                    </div>
+                    <div class="cb h10"></div>
+                    <div class="table-box">
+                        <table>
+                            <thead>
+                            <tr class="table-ths">
+                                <th data-name="companyName">公司名称</th>
+                                <th data-name="productName">产品名称</th>
+                                <th data-name="batchID">产品批次</th>
+                                <th data-name="inTime">生产日期</th>
+                                <th data-name="count">批次产品量</th>
+                                <th data-name="status">批次产品量</th>
+                                <th data-name="operate">操作</th>
+                            </tr>
+                            <tr class="load">
+                                <td colspan="8">
+                                    加载中......
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody class="body-insert">
+                            <tr>
+                                <td colspan="8">
+                                    暂无数据.......
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--checkALL tpl end-->
+
+            <!--report-all-panel-->
+            <div class="report-all-panel hide">
+                <div class="table-box">
+                    <table class="all-report">
+                        <tbody>
+                        <tr class="table-ths">
+                            <th data-name="companyName">公司名称</th>
+                            <th data-name="companyCode">公司编码</th>
+                            <th data-name="count">批次次数</th>
+                            <th data-name="rate">总体合格率</th>
+                            <th data-name="operate">操作</th>
+                        </tr>
+                        <tr class="load">
+                            <td colspan="5">
+                                加载中......
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody class="body-insert">
+                        <tr>
+                            <td colspan="5">
+                                暂无数据.......
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--report-all-panel end-->
+
+            <div class="report-one-panel hide">
+                <div class="check-lists-title">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选择公司: <select id="inputSelectCompanyTemp" class="inputSelect" data-event="change" data-handler="showReportOneList">
+                        <option data-id="0" value="0">选择公司</option>
+                    </select>
+                </div>
+                <div class="cb h20"></div>
+                <div class="table-box">
+                    <table>
+                        <thead>
+                        <tr class="table-ths">
+                            <!--<th data-name="code">批次编号</th>
+                            <th data-name="inTime">生产日期</th>
+                            <th data-name="outTime">审核日期</th>
+                            <th data-name="checkPerson">审核人员</th>
+                            <th data-name="count">批次产品量</th>
+                            <th data-name="startCode">起始编号</th>
+                            <th data-name="endCode">最后编号</th>
+                            <th data-name="rate">最后编号</th>
+                            <th data-name="status">状态</th>
+                            <th data-name="operate">操作</th>-->
+                            <th data-name="code">产品代码</th>
+                            <th data-name="name">产品名称</th>
+                            <th data-name="category">品种</th>
+                            <th data-name="period">生产周期(月)</th>
+                            <th data-name="season">产出季节</th>
+                            <th data-name="unit">产品单位</th>
+                            <th data-name="operate">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="body-insert">
+                        <tr class="load">
+                            <td colspan="8">
+                                加载中......
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">
+                                暂无数据.......
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <!--checkCompany-->
+            <div class="check-company-panel hide">
+                <div class="cb h10"></div>
+                <div class="table-box">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>
+                                商家名称
+                            </th>
+                            <th>
+                                代码
+                            </th>
+                            <th>
+                                法定代表人
+                            </th>
+                            <th>
+                                注册时间
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="body-insert">
+                            <tr class="load">
+                                <td colspan="9">
+                                    加载中......
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <!--审核历史-->
+
+            <div class="check-company-panel-history hide">
+                <div class="cb h10"></div>
+                <div class="table-box">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>
+                                商家名称
+                            </th>
+                            <th>
+                                代码
+                            </th>
+                            <th>
+                                法定代表人
+                            </th>
+                            <th>
+                                注册时间
+                            </th>
+                            <th>
+                                审核人员
+                            </th>
+                            <th>
+                                所属部门
+                            </th>
+                            <th>
+                                状态
+                            </th>
+                            <th>
+                                审核时间
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="body-insert">
+                        <tr class="load">
+                            <td colspan="9">
+                                加载中......
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--审核历史end-->
+        </div>
+
+    </div>
+    <!--page-container 结束-->
+    <!--page-container后面 footer插入-->
+</div>
+<!--主体内容结束-->
+
+
+<!--测试-->
+<div id="qrcodeCanvas"></div>
+</body>
+<script type="text/javascript" src="../../libs/requirejs/require.js" data-main="../../require-conf.js"></script>
+<script type="text/javascript">
+    require(['./js/main.js']);
+</script>
+</html>

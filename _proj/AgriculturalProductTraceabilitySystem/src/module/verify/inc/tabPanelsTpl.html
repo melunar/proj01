@@ -1,0 +1,257 @@
+<!--公司列表部分-->
+{{#if companyList}}
+<!--这里为了避免和ui插件事件的冲突使用的是mousedown事件触发搜索框自动填充-->
+{{#each data}}
+<div class="company-list-penal-item ez-fl ez-20" data-id="{{id}}">
+    <img src="{{headSrc}}" title="{{companyName}}" data-name="{{companyName}}" data-id="{{id}}" alt="{{name}}-图片"
+         data-event="mousedown" data-handler="setSearchBoxContent">
+    <span class="item-text" title="{{companyName}}" data-name="{{companyName}}" data-id="{{id}}" data-event="mousedown"
+          data-handler="setSearchBoxContent">&nbsp;&nbsp;&nbsp;{{companyName}}</span>
+</div>
+{{/each}}
+{{/if}}
+
+
+{{#if checkAllList}}
+{{#each data}}
+<tr data-name="" data-value="">
+    <td data-name="companyName" data-value="{{companyName}}" title="{{companyName}}">
+        {{companyName}}
+    </td>
+    <td data-name="productName" data-value="{{productName}}" title="{{productName}}">
+        {{productName}}
+    </td>
+    <td data-name="code" data-value="{{code}}" title="{{code}}">
+        {{code}}
+    </td>
+    <td data-name="inTime" data-value="{{inTime}}" title="{{inTime}}">
+        {{inTime}}
+    </td>
+    <td data-name="count" data-value="{{count}}" title="{{count}}">
+        {{count}}
+    </td>
+    <td data-name="status" data-value="{{status}}" title="{{status}}">
+        {{status}}
+    </td>
+    <td>
+        <span class="tableOperateText" title="审核" data-event="click" data-handler="ShowCheckAllPanel"
+              data-id="{{id}}">审核</span>
+        <span class="tableOperateText" title="留言" data-companyId="{{companyId}}" data-event="click"
+              data-handler="showLeaveWordBox">留言</span>
+    </td>
+</tr>
+{{/each}}
+{{/if}}
+
+
+
+{{#if reportAllList}}
+{{#each data}}
+<tr data-name="companyID" data-value="{{companyID}}">
+    <td data-name="companyName" data-value="{{companyName}}" title="{{companyName}}">
+        {{companyName}}
+    </td>
+    <td data-name="companyCode" data-value="{{companyCode}}" title="{{companyCode}}">
+        {{companyCode}}
+    </td>
+    <td data-name="count" data-value="{{count}}" title="{{count}}">
+        {{count}}
+    </td>
+    <td data-name="rate" data-value="{{rate}}" title="{{rate}}">
+        {{rate}}
+    </td>
+    <td>
+        <span class="tableOperateText" title="留言" data-id="{{companyID}}" data-event="click"
+              data-handler="showLeaveWordBox">留言</span>
+    </td>
+</tr>
+{{/each}}
+{{/if}}
+
+
+{{#if localCompanyList}}
+{{#each data}}
+<option data-id="{{id}}" value="{{id}}">{{companyName}}</option>
+{{/each}}
+{{/if}}
+
+
+<!--reporoneList-->
+{{#if reportOneList}}
+{{#each data}}
+<tr data-name="info" data-value="{{info}}">
+    <td data-name="code" data-value="{{code}}"
+        title="{{code}}">{{code}}
+    </td>
+    <td data-name="name" data-value="{{name}}"
+        title="{{name}}">{{name}}
+    </td>
+    <td data-name="category" data-value="{{category}}"
+        title="{{category}}">{{category}}
+    </td>
+    <td data-name="period" data-value="{{period}}"
+        title="{{period}}">{{period}}
+    </td>
+    <td data-name="season" data-value="{{season}}"
+        title="{{season}}">{{season}}
+    </td>
+    <td data-name="unit" data-value="{{unit}}"
+        title="{{unit}}">{{unit}}
+    </td>
+    <td>
+                    <span class="tableOperateText edit" title="有机认证" data-event="click" data-handler="showCheckProduct">认证<i
+                            data-id="{{id}}" class="editIcon"></i></span>
+                    <span data-id="{{id}}" class="tableOperateText del" title="删除" data-event="click"
+                          data-handler="" style="color: #777">删除</span>
+    </td>
+</tr>
+<tr class="tr-check-product hide" style="display: table-row;  ">
+    <td class="noData" colspan="8" style="  white-space: normal; text-align: left; line-height: 1.6em; padding: 3px 0;">
+        &nbsp;&nbsp;&nbsp;产品{{name}}介绍：{{info}}<!--
+                    <div class="h5"></div>
+                    &nbsp;&nbsp;&nbsp;生产环节：{{steps}}-->
+        <br>
+        <br>
+        <div class="check-info">
+            &nbsp;&nbsp;&nbsp;{{#if isCheck}}{{dep}}({{depCode}})<br>
+            <img src="/src/module/common/images/youji.png">{{else}}未认证<br>
+            &nbsp;&nbsp;&nbsp;待有机认证机构：<i style="font-style: normal;" data-name="jigou">机构</i><br>
+            &nbsp;&nbsp;&nbsp;机构代码：<i style="font-style: normal;" data-name="code">code</i><br>
+            &nbsp;&nbsp;&nbsp;<img src="/src/module/common/images/youji.png">
+            &nbsp;&nbsp;&nbsp;
+            <button class="button" data-id="{{id}}" data-event="click" data-handler="checkProduct">有机认证</button>
+            {{/if}}
+        </div>
+
+    </td>
+</tr>
+{{/each}}
+{{/if}}
+
+
+{{#if reportOneList1}}
+{{#each data}}
+<tr data-name="companyID" data-value="{{companyID}}">
+    <td data-name="code" data-value="{{code}}" title="{{code}}">
+        {{code}}
+    </td>
+    <td data-name="inTime" data-value="{{inTime}}" title="{{inTime}}">
+        {{inTime}}
+    </td>
+    <td data-name="outTime" data-value="{{outTime}}" title="{{outTime}}">
+        {{outTime}}
+    </td>
+    <td data-name="checkPerson" data-value="{{checkPerson}}" title="{{checkPerson}}">
+        {{checkPerson}}
+    </td>
+    <td data-name="count" data-value="{{count}}" title="{{count}}">
+        {{count}}
+    </td>
+    <td data-name="startCode" data-value="{{startCode}}" title="{{startCode}}">
+        {{startCode}}
+    </td>
+    <td data-name="endCode" data-value="{{endCode}}" title="{{endCode}}">
+        {{endCode}}
+    </td>
+    <td data-name="rate" data-value="{{rate}}" title="{{rate}}">
+        {{rate}}
+    </td>
+    <td data-name="status" data-value="{{status}}" title="{{status}}">
+        {{status}}
+    </td>
+    <td>
+        <span class="tableOperateText" title="" data-id="{{companyID}}">null</span>
+    </td>
+</tr>
+{{/each}}
+{{/if}}
+
+{{#if checkCompanyList}}
+{{#each data}}
+<tr>
+    <td data-name="companyName" data-value="{{companyName}}">
+        {{companyName}}
+    </td>
+    <td data-name="code" data-value="{{code}}">
+        {{code}}
+    </td>
+    <td data-name="legalRepresentative" data-value="{{legalRepresentative}}">
+        {{legalRepresentative}}
+    </td>
+    <td data-name="applyTime" data-value="{{applyTime}}">
+        {{applyTime}}
+    </td>
+    <td>
+                <span class="tableOperateText delIcon" title="通过" data-event="click" data-handler="verifyCompany"
+                      data-status="{{status}}" data-id="{{id}}">通过</span>
+
+
+                <span class="tableOperateText delIcon" title="认证材料" data-event="click" data-handler="showCompanyCheckInfo"
+                      data-status="{{status}}" data-id="{{id}}">认证材料</span>
+    </td>
+</tr>
+<tr class="companyCheckInfo hide" align="left">
+    <td class="noData" colspan="5" style="text-align: left">
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过 <input type="checkbox" class="registrationNumberCheck">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工商注册号：{{registrationNumber}}
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过 <input type="checkbox" class="linkSrcCheck">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核资料包：<a href="{{linkSrc}}" style="color: #249dff">下载</a>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" data-id="{{id}}" style="color: #249dff; font-size: 1.1em;" data-event="click" data-handler="goToCompanyDetail">查看公司详细信息</a>
+    </td>
+</tr>
+{{/each}}
+{{/if}}
+
+
+{{#if checkCompanyListHistory}}
+{{#each data}}
+<tr>
+    <td data-name="companyName" data-value="{{companyName}}">
+        {{companyName}}
+    </td>
+    <td data-name="code" data-value="{{code}}">
+        {{code}}
+    </td>
+    <td data-name="legalRepresentative" data-value="{{legalRepresentative}}">
+        {{legalRepresentative}}
+    </td>
+    <td data-name="applyTime" data-value="{{applyTime}}">
+        {{applyTime}}
+    </td>
+    <td data-name="userName" data-value="{{userName}}">
+        {{userName}}
+    </td>
+    <td data-name="userDep" data-value="{{userDep}}">
+        {{userDep}}
+    </td>
+    <td data-name="status" data-value="{{status}}">
+        审核通过
+    </td>
+    <td data-name="outTime" data-value="{{outTime}}">
+        {{outTime}}
+    </td>
+    <td>
+                <span class="tableOperateText delIcon" title="踢下" data-event="click" data-handler="unVerifyCompany"
+                      data-status="{{status}}" data-id="{{id}}">踢下</span>
+
+                <span class="tableOperateText delIcon" title="认证材料" data-event="click" data-handler="showCompanyCheckInfo"
+                      data-status="{{status}}" data-id="{{id}}">认证材料</span>
+    </td>
+</tr>
+<tr class="companyCheckInfo hide" align="left">
+    <td class="noData" colspan="9" style="text-align: left">
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工商注册号：{{registrationNumber}}
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核资料包：<a href="{{linkSrc}}" style="color: #249dff">下载</a>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" data-id="{{id}}" style="color: #249dff; font-size: 1.1em;" data-event="click" data-handler="goToCompanyDetail">查看公司详细信息</a>
+    </td>
+</tr>
+{{/each}}
+{{/if}}

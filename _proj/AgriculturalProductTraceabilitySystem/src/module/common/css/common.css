@@ -1,0 +1,230 @@
+html
+{
+color:#000;
+background:#FFF;
+}
+table /* 设置table 的样式*/
+{
+border-collapse:collapse;
+border-spacing:0;
+}
+fieldset, img
+{
+border:0;
+}
+em, strong
+{
+font-style:normal;
+font-weight:normal;
+}
+li
+{
+list-style:none;
+}
+h1, h2, h3, h4, h5, h6
+{
+font-size:100%;
+font-weight:normal;
+}
+body, input, button, textarea
+{
+/*font-size:12px;*/
+font-family: "微软雅黑","Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif
+}
+
+/*一些自定义字体*/
+@font-face {
+    font-family: "LCD-digital";
+    src: url("../../../fonts/digifaw.ttf");
+}
+.font-LCD-digital {
+    font-family: 'LCD-digital'; !important;
+}
+
+
+
+/*
+    颜色定义
+*/
+.color-ff871e {
+    color: #ff871e !important;
+}
+
+.bg-2288DD {
+    background-color: #2288DD;
+}
+.bg-33CCAA {
+    background-color: #33CCAA;
+}
+.bg-AA88BB {
+    background-color: #AA88BB;
+}
+.bg-red {
+    background-color: #ff0000 !important;
+}
+.bg-gray {
+    background-color: gray !important;
+}
+
+a{color: #333; text-decoration:none;outline:none;}
+a:hover{ cursor:pointer;}
+th, td{vertical-align:top;}
+.button {
+    display: inline-block;
+    margin: 0;
+    padding-right: 11px;
+    padding-left: 13px;
+    line-height: 2.36em;
+    height: 2.36em;
+    letter-spacing: 2px;
+    color: #fffde7;
+    white-space: nowrap;
+    background-color: #55a506;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    cursor: pointer;
+}
+.button:hover {
+    outline: none;
+    border-color: #6fe88c;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.025), 0 0 5px rgba(81,67,180,.25);
+}
+
+input[type].inputText,
+.inputSelect {
+    height: 2.2em;
+    width: 200px;
+    margin: 0;
+    padding-left: 5px;
+    outline: none;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.035);
+}
+
+input[type].inputText:hover,
+input[type].inputText:focus {
+    outline: none;
+    border-color: #6fe88c;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.025), 0 0 5px rgba(81,67,232,.25);
+}
+
+.btn-more {
+    display: inline-block;
+    width: 158px;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.red {
+    color: #f00;
+}
+.tableOperateText {
+   /* padding: 1px 2px;
+    color: #fff;
+    background-color: #89907b;
+    border-radius: 2px;*/
+    font-size: 0.9em;
+    font-weight: 500;
+    font-family: '微软雅黑';
+    cursor: pointer;
+}
+.tableOperateText:hover {
+    color: #e08611;
+}
+.page-container {
+    width: 100%;
+    min-height: 451px;
+    margin-bottom: 50px;
+}
+.hide {
+    display: none !important;
+}
+
+/*一些表格*/
+
+.table-box {
+    width: 96%;
+    margin: 0 2%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.1em;
+    line-height: 2.8em;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+table tr {
+    border-bottom: #ddd 1px solid;
+    background-color: #f9fdff;
+}
+table tr.table-ths {
+    background-color: #d8ffde;
+}
+
+table tr:hover {
+    background-color: #d0ffd1;
+}
+table td,
+table th {
+    text-align: center;
+}
+table th {
+    color: #333;
+    font-weight: bold;
+}
+table td {
+    padding-left: 4px;
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+table td span {
+    display: inline-block;
+    margin:auto 4px;
+}
+
+/*分页*/
+
+#pagination {
+    text-align: center;
+}
+#pagination span, #pagination a {
+    display: inline-block;
+    font-size: 1em;
+    width: 38px;
+    line-height: 2.4em;
+    height: 2.4em;
+    border: 1px #fff solid;
+    border-radius: 3px;
+    margin: 0 1px;
+    background-color: #75d50f;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+}
+#pagination span:hover, #pagination a:hover {
+    background-color: #3ad511;
+    transition: 500ms;
+}
+#pagination .prev, #pagination .next {
+/*    position: relative;
+    bottom: -12px;*/
+    width: 54px;
+}
+#pagination .current {
+    background-color: #20aa29;
+}
+#pagination .current:hover {
+    background-color: #20aa29;
+    cursor: text;
+}
+

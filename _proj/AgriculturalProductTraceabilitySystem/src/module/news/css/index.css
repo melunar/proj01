@@ -1,0 +1,385 @@
+/* -------------------------------------- */
+.newsList {
+    /*text-align: center;*/
+    width: 60%;
+    margin-left: 20%;
+}
+
+ol{
+    counter-reset: li;
+    list-style: none;
+    *list-style: decimal;
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+    margin-bottom: 4em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+
+/* -------------------------------------- */
+
+.rounded-list a{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    *padding: .4em;
+    margin: .5em 0;
+    background: #f6f6f6;
+    color: #444 !important;
+    text-decoration: none;
+    -moz-border-radius: .3em;
+    -webkit-border-radius: .3em;
+    border-radius: .3em;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.rounded-list a span {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+}
+.rounded-list a:hover{
+    background: #eee;
+}
+
+.rounded-list a:hover:before1{
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.rounded-list a:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #7beb1b;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #fff;
+    color: #fffde7;
+   /* text-align: center;*/
+    font-weight: normal;
+    -moz-border-radius: 2em;
+    -webkit-border-radius: 2em;
+    border-radius: 2em;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+
+.new-title {
+    display: block;
+    margin: 10px 0;
+    font-size: 2em;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.news-time {
+    text-align: right;
+    padding-right: 20px;
+    color: #555;
+    font-size: 0.8em;
+}
+.news-back {
+    float: left;
+    text-align: left;
+    /*padding-right: 20px;
+    color: #09678e;
+    font-size: 1em;
+    cursor: pointer;*/
+}
+.news-back:hover {
+    /*color: #8e8206;*/
+    transition: 1s;
+}
+.news-content {
+    margin: 5px 0;
+    text-align: left;
+}
+.news-prev-next {
+    width: 100%;
+    margin: 5px 0 15px 0;
+
+}
+.news-prev-next div:hover {
+    color: #8e8206;
+}
+.news-prev {
+    display: block;
+    float: left;
+    cursor: pointer;
+    color: #09678e;
+}
+.news-next {
+    display: block;
+    float: right;
+    cursor: pointer;
+    color: #09678e;
+}
+
+/*补充样式**************************************************************************************/
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+
+
+/* BODY
+=============================================================================*/
+
+
+
+/* BLOCKS
+=============================================================================*/
+
+.rounded-list p, .rounded-list blockquote, .rounded-list ul, .rounded-list ol, .rounded-list dl, .rounded-list table, .rounded-list pre {
+    margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+.rounded-list h1, .rounded-list h2, .rounded-list h3, .rounded-list h4, .rounded-list h5, .rounded-list h6 {
+    margin: 20px 0 10px;
+    padding: 0;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+h1 {
+    font-size: 28px;
+    color: #000;
+}
+
+h2 {
+    font-size: 24px;
+    color: #000;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+h6 {
+    color: #777;
+    font-size: 14px;
+}
+
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+    margin-top: 10px;
+}
+.rounded-list p {
+    line-height: 1.4em;
+}
+
+    /* LINKS
+    =============================================================================*/
+
+.rounded-list a {
+    color: #4183C4;
+    text-decoration: none !important;
+}
+
+.rounded-list a:hover {
+    text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+.rounded-list ul, .rounded-list ol {
+    padding-left: 30px;
+}
+
+.rounded-list ul li > :first-child,
+.rounded-list ol li > :first-child,
+.rounded-list ul li ul:first-of-type,
+.rounded-list ol li ol:first-of-type,
+.rounded-list ul li ol:first-of-type,
+.rounded-list ol li ul:first-of-type {
+    margin-top: 0px;
+}
+
+
+
+.rounded-list dl {
+    padding: 0;
+}
+
+.rounded-list dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px;
+}
+
+.rounded-list dl dt:first-child {
+    padding: 0;
+}
+
+.rounded-list dl dt>:first-child {
+    margin-top: 0px;
+}
+
+.rounded-list dl dt>:last-child {
+    margin-bottom: 0px;
+}
+
+.rounded-list dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px;
+}
+
+.rounded-list dl dd>:first-child {
+    margin-top: 0px;
+}
+
+.rounded-list dl dd>:last-child {
+    margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+.rounded-list pre, .rounded-list code, .rounded-list tt {
+    font-size: 12px;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+.rounded-list code, .rounded-list tt {
+    margin: 0 0px;
+    padding: 0px 0px;
+    white-space: nowrap;
+    border: 1px solid #eaeaea;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+}
+
+.rounded-list pre>code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    background: transparent;
+}
+
+.rounded-list pre {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+}
+
+.rounded-list pre code, .rounded-list pre tt {
+    background-color: transparent;
+    border: none;
+}
+
+.rounded-list kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+.rounded-list blockquote {
+    border-left: 4px solid #DDD;
+    padding: 0 15px;
+    color: #777;
+}
+
+.rounded-list blockquote>:first-child {
+    margin-top: 0px;
+}
+
+.rounded-list blockquote>:last-child {
+    margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+.rounded-list hr {
+    clear: both;
+    margin: 15px 0;
+    height: 0px;
+    overflow: hidden;
+    border: none;
+    background: transparent;
+    border-bottom: 4px solid #ddd;
+    padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+.rounded-list table th {
+    font-weight: bold;
+}
+
+.rounded-list table th,.rounded-list table td {
+    border: 1px solid #ccc;
+    padding: 6px 13px;
+}
+
+.rounded-list table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.rounded-list table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+.rounded-list img {
+    max-width: 100%
+}

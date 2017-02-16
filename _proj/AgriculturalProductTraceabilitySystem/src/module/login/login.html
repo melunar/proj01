@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/src/module/common/images/icon/favicon.ico" type="image/x-icon" media="screen" />
+    <link rel="stylesheet" href="../../libs/ez/ez.css">
+    <link rel="stylesheet" href="../../libs/layer/skin/layer.css">
+    <link rel="stylesheet" href="../../libs/jquery/ui/jquery-ui.css">
+    <link rel="stylesheet" href="../common/css/base.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>农产品溯源管理系统-登录</title>
+</head>
+<body data-module="login">
+<div class="login-main ez-wr">
+    <div class="ez-wr" style="height: 100px;"></div>
+    <a href="../home/index.html" title="主页"><img src="../common/images/logo-258-6-white.png"></a>
+    <div class="login-panel">
+        <input class="inputText" type="text" data-name="name" name="name" placeholder="账号" value="admin">
+        <br><br>
+        <input type="password" class="inputText" data-name="password" name="password" placeholder="密码" value="admin">
+        <br><br>
+        <span>
+            <input type="checkbox" id="rememberme" name="rememberme">
+            <label for="rememberme">记住密码</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <button type="button" value="登录" class="button" data-event="click" data-handler="login">登录</button>
+    </div>
+    <div class="ez-wr h10"></div>
+    <div class="loginregist">
+        <div class="loginreg"><a href="register.html">没有账号？申请入驻</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="../home/index.html">返回主页</a></div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../libs/requirejs/require.js" data-main="../../require-conf.js"></script>
+<script type="text/javascript">
+    require(['./js/main.js']);
+</script>
+</html>

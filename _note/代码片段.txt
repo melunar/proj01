@@ -1,0 +1,181 @@
+闭包的问题：
+jQuery选择器使用变量的问题：
+jQuery(document).on("click","#checkServicer", function() {
+	var ids = self._getServersIdGroup();
+	var param;
+	for(var i = 0; i < ids.length; i++) {
+		param = {};
+		(function(index) {
+			param.id = ids[index];
+			var sel = "#servicersTable tr[data-id='" + ids[index] + "'] td.status";//dom选择器字符串
+			jQuery.when(settings.getData(self.checkServiceApi, param, {
+				beforeSend: function() {
+				}
+			})).done(function(data){
+				if(data && data.code === 200 ) {
+					if(data.data.status) {
+					} else {
+					}
+				} else {
+				}
+			}).fail(function(){
+				return 0;
+			});
+		})(i);
+
+	}
+});
+
+
+一般配置类，工具类的JS模块使用对象的方式模块化处理即可（最简单），然后返回该对象（既然是工具类，就应该全部返回）。
+define(["",""], function() {
+	var settings = {
+		p1: null,
+		p2: null,
+		f1: function() {
+			//TODO
+		}
+	};
+	return settings;
+});
+
+
+执行回调时判断一下：
+function fn1() {params, callback} {
+	//TODO 
+	if(typeof(callback)==="function") {
+		callback(res.data);
+	}
+}
+
+deferred.resolve( args )
+参数：args
+类型: Object
+传递给完成回调函数（doneCallbacks）的可选的参数。
+通常情况下，只有递延对象（Deferred）的创建者才能调用此方法
+//您可以通过deferred.promise()返回的受限制的 Promise 对象，来防止其他代码改变递延的状态 。
+
+initData: function(domName, func, callback) {
+	var self = this,
+		deferred = $.Deferred();
+	root.one('click', domName, function(event) {
+		var target = $(this);
+		func().done(function(data) {
+			self.init({
+				name: target.attr('data-dom'),
+				markName: target.attr('data-mark'),
+				template: data
+			});
+			$(event.currentTarget).removeClass('np-first');
+			if (typeof callback === 'function') {
+				callback();
+			}
+			deferred.resolve(true);
+		})
+	});
+	return deferred;
+}
+
+initData('.np-resource', getTml.bind({
+	url: 'inc/sidebar/resource.html'
+})).done(function(){  
+	//TODO
+});
+
+浏览器以及元素之间的距离关系
+IE中： 
+document.body.clientWidth ==> BODY对象宽度 
+document.body.clientHeight ==> BODY对象高度 
+document.documentElement.clientWidth ==> 可见区域宽度 
+document.documentElement.clientHeight ==> 可见区域高度 
+FireFox中： 
+document.body.clientWidth ==> BODY对象宽度 
+document.body.clientHeight ==> BODY对象高度 
+document.documentElement.clientWidth ==> 可见区域宽度 
+document.documentElement.clientHeight ==> 可见区域高度 
+Opera中： 
+document.body.clientWidth ==> 可见区域宽度 
+document.body.clientHeight ==> 可见区域高度 
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽） 
+document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高） 
+没有定义W3C的标准，则 
+IE为： 
+document.documentElement.clientWidth ==> 0 
+document.documentElement.clientHeight ==> 0 
+FireFox为： 
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽) 
+document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高） 
+Opera为： 
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽） 
+document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高） 
+
+网页可见区域宽： document.body.clientWidth 
+网页可见区域高： document.body.clientHeight 
+网页可见区域宽： document.body.offsetWidth (包括边线的宽) 
+网页可见区域高： document.body.offsetHeight (包括边线的高) 
+网页正文全文宽： document.body.scrollWidth 
+网页正文全文高： document.body.scrollHeight 
+网页被卷去的高： document.body.scrollTop 
+网页被卷去的左： document.body.scrollLeft 
+网页正文部分上： window.screenTop 
+网页正文部分左： window.screenLeft 
+屏幕分辨率的高： window.screen.height 
+屏幕分辨率的宽： window.screen.width 
+屏幕可用工作区高度： window.screen.availHeight 
+屏幕可用工作区宽度： window.screen.availWidth 
+
+HTML精确定位:scrollLeft,scrollWidth,clientWidth,offsetWidth 
+scrollHeight: 获取对象的滚动高度。 
+scrollLeft:设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离 
+scrollTop:设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 
+scrollWidth:获取对象的滚动宽度 
+offsetHeight:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度 
+offsetLeft:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 
+offsetTop:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置 
+event.clientX 相对文档的水平座标 
+event.clientY 相对文档的垂直座标 
+event.offsetX 相对容器的水平坐标 
+event.offsetY 相对容器的垂直坐标 
+document.documentElement.scrollTop 垂直方向滚动的值 
+event.clientX+document.documentElement.scrollTop 相对文档的水平座标+垂直方向滚动的量
+
+
+鼠标位置
+offsetX = event.offsetX;//事件源
+offsetY = event.offsetY;//事件源
+clientX = event.clientX;//浏览器
+clientY = event.clientY;//浏览器 纯粹距离 不加滚动
+pageX = event.pageX;//浏览器
+pageY = event.pageY;//浏览器 加上滚动条已经滚动的距离
+screenX = event.screenX;//显示屏
+screenY = event.screenY;//显示屏
+
+
+判断浏览器
+if ((navigator.userAgent.indexOf('MSIE') >= 0) 
+    && (navigator.userAgent.indexOf('Opera') < 0)){
+    alert('IE')
+}else if (navigator.userAgent.indexOf('Firefox') >= 0){
+    alert('Firefox')
+}else if (navigator.userAgent.indexOf('Opera') >= 0){
+    alert('Opera')
+}else{
+    alert('其他的浏览器')
+}
+
+
+        var Sys = {};
+                var ua = navigator.userAgent.toLowerCase();
+                var s;
+                (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
+                    (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+                        (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+                            (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+                                (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+                                    (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+
+                if (Sys.ie) console.log('IE: ' + Sys.ie);
+                if (Sys.firefox) console.log('Firefox: ' + Sys.firefox);
+                if (Sys.chrome) console.log('Chrome: ' + Sys.chrome);
+                if (Sys.opera) console.log('Opera: ' + Sys.opera);
+                if (Sys.safari) console.log('Safari: ' + Sys.safari);

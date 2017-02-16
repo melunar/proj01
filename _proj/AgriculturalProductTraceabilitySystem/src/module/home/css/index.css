@@ -1,0 +1,150 @@
+
+.long-header-search {
+    display: block;
+    position: absolute;
+    top: 140px;
+    right: 10px;
+    z-index: 100;
+}
+.long-header-search .inputText {
+    width: 400px !important;
+}
+
+/*信誉宣传*/
+.ads {
+   /* margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;*/
+    margin: 1px 5%;
+    min-width: 725px;
+}
+.ad-box {
+    max-width: 240px;
+    padding: 0 20px;
+}
+.ad-image {
+    width: 140px;
+    padding: 0 20px;
+}
+.ad-title {
+    max-width: 170px;
+    color: #555555;
+    overflow: hidden;
+    font-size: 1.3em;
+    line-height: 27px;
+    height: 27px;
+    text-align: center;
+}
+.ad-content {
+    max-width: 170px;
+    text-align: center;
+    color: #8b8b8b;
+}
+
+/*业务*/
+.index-title {
+    min-width: 813px;
+    font-size: 1.8em;
+    line-height: 2.5em;
+    font-weight: 500;
+}
+.service-list {
+    width: 84%;
+    margin: 0 8%;
+    min-width: 773px;
+}
+@media only screen and (max-width: 773px) {
+    .service-item {
+        margin-right: 10px;
+    }
+}
+.service-item {
+    width: 30%;
+    min-width: 190px;
+    margin-right: 3%;
+    margin-bottom: 15px;
+    padding: 20px 0;
+    /*padding-right: 10px;*/
+}
+.service-item-text {
+    white-space: nowrap;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+    line-height: 3.5em;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+/*案例*/
+.cases-list {
+    width: 90%;
+    min-width: 900px;
+    margin: 0 5%;
+    height: 200px;
+    overflow: hidden;
+}
+.cases-item {
+    min-width: 203px;
+    height: 250px;
+    text-align: center;
+    overflow: hidden;
+}
+.cases-item-hidden {
+    /*display: none;*/
+}
+.main-item {
+    min-width: 813px;
+    overflow: hidden;
+}
+ul .cases-item-small {
+    min-width: 40px;
+    vertical-align: middle;
+    height: 200px;
+}
+.cases-item img {
+    height: 200px;
+    width: 200px;
+}
+.cases-description {
+    position: relative;
+    top: -53px;
+    display: inline-block;
+    width: 200px;
+    line-height: 50px;
+    font-size: 1.1em;
+    height: 50px;
+    color: #fffde7;
+    cursor: pointer;
+    background-color: rgba(0,0,0,.4);
+}
+.left-arow {
+    width: 40px;
+    height: 40px;
+    margin-top: 80px;
+    background-image: url("../images/carousel-arow.png");
+    cursor: pointer;
+}
+.left-arow:hover {
+    background-image: url("../images/carousel-arow-hover.png");
+}
+.right-arow {
+    margin-top: 80px;
+    width: 40px;
+    height: 40px;
+    background: url("../images/carousel-arow.png") 0 40px;
+    cursor: pointer;
+}
+.right-arow:hover {
+    background-image: url("../images/carousel-arow-hover.png");
+}
+.more-cases {
+    margin: 10px auto;
+}
+.more-cases .btn-more {
+    border: 1px solid #1d3003;
+    background: #dddddd;
+    color: #535353;
+}

@@ -1,0 +1,89 @@
+{
+  "code": 200,
+  "message": "获取所有this公司报表成功",
+  "data": [
+    {
+      "companyID": "000000BV",
+      "checkPerson": "YIOUBJK",
+      "code": "大华1",
+      "inTime": "000001",
+      "startCode": "911",
+      "outTime": "911",
+      "endCode": "911",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "code": "大华1",
+      "checkPerson": "YIOUBJK",
+      "inTime": "000001",
+      "startCode": "911",
+      "outTime": "911",
+      "endCode": "911",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "code": "大华1",
+      "inTime": "000001",
+      "checkPerson": "YIOUBJK",
+      "startCode": "911",
+      "outTime": "911",
+      "endCode": "911",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "code": "大华1",
+      "inTime": "000001",
+      "startCode": "911",
+      "outTime": "911",
+      "checkPerson": "YIOUBJK",
+      "endCode": "911",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "code": "大华1",
+      "inTime": "000001",
+      "startCode": "911",
+      "outTime": "911",
+      "checkPerson": "YIOUBJK",
+      "endCode": "911",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "code": "大华1",
+      "inTime": "000001",
+      "startCode": "911",
+      "outTime": "911",
+      "endCode": "911",
+      "checkPerson": "YIOUBJK",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "code": "大华1",
+      "inTime": "000001",
+      "startCode": "911",
+      "checkPerson": "YIOUBJK",
+      "outTime": "911",
+      "endCode": "911",
+      "rate": "911",
+      "status": "911",
+      "count": 90.4
+    }]
+}

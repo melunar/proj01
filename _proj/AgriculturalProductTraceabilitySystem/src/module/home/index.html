@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/src/module/common/images/icon/favicon.ico" type="image/x-icon" media="screen" />
+    <!--
+    <link rel="stylesheet" href="../../libs/bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../libs/ez/ez.css">
+    <link rel="stylesheet" href="../../libs/layer/skin/layer.css">
+    <link rel="stylesheet" href="../../libs/jquery/ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../libs/jquery/pagination/jquery.pagination.css">
+    <link rel="stylesheet" href="../common/css/base.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/header.css">
+
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .ad-image img {
+            cursor: pointer;
+        }
+    </style>
+    <script src=""></script>
+    <title>农产品溯源管理系统-主页</title>
+</head>
+<body data-module="home">
+<!--通用模块 隐藏显示-->
+<div id="common-dom-panel" class="ez-box">
+    <div class="header-search long-header-search">
+        <input class="inputText" type="number" value="" placeholder="输入产品编号或公司编号" name="s" id="s">
+        <button class="ui button" data-event="click" data-handler="mainSearch">搜索</button>
+    </div>
+</div>
+<!--主体内容-->
+<div class="page">
+    <!--page前插入header-->
+    <!--page-container-->
+    <div class="page-container">
+        <div class="h10"></div>
+        <!--轮播图片-->
+        <div class="carousel-pics ez-wr">
+            <div class="ez-fl ez-5">
+                <div class="ez-box">&nbsp;&nbsp;&nbsp;&nbsp; </div>
+            </div>
+            <div class="ez-fr ez-5">
+                <div class="ez-box">&nbsp;&nbsp;&nbsp;&nbsp; </div>
+            </div>
+            <div class="ez-last ez-oh">
+                <div id="banner_tabs" class="flexslider ez-box">
+                    <ul class="slides">
+                        <li>
+                            <a title="有机农产品溯源系统" href="javascript:void(0)">
+                                <img alt="" src="images/carousel/1.png" data-event="click" data-handler="goToNews" data-newsid="26">
+                                <div class="cb"></div>
+                                <span class="picinfo f14">
+                                    有机农产品溯源系统-全面产品信息
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="有机农产品溯源系统" href="#">
+                                <img alt="" src="images/carousel/2.png" data-event="click" data-handler="goToNews" data-newsid="27">
+                                <div class="cb"></div>
+                                <span class="picinfo f14">
+                                    有机农产品溯源系统-便捷查询方式
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="有机农产品溯源系统" href="#">
+                                <img alt="" src="images/carousel/3.png" data-event="click" data-handler="goToNews" data-newsid="29">
+                                <div class="cb"></div>
+                                <span class="picinfo f14">
+                                   有机农产品溯源系统-监管认证有机农产品
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="flex-direction-nav">
+                        <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+                        <li><a class="flex-next" href="javascript:;">Next</a></li>
+                    </ul>
+                    <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+                        <li><a>1</a></li>
+                        <li><a>2</a></li>
+                        <li><a>2</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!--轮播图片结束-->
+        <div class="ez-wr h20"></div>
+        <!--信誉宣传-->
+        <div class="ads ez-wr">
+            <div class="ad-boxs ez-fl ez-25">
+                <div class="ez-box">
+                    <div class="ad-image">
+                        <img src="images/index-ad/ad1.png" alt="保护商品品牌" data-event="click" data-handler="goToNews" data-newsid="23">
+                    </div>
+                    <div class="ad-title">
+                        保护商品品牌
+                    </div>
+                    <div class="ad-content">
+                        建立防伪体系，召回管理
+                        <br>
+                        提升产品美誉度
+                    </div>
+                </div>
+            </div>
+            <div class="ad-boxs ez-fl ez-25">
+                <div class="ez-box">
+                    <div class="ad-image">
+                        <img src="images/index-ad/ad2.png" alt="保护经销商利益" data-event="click" data-handler="goToNews" data-newsid="24">
+                    </div>
+                    <div class="ad-title">
+                        保护经销商利益
+                    </div>
+                    <div class="ad-content">
+                        定位追踪防窜货
+                        <br>
+                        保护经销商利益，方便查询
+                    </div>
+                </div>
+            </div>
+            <div class="ad-boxs ez-fl ez-25">
+                <div class="ez-box">
+                    <div class="ad-image">
+                        <img src="images/index-ad/ad3.png" alt="方便查询" data-event="click" data-handler="goToNews" data-newsid="25">
+                    </div>
+                    <div class="ad-title">
+                        方便查询
+                    </div>
+                    <div class="ad-content">
+                        消费者通过各种移动终端
+                        <br>
+                        轻松识别商品真伪，信息全面
+                    </div>
+                </div>
+            </div>
+            <div class="ad-boxs ez-fl ez-last">
+                <div class="ez-box">
+                    <div class="ad-image">
+                        <img src="images/index-ad/ad4.png" alt="信息全面" data-event="click" data-handler="goToNews" data-newsid="26">
+                    </div>
+                    <div class="ad-title">
+                        信息全面
+                    </div>
+                    <div class="ad-content">
+                        消费者全面了解商品来源信息
+                        <br>
+                        线上反馈意见
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--信誉宣传结束-->
+        <div class="ez-wr h20"></div>
+        <!--我们的服务-->
+        <div class="service">
+            <div class="index-title">
+                我们提供的业务
+            </div>
+            <div class="ez-wr service-container">
+                <ul class="service-list ez-fl">
+                    <li class="service-item ez-fl bg-33CCAA">
+                        <a href="#" target="_blank">
+                            <p class="service-item-pic"><img src="images/services/ser1.png" title="111" alt="111"></p>
+                            <p class="service-item-text">随时随地查看产品信息</p>
+                            <button class="btn-more"  data-event="click" data-handler="goToNews" data-newsid="27">
+                                详细介绍
+                            </button>
+                        </a>
+                    </li>
+                    <li class="service-item ez-fl bg-2288DD">
+                        <a href="#" target="_blank">
+                            <p class="service-item-pic">
+                                <img src="images/services/ser2.png" title="111" alt="111">
+                            </p>
+                            <p class="service-item-text">企业管理产品的最佳平台
+                            </p>
+                            <button class="btn-more" data-event="click" data-handler="goToNews" data-newsid="28">
+                                详细介绍
+                            </button>
+                        </a>
+                    </li>
+                    <li class="service-item ez-fl bg-AA88BB">
+                        <a href="#" target="_blank">
+                            <p class="service-item-pic">
+                                <img src="images/services/ser3.png" title="111" alt="111">
+                            </p>
+                            <p class="service-item-text">监管部门严格审核&nbsp;&nbsp;&nbsp;
+                            </p>
+                            <button class="btn-more" data-event="click" data-handler="goToNews" data-newsid="29">
+                                详细介绍
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--我们的服务结束-->
+        <!--案例-->
+        <div class="cases hide">
+            <div class="index-title">
+                企业案例展示
+            </div>
+            <div class="ez-wr cases-container">
+                <ul class="cases-list ez-fl">
+                    <li class="cases-item ez-fl cases-item-small ez-5">
+                        <div class="ez-box" data-event="click" data-handler="turnLeft">
+                            <div class="left-arow"></div>
+                        </div>
+                    </li>
+
+                    <li id="main-item" class="main-item ez-box ez-fl ez-90">
+                        <ul>
+                            <!--企业案例展示{{tpl}}-->
+                        </ul>
+                    </li>
+                    <li class="cases-item ez-fl cases-item-small ez-5">
+                        <div class="ez-box" data-event="click" data-handler="turnRight">
+                            <div class="right-arow"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="ez-wr more-cases">
+                <button class="btn-more bg-2288DD">
+                    了解更多
+                </button>
+            </div>
+        </div>
+        <!--案例结束-->
+        <!--page-container 结束-->
+    </div>
+    <!--footer插入-->
+</div>
+<!--主体内容结束-->
+
+
+<!--测试-->
+<div id="qrcodeCanvas"></div>
+</body>
+<script type="text/javascript" src="../../libs/requirejs/require.js" data-main="../../require-conf.js"></script>
+<script type="text/javascript">
+    require(['./js/main.js']);
+</script>
+</html>

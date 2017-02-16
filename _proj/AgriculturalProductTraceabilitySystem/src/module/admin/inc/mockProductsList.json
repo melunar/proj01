@@ -1,0 +1,39 @@
+{
+  "code": 200,
+  "message": "产品列表成功",
+  "data":  [
+    {
+      "id": "1",
+      "NO": "1",
+      "name": "苹果I3",
+      "companyName": "nongchang",
+      "code": "code",
+      "unit": "unit",
+      "inTime": "inTime"
+    }, {
+      "id": "1",
+      "NO": "1",
+      "name": "苹果I3",
+      "companyName": "nongchang",
+      "code": "code",
+      "unit": "unit",
+      "inTime": "inTime"
+    }, {
+      "id": "1",
+      "NO": "1",
+      "name": "苹果I3",
+      "companyName": "nongchang",
+      "code": "code",
+      "unit": "unit",
+      "inTime": "inTime"
+    }, {
+      "id": "1",
+      "NO": "1",
+      "name": "苹果I3",
+      "companyName": "nongchang",
+      "code": "code",
+      "unit": "unit",
+      "inTime": "inTime"
+    }
+  ]
+}

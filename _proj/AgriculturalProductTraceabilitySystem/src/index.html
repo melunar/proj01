@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        /* ... */
+    </style>
+    <script src=""></script>
+    <title>H溯源系统Y</title>
+    <!--[if lt IE 9]>
+    <script src="./libs/html5/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="./libs/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./libs/jquery/qrcode/jquery.qrcode.min.js"></script>
+
+    <script src="./libs/jquery/pagination/jquery.pagination.js"></script>
+
+    <link rel="stylesheet" href="./libs/jquery/pagination/jquery.pagination.css">
+
+    <!-- <script type="text/javascript" src="./libs/jquery/qrcode/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="./libs/jquery/qrcode/qrcode.js"></script>
+    -->
+
+</head>
+<body>
+
+
+<div id="Pagination" class="right flickr"></div>
+
+
+<!--
+
+<p>Render in table</p>
+<div id="qrcodeTable"></div>
+<p>Render in canvas</p>
+<div id="qrcodeCanvas"></div>
+-->
+
+
+<p>Render in canvas</p>
+<div id="output" style="height: 340px; width: 340px; overflow: auto"></div>
+<script>
+    var url = document.location.href;
+    url = "好好工作 我去帮同学做毕设";
+   // url = "12";
+    /*    jQuery('#qrcode').qrcode("this plugin is great");
+     jQuery('#qrcodeTable').qrcode({
+     render: "table",
+     text: url
+     });*/
+
+    /*    jQuery('#qrcodeCanvas').qrcode({
+     text: url,
+     height: 100,
+     width: 100
+     });*/
+
+
+     jQuery(function () {
+         $("#output").qrcode({
+             text: utf16to8(url),
+             width: 200,     //设置宽度
+             height: 200
+         });
+     });
+    function utf16to8 (str) {
+        var out, i, len, c;
+        out = "";
+        len = str.length;
+        for (i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            }
+        }
+        return out;
+    }
+    /*
+
+
+     var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_=' + Math.random();
+     var IP = "",
+     city = "";
+     $.getJSON(url, function (data) {
+     console.log(1, data);
+     IP = data.Ip;
+     });
+     //var remote_ip_info = {"ret":1,"start":-1,"end":-1,"country":"\u4e2d\u56fd","province":"\u5317\u4eac","city":"\u5317\u4eac","district":"","isp":"","type":"","desc":""};
+     var getPositionUrl = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=" + IP;
+     $.getJSON(getPositionUrl, function (data) {
+     console.log(2, data);
+     city = data.city;
+     });
+     //    var city = remote_ip_info.city;
+     alert(city);
+     */
+
+
+</script>
+<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+<script>
+    //    alert(remote_ip_info.province + '\n' + remote_ip_info.city);
+    var province = remote_ip_info.province,
+            city = remote_ip_info.city;
+    console.log(city);
+</script>
+<!--<script type="text/javascript" src="libs/requirejs/require.js" data-main="require-conf"></script>-->
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,698 @@
+<!--基本信息部分-->
+{{#if base}}
+<div id="base" class="panel-content" data-type="base">
+    <div class="base-content">
+        <div class="">
+            <span class="base-title" data-name="companyName">{{data.companyName}}</span>
+            <!--可选-->
+            <abbr class="base-title-abbr" title="{{data.companyName}}" data-name="abbr">{{data.abbr}}</abbr>
+        </div>
+        <div class="base-item-box">
+            <img id="headPic" data-value="{{data.headSrc}}" src="{{data.headSrc}}" title="{{data.companyName}}"
+                 alt="{{data.companyName}}">
+        </div>
+        <div class="base-item-box">
+            <label for="registrationNumber">工商注册号</label> <!--style="font-family: 'LCD-digital'"-->
+            <input id="registrationNumber" disabled data-name="registrationNumber"
+                   class="item-content disabled-edit eable-edit font-LCD-digital" value="{{data.registrationNumber}}"/>
+        </div>
+        <div class="base-item-box">
+            <label for="status">当前状态</label>
+            <input id="status" data-name="status" disabled class="item-content disabled-edit eable-edit"
+                   value="{{data.status}}" data-value="{{data.status}}"/>
+        </div>
+        <div class="base-item-box">
+            <label for="outTime">入驻时间</label>
+            <input id="outTime" data-name="outTime" disabled class="item-content disabled-edit eable-edit"
+                   value="{{data.outTime}}"/>
+        </div>
+        <div class="h10"></div>
+        <button type="button" class="button" data-event="click" data-handler="fileUploadHead">头像上传</button>
+
+        <button type="button" class="button" data-event="click" data-handler="changePassword">修改密码</button>
+        <div class="h20"></div>
+        <div class="h20"></div>
+    </div>
+    <div class="show-edit-content">
+        <div class="">
+            <label for="location">所在地</label>
+            <input id="location" disabled data-name="location" class="item-content disabled-edit eable-edit"
+                   value="{{data.location}}"/>
+        </div>
+        <div class="">
+            <label for="mainProduct">主营产品</label>
+            <input id="mainProduct" disabled data-name="mainProduct" class="item-content disabled-edit eable-edit"
+                   value="{{data.mainProduct}}"/>
+        </div>
+        <div class="">
+            <label for="registeredCapital">注册资本(万￥)</label>
+            <input id="registeredCapital" type="number" disabled data-name="registeredCapital"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.registeredCapital}}"/>
+        </div>
+        <div class="">
+            <label for="legalRepresentative">法定代表人</label>
+            <input id="legalRepresentative" disabled data-name="legalRepresentative"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.legalRepresentative}}"/>
+        </div>
+        <div class="">
+            <label for="employeesCount">员工数量</label>
+            <input id="employeesCount" type="number" maxlength="10" disabled data-name="employeesCount"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.employeesCount}}"/>
+        </div>
+        <div class="">
+            <label for="area">占地面积(米2)</label>
+            <input id="area" type="number" placeholder="输入占地面积" disabled data-name="area"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.area}}"/>
+        </div>
+        <div class="">
+            <label for="phone">联系方式</label>
+            <input id="phone" type="number" disabled data-name="phone" maxlength="11"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.phone}}"/>
+        </div>
+        <div class="">
+            <label for="email">法定代表人</label>
+            <input id="email" type="email" disabled data-name="email" class="item-content disabled-edit eable-edit"
+                   value="{{data.email}}"/>
+        </div>
+        <div class="">
+            <label for="zipCode">邮编</label>
+            <input id="zipCode" type="number" disabled data-name="zipCode" class="item-content disabled-edit eable-edit"
+                   value="{{data.zipCode}}"/>
+        </div>
+    </div>
+    <div class="ez-wr h10"></div>
+
+    <span class="show-info-title">企业简介</span><br>
+    <div id="htmlInfo" class="show-info-content" data-name="info">
+
+        <!--用js html()方法渲染 不然没有样式 而是代码-->
+        <!--<textarea style="display: block; width: 100%; height: auto" >  </textarea>-->
+    </div>
+
+    <div class="btn-group ez-wr">
+        <button class="button" data-event="click" data-handler="turnToEdit">编辑</button>
+        <button class="button hide" data-event="click" data-handler="submitEdit">提交</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="button hide" data-event="click" data-handler="cancleEdit">取消</button>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="button" data-event="click" data-handler="fileUpload">审核材料上传</button>
+        &nbsp;&nbsp;&nbsp;
+        <span class="reminder-upload" title="文献要求" data-event="click" data-handler="showReminderUploadContent"></span>
+        <div class="reminder-upload-content hide">
+            申请者书面提出申请认证时，根据《有机产品认证实施规则》的规定，应向有机认证机构提交下列材料：<br>
+            ① 申请者的合法经营资质文件，如营业执照、土地使用证、租赁合同等；<br>
+            ② 申请者及有机生产、加工的基本情况，如申请者名称、地址和联系方式，生产、加工规模，包括品种、面积、产量、加工量等描述；<br>
+            ③ 产地（基地）区域范围，包括地理位置图、地块分布图、地块图；<br>
+            ④ 申请认证的有机产品生产、加工、销售计划；<br>
+            ⑤ 产地（基地）、加工场所有关环境质量的证明材料；<br>
+            ⑥ 有关专业技术和管理人员的资质证明材料；<br>
+            ⑦ 保证执行有机产品标准的声明；<br>
+            ⑧ 有机生产、加工的质量管理体系文件；<br>
+            ⑨ 其他相关材料。<br>
+            请打包压缩上传！<br>
+            下载文档模板：<a href="/src/module/common/images/上交材料模板.rar" style="color: #c66; font-size: 1.2em"><b>点击下载</b></a>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+
+<!--产品部分-->
+{{#if product}}
+<div id="product" class="panel-content" data-type="product">
+    <div class="table-box">
+        <table>
+            <tr class="table-ths">
+                <th data-name="code">产品代码</th>
+                <th data-name="name">产品名称</th>
+                <th data-name="category">品种</th>
+                <th data-name="period">生产周期(月)</th>
+                <th data-name="season">产出季节</th>
+                <th data-name="unit">产品单位</th>
+                <th data-name="inTime">添加时间</th>
+                <th data-name="operate">操作</th>
+            </tr>
+            <!--
+                        <tr class="load">
+                            <td colspan="7">
+                                加载中......
+                            </td>
+                        </tr>-->
+            <tbody>
+            {{#if data}}
+            {{#each data}}
+            <tr data-name="info" data-value="{{info}}">
+                <td data-name="code" data-value="{{code}}"
+                    title="{{code}}">{{code}}
+                </td>
+                <td data-name="name" data-value="{{name}}"
+                    title="{{name}}">{{name}}
+                </td>
+                <td data-name="category" data-value="{{category}}"
+                    title="{{category}}">{{category}}
+                </td>
+                <td data-name="period" data-value="{{period}}"
+                    title="{{period}}">{{period}}
+                </td>
+                <td data-name="season" data-value="{{season}}"
+                    title="{{season}}">{{season}}
+                </td>
+                <td data-name="unit" data-value="{{unit}}"
+                    title="{{unit}}">{{unit}}
+                </td>
+                <td data-name="inTime" data-value="{{inTime}}" title="{{inTime}}">
+                    {{inTime}}
+                </td>
+                <td>
+                    <span class="tableOperateText edit" title="查看" data-event="click" data-handler="seeDetailProduct">查看<i
+                            data-id="{{id}}" class="editIcon"></i></span>
+                    <span data-id="{{id}}" class="tableOperateText del" title="删除" data-event="click"
+                          data-handler="delProduct">删除</span>
+                </td>
+            </tr>
+            <tr class="tr-product-info hide">
+                <td class="noData" colspan="8">
+                    &nbsp;&nbsp;&nbsp;简介：{{info}}
+                    <div class="h5"></div>
+                    &nbsp;&nbsp;&nbsp;有机认证机构：{{#if isCheck}}{{dep}}({{depCode}})<br>
+                    <img src="/src/module/common/images/youji.png">{{else}}未认证{{/if}}
+                </td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr class="">
+                <td class="noData" colspan="8">暂无产品，请添加</td>
+            </tr>
+            {{/if}}
+            </tbody>
+
+        </table>
+    </div>
+    <!--添加环节-->
+    <div class="add-product-box hide">
+        <!--添加基本信息-->
+        <div class="cb h20"></div>
+        <div class="cb h10"></div>
+        <div class="add-product-base ez-fl">
+            <div class="product-item-box">
+                <label for="name"><i class="red"> * </i>产品名称:</label>
+                <input id="name" placeholder="请输入产品名称" type="text" data-name="name"
+                       class="inputText" value=""/>
+            </div>
+            <div class="product-item-box">
+                <label for="unit"><i class="red"> * </i>计量单位:</label>
+                <input id="unit" placeholder="请输入计量单位" list="unit_list" type="text" data-name="unit" maxlength="5"
+                       class="inputText" value=""/>
+                <datalist id="unit_list">
+                    <option value="瓶"></option>
+                    <option value="箱"></option>
+                    <option value="盒"></option>
+                    <option value="斤"></option>
+                    <option value="公斤"></option>
+                    <option value="两"></option>
+                    <option value="袋"></option>
+                    <option value="吨"></option>
+                    <option value="件"></option>
+                    <option value="个"></option>
+                    <option value="头"></option>
+                    <option value="条"></option>
+                </datalist>
+            </div>
+            <div class="product-item-box">
+                <label for="category">品种:</label>
+                <input id="category" placeholder="请输入品种" type="text" data-name="category"
+                       class="inputText" value=""/>
+            </div>
+            <!--            <div class="product-item-box">
+                            <label for="testTime">品种:</label>
+                            <input id="testTime" placeholder="" type="text" data-name="testTime"
+                                   class="inputText input-time" value=""/>
+                        </div>-->
+            <div class="product-item-box">
+                <label for="period">生产周期(月):</label>
+                <input id="period" placeholder="请输入生产周期" type="number" maxlength="2" data-name="period"
+                       class="inputText" value=""/>
+            </div>
+            <div class="product-item-box">
+                <label for="type">农产品类型:</label>
+                <select id="type" data-name="type" class="inputSelect">
+                    <option value="其他农副产品">--选择农产品类型--</option>
+                    <option value="水果">水果</option>
+                    <option value="蔬菜">蔬菜</option>
+                    <option value="禽类">禽类</option>
+                    <option value="畜类">畜类</option>
+                    <option value="水产品">水产品</option>
+                    <option value="粮油">粮油</option>
+                    <option value="花卉">花卉</option>
+                    <option value="林产品">林产品</option>
+                    <option value="其他农副产品">其他农副产品</option>
+                </select>
+            </div>
+            <div class="product-item-box">
+                <label for="season">产出季节:</label>
+                <input id="season" placeholder="请输入产出季节" list="season_list" type="text"
+                       data-name="season" class="inputText" value=""/>
+                <datalist id="season_list">
+                    <option label="10" value="初春"></option>
+                    <option label="11" value="春季"></option>
+                    <option label="12" value="春末"></option>
+
+                    <option label="20" value="初夏"></option>
+                    <option label="21" value="夏季"></option>
+                    <option label="22" value="夏末"></option>
+
+                    <option label="30" value="初秋"></option>
+                    <option label="31" value="秋季"></option>
+                    <option label="32" value="秋末"></option>
+
+                    <option label="40" value="初冬"></option>
+                    <option label="41" value="冬季"></option>
+                    <option label="42" value="冬末"></option>
+                </datalist>
+            </div>
+            <div class="product-item-box product-item-info">
+                <label for="season" style="position:relative; top: -70px"><i class="red"> * </i>产品介绍:</label>
+                <textarea data-name="info" placeholder="请输入产品简介"></textarea>
+            </div>
+            <div class="h20"></div>
+        </div>
+        <!--add-product-base end-->
+
+        <!--生产环节 单个-->
+       <!-- <div class="add-product-step">
+            <div class="product-item-box">
+                <label>1 环节名称:</label>
+                <input placeholder="请输入环节名称" data-name="steps-i" type="text"
+                       class="inputText" value=""/>
+            </div>
+            <div class="uploader white">
+                <input type="text" class="filename" readonly/>
+                <input type="button" name="file" class="button" value="浏览"/>
+                <input type="file" size="30"/>
+            </div>
+        </div>
+        <div class="add-product-step">
+            <div class="product-item-box">
+                <label>2 环节名称:</label>
+                <input placeholder="请输入环节名称" data-name="steps-i" type="text"
+                       class="inputText" value=""/>
+            </div>
+            <div class="uploader white">
+                <input type="text" class="filename" readonly/>
+                <input type="button" name="file" class="button" value="浏览"/>
+                <input type="file" size="30"/>
+            </div>
+        </div>
+        <div class="add-product-step">
+            <div class="product-item-box">
+                <label>3 环节名称:</label>
+                <input placeholder="请输入环节名称" data-name="steps-i" type="text"
+                       class="inputText" value=""/>
+            </div>
+            <div class="uploader white">
+                <input type="text" class="filename" readonly/>
+                <input type="button" name="file" class="button" value="浏览"/>
+                <input type="file" size="30"/>
+            </div>
+        </div>
+        <div class="add-product-step add-product-step-button">
+            <button id="addStep" class="button" data-event="click" data-handler="addStep">添加环节</button>
+            <button id="delStep" class="button hide" data-event="click" data-handler="delStep">删除上一个环节</button>
+        </div>-->
+    </div>
+    <div class="btn-group cb">
+        <button class="button" data-event="click" data-handler="turnToAddProduct">添加产品</button>
+        <button class="button hide" data-event="click" data-handler="submitAddProduct">提交</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button hide" data-event="click" data-handler="cancleAddProduct">取消</button>
+    </div>
+</div>
+{{/if}}
+
+<!--详情产品介绍模块-->
+{{#if detail}}
+<div id="detail" class="panel-content" data-type="detail">
+    <!--产品展示手风琴-->
+    <div id="accordion" class="ez-wr">
+        {{#if data}}
+        {{#each data}}
+        <h3>{{name}}</h3>
+        <div class="ez-wr product-steps">
+            <div class="product-info-in-step">
+                {{info}}
+            </div>
+            <div class="cb h10"></div>
+            <span>计量单位：{{unit}}</span><br>
+            <div class="cb h10"></div>
+            <span>生产周期：{{period}}月</span><br>
+            <div class="cb h10"></div>
+            <span>品种：{{category}}</span><br>
+            <div class="cb h10"></div>
+            <span>产出季节：{{season}}</span><br>
+            <div class="cb h10"></div>
+
+            <span>有机认证机构：{{#if isCheck}}{{dep}}({{depCode}})<br><br>
+            <img src="/src/module/common/images/youji.png">{{else}}未认证{{/if}}</span><br>
+
+            <div class="ez-wr h5"></div>
+            <div class="ez-wr h5"></div>
+            <!-- {{#each tempDate.steps}}
+             <div class="ez-fl ez-25 product-step">
+                 <div class="ez-box">
+                     <img class="step-pic" title="{{name}}" src="{{imgUrl}}">&lt;!&ndash;images/steps/step001.jpg&ndash;&gt;
+                 </div>
+                 <div class="ez-box step-name" title="{{name}}">
+                     {{name}}
+                 </div>
+             </div>
+             {{/each}}-->
+        </div>
+
+        {{/each}}
+        {{/if}}
+
+    </div>
+
+    <div class="ez-wr h20"></div>
+    <div class="ez-wr">
+        <div class="QR-code ez-fr ez-40">
+            <div id="QR-code" class="ez-box">
+
+            </div>
+            <div class="ez-box">
+                <div class="ez-wr h5"></div>
+                保存或扫描公司二维码快速访问
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+
+<!--产品库-->
+{{#if libs}}
+<div id="libs" class="panel-content" data-type="libs">
+    <div class="libs-title">
+        <label>产品:</label><select id="localProductList" class="inputSelect"  style="width: 150px;" >
+            {{#if data}}
+            {{#each data}}
+            <option data-id="{{id}}" data-type="{{type}}" value="{{id}}">{{name}}</option>
+            {{/each}}
+            {{/if}}
+        </select>
+        <div class="libs-radio-group">
+            <input id="radio001" name="checkProductStatus" type="radio"  data-value="上市">
+            <label class="" for="radio001">上市</label>&nbsp;&nbsp;
+
+            <input id="radio002" name="checkProductStatus" type="radio"  data-value="未上市">
+            <label class="" for="radio002">未上市</label>&nbsp;&nbsp;
+
+            <input id="radio003" name="checkProductStatus" type="radio" >
+            <label class="" for="radio003">全部</label>&nbsp;&nbsp;
+        </div>
+        <label>起始日期：</label><input name="date1" type="date" class="inputText"  style="width: 135px;"/>
+
+        <label>结束日期：</label><input type="date" name="date2" class="inputText" style="width: 135px;"/>
+        <button class="button" data-event="click" data-handler="searchProduct">查询</button>
+    </div>
+    <div class="ez-wr h10"></div>
+    <div class="table-box">
+        <table>
+            <tr class="table-ths">
+                <th data-name="select">选择</th>
+                <th data-name="inBatchNO">批号编码</th>
+                <th data-name="count">数量</th>
+                <th data-name="inTime">添加时间</th>
+                <th data-name="status">状态</th>
+                <th data-name="outTime">上市时间</th>
+                <th data-name="QRCodeTitle">二维码</th>
+                <th data-name="operate">操作</th>
+            </tr>
+            <!--        <tr class="load">
+                        <td colspan="7">
+                            加载中......
+                        </td>
+                    </tr>-->
+            <tbody class="body-insert">
+            <!--另一个请求插入表体-->
+            </tbody>
+
+        </table>
+        <div class="cb h20"></div>
+        <div id="pagination"></div>
+    </div>
+    <!--表体结束-->
+    <!--分页-->
+
+    <!--分页end-->
+    <div class="cb h10"></div>
+    <!--batchPanel-->
+    <div class="batchPanel hide">
+        <!--<label for="code">编码批号</label>&nbsp;&nbsp;&nbsp;
+        <input id="code" disabled data-name="code" type="number" maxlength=7 class="inputText"
+               oninput="if(value.length > 7){value=value.slice(0,7)}" placeholder="1~9999999"
+               value="0003421"/>-->
+        <br>
+        <div class="ez-wr h10"></div>
+        <label for="count">预计产量</label>&nbsp;&nbsp;&nbsp;
+        <input id="count" data-name="count" type="number" maxlength=5 class="inputText"
+               oninput="if(value.length > 5){value=value.slice(0,5)}" placeholder="1~99999"/><br><br>
+
+        <label for="batchInfo">备注说明</label>&nbsp;&nbsp;&nbsp;
+        <input id="batchInfo" data-name="info" type="text" class="inputText"  placeholder="添加备注"/><br>
+    </div>
+    <!--batchPanel 结束-->
+    <div class="ez-wr h10"></div>
+    <div class="btn-group cb">
+        <button class="button" data-event="click" data-handler="turnToAddBatch">添加批次</button>
+        <button class="button hide" data-event="click" data-handler="submitAddBatch">提交</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="button hide" data-event="click" data-handler="cancleAddBatch">取消</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <button class="button" data-event="click" data-handler="showLogs">查看日志记录</button>
+        <button class="button" data-event="click" data-handler="showAddLog">添加产品日志</button>
+
+    </div>
+
+    <!--展示/添加日志记录-->
+    <div id="showLog">
+
+
+    </div>
+    <!--展示/添加日志记录结束-->
+</div>
+{{/if}}
+
+
+{{#if logList}}
+<div class="productOriginDetail">
+    <div class="productOriginOutter">
+        <ul id="layer-photos-demo" class="layer-photos-demo productOriginList">
+            {{#each data}}
+            <li class="productOriginListItem">
+                <img layer-pid="pid{{logSrc}}" layer-index="{{@index}}" src="{{logSrc}}" layer-src="{{logSrc}}" alt="{{name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" title="{{name}}">
+                        <span>
+                            <h3>{{name}}<i>&nbsp; &nbsp;</i></h3>
+                            <i class="timeTamp">{{time}}</i><i>,&nbsp;&nbsp;&nbsp;操作地点:{{position}}</i><br>
+                            备注：{{info}}<br>
+                            <span data-id="{{id}}" style="margin-left: 100px; color: red;" class="tableOperateText" data-event="click" data-handler="delOneLog">删除</span>
+                        </span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="btn-group cb">
+    <button class="button" data-event="click" data-handler="logsViewClose">收起</button>
+</div>
+
+{{/if}}
+
+
+{{#if addLogPanel}}
+<div class="h20 cb"></div>
+<div class="product-item-box">
+    <label for="logTypeSelect"><i class="red">*&nbsp;</i>选择类型:</label>
+    <select id="logTypeSelect" type="" class="inputSelect" data-name="name">
+        <!-- 渲染 -->
+    </select>
+</div>
+<div class="h20 cb"></div>
+<div class="product-item-box">
+    <label for="">操作地点:</label>
+    <input placeholder="地点" type="text" data-name="position"
+           class="inputText" value=""/>
+</div>
+<div class="h20 cb"></div>
+<div class="product-item-box">
+    <label for=""><i class="red">*&nbsp;</i>操作时间:</label>
+    <input placeholder="选择时间" type="date" data-name="time"
+           class="inputText"/>
+</div>
+<div class="h20 cb"></div>
+<div class="product-item-box">
+    <label for="">备注描述:</label>
+    <input placeholder="" type="text" data-name="info"
+           class="inputText"/>
+</div>
+
+<div class="h20 cb"></div>
+<div class="product-item-box">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button" data-event="click" data-handler="fileUploadLogPic">上传图片</button>
+    <span><span class="red">未上传</span></span>
+    <br>
+    <button class="button" data-event="click" data-handler="submitAddLog">提交</button>
+    <button class="button" data-event="click" data-handler="cancelAddLog">取消</button>
+</div>
+{{/if}}
+
+{{#if localProductList}}
+{{#each data}}
+<option data-id="{{id}}" data-type="{{type}}" value="{{id}}">{{name}}</option>
+{{/each}}
+{{/if}}
+
+
+<!--lib表体-->
+{{#if libsList}}
+{{#if data}}
+{{#each data}}
+<tr data-id="{{id}}" data-productId="{{productId}}" data-status="{{status}}">
+    <td data-name="select">
+        <input type="radio" name="selectBatch">
+    </td>
+    <td data-name="code" data-value="{{code}}" title="{{code}}">
+        {{code}}
+    </td>
+    <td data-name="count" data-value="{{count}}" title="{{count}}">
+        {{count}}
+    </td>
+    <td data-name="inTime" data-value="{{inTime}}"
+        title="{{inTime}}">{{inTime}}
+    </td>
+    <td data-name="status" data-value="{{status}}"
+        title="{{status}}">{{status}}
+    </td>
+    <td data-name="outTime" data-value="{{outTime}}"
+        title="{{outTime}}">{{outTime}}
+    </td>
+    <td data-name="QRCode" data-value="" title="二维码">
+        <span id="QRCode" data-event="click" data-handler="ShowOneProductBatch"></span>
+    </td>
+    <td>
+        <span class="tableOperateText" title="查看" data-event="click" data-handler="ShowOneProductBatch">查看<i
+                data-id="{{id}}" class="delIcon"></i></span>
+        <span class="tableOperateText" title="删除" data-event="click" data-handler="delOneProductBatch"
+                data-id="{{id}}" class="delIcon">删除</span>
+    </td>
+</tr>
+<tr class="batch-detail hide">
+    <td colspan="9">
+        <div class="batch-detail-content">
+            <div class="QRcode-big-box">
+                <!--code-->
+            </div>
+            <div class="batch-text-box">
+                <span class="batch-text">
+                    <button class="button" data-event="click" data-handler="downloadQRCode">下载二维码</button>
+                </span><!--
+                <span class="batch-text">
+                    编号范围：{{startCode}} - {{endCode}}
+                </span>-->
+                <span class="batch-text">
+                    当前生产状态：{{status}}
+                </span>
+                <span class="batch-text">
+                    备注信息：{{info}}
+                </span>
+                <!--<span class="batch-text">
+                    合格率：<i></i>
+                </span>-->
+            </div>
+        </div>
+    </td>
+</tr>
+{{/each}}
+{{else}}
+<tr class="">
+    <td class="noData" colspan="9">暂无记录，请添加</td>
+</tr>
+{{/if}}
+{{/if}}
+
+
+
+{{#if word}}
+<div id="word">
+    <div class="cb h10"></div>
+    <div class="libs-title">
+        <!--<select id="wordTypeSelectList" class="inputSelect" data-event="change" data-handler="searchWord">
+            <option value="-1">&#45;&#45;选择评价类型&#45;&#45;</option>
+            <option value="好评">好评</option>
+            <option value="差评">差评</option>
+        </select>-->
+        <select id="wordStarSelectList" class="inputSelect" data-event="change" data-handler="searchWord" style="width: 150px;">
+            <option value="-1">--选择评价星级--</option>
+            <option value="1">★☆☆☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="4">★★★★☆</option>
+            <option value="5">★★★★★</option>
+        </select>
+        <div class="libs-radio-group">
+            <input id="radio0011" name="wordIsRead" type="radio" data-event="click"
+                   data-handler="searchWord" data-value="1">
+            <label class="" for="radio0011">已读</label>&nbsp;&nbsp;&nbsp;
+
+            <input id="radio0021" name="wordIsRead" type="radio" data-event="click"
+                   data-handler="searchWord" data-value="0">
+            <label class="" for="radio0021">未读</label>&nbsp;&nbsp;&nbsp;
+
+            <input id="radio0031" name="wordIsRead" checked type="radio" data-event="click"
+                   data-handler="searchWord" data-value="-1">
+            <label class="" for="radio0031">全部</label>&nbsp;&nbsp;&nbsp;
+        </div>
+
+        &nbsp;
+        <label>起始日期：</label><input name="date1" type="date" class="inputText" style="width: 130px;"/>
+
+        &nbsp;
+        <label>结束日期：</label><input type="date" name="date2" class="inputText" style="width: 130px;"/>
+        <button class="button" data-event="click" data-handler="searchWord">查询</button>
+    </div>
+    <div class="wordListPanel">
+
+
+    </div>
+    <div class="cb h20"></div>
+    <div id="pagination" style="margin-left: 230px"></div>
+</div>
+
+{{/if}}
+
+{{#if wordList}}
+<ul class="wordList">
+    {{#each data}}
+    <li class="wordListItem" data-isread="{{isRead}}" data-id="{{id}}" data-event="click" data-handler="showOneWord">
+        <span>{{title}}</span>
+        <span class="fr timestamp">{{time}}</span>
+    </li>
+    <div class="wordListItemDetail hide">
+        <span> 星 级 打 分 ：{{#if star}}{{star}}★{{else}}未评价{{/if}}</span><br>
+        <span>用户联系方式：{{phone}}</span><br>
+        <span>留言详细内容：{{content}}</span><br>
+        <span class="fr tableOperateText" data-id="{{id}}" style="color: red; margin-right: 10px" data-event="click" data-handler="delWord">删除</span><br><br>
+    </div>
+    {{/each}}
+</ul>
+{{/if}}
+
+

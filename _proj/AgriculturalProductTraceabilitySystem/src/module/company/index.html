@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/src/module/common/images/icon/favicon.ico" type="image/x-icon" media="screen" />
+    <link rel="stylesheet" href="../../libs/ez/ez.css">
+    <link rel="stylesheet" href="../../libs/layer/skin/layer.css">
+    <link rel="stylesheet" href="../../libs/layer/skin/layer.ext.css">
+    <link rel="stylesheet" href="../../libs/jquery/ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../libs/jquery/pagination/jquery.pagination.css">
+    <link rel="stylesheet" href="../common/css/base.css">
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/header.css">
+
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/upload.css">
+
+
+    <link rel="stylesheet" href="../news/css/index.css">
+
+    <style>
+
+    </style>
+    <script>
+        if(localStorage.getItem("userType") !== "company") {
+            window.location = "/src/module/home/index.html";
+        }
+    </script>
+
+    <title>农产品溯源管理系统-企业用户中心</title>
+</head>
+<body data-module="company">
+<!--通用模块 隐藏显示-->
+<div id="common-dom-panel" class="ez-box">
+    <!--
+       处理不好样式以及数据传递 不在主页允许编辑 注册之后无法修改
+      <div class="edit-info-content">
+            <textarea name="content" rows="14" cols="28" class="xheditor {emotPath:'xhEditor/xheditor_emot/'}"></textarea>
+        </div>-->
+</div>
+<!--主体内容-->
+<div class="page">
+    <!--page-container前插入header-->
+    <!--page-container-->
+    <div class="page-container">
+        <div class="tab-container ez-wr">
+            <div class="pab-panel">
+                <ul class="ez-wr">
+                    <li class="tab-item ez-fl ez-negmx ez-20 active" data-type="base" data-event="click"
+                        data-handler="showBase">
+                        企业档案
+                    </li>
+                    <li class="tab-item  ez-fl ez-negmx ez-20" data-type="product" data-event="click"
+                        data-handler="showProduct">
+                        企业产品
+                    </li>
+                    <li class="tab-item  ez-fl ez-negmx ez-20" data-type="detail" data-event="click"
+                        data-handler="showDetail">
+                        产品介绍
+                    </li>
+                    <li class="tab-item  ez-fl ez-negmx ez-20" data-type="libs" data-event="click" data-handler="showLibs">
+                        产品库
+                    </li>
+                    <li class="tab-item  ez-last ez-oh" data-type="word" data-event="click" data-handler="showWord">
+                        我的留言板
+                    </li>
+                </ul>
+
+                <div id="panel-content" class="panel-content ez-wr ez-mw">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--page-container 结束-->
+    <!--page-container后面 footer插入-->
+</div>
+<!--主体内容结束-->
+
+
+<!--测试-->
+<div id="qrcodeCanvas"></div>
+</body>
+<script type="text/javascript" src="../../libs/requirejs/require.js" data-main="../../require-conf.js"></script>
+<script type="text/javascript">
+    require(['./js/main.js']);
+</script>
+</html>

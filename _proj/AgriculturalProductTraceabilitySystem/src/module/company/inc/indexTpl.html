@@ -1,0 +1,14 @@
+{{#if steps}}
+<div class="add-product-step">
+    <div class="product-item-box">
+        <label><i class="red"> * </i>环节{{index}}名称:</label>
+        <input placeholder="请输入环节名称" data-name="steps-{{index}}" type="text"
+               class="inputText" value=""/>
+    </div>
+    <div class="uploader white">
+        <input type="text" class="filename" readonly/>
+        <input type="button" name="file" class="button" value="浏览"/>
+        <input type="file" size="30"/>
+    </div>
+</div>
+{{/if}}

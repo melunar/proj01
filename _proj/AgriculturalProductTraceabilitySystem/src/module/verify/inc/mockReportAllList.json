@@ -1,0 +1,61 @@
+{
+  "code": 200,
+  "message": "获取所有公司报表成功",
+  "data": [
+    {
+      "companyID": "000000BV",
+      "companyName": "大华1",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华2",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华3",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华4",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华5",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华6",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华7",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    },
+    {
+      "companyID": "000000BV",
+      "companyName": "大华8",
+      "companyCode": "000001",
+      "count": "911",
+      "rate": 90.4
+    }]
+}

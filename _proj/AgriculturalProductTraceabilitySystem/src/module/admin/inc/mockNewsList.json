@@ -1,0 +1,31 @@
+{
+  "code": 200,
+  "message": "获取admin列表成功",
+  "data": [
+    {
+      "id": "1",
+      "NO": "1",
+      "title": "title",
+      "time": "19:20",
+      "userName": "admin"
+    },
+    {
+      "id": "1",
+      "NO": "1",
+      "title": "title",
+      "time": "19:20",
+      "userName": "admin"
+    },{
+      "id": "1",
+      "NO": "1",
+      "title": "title",
+      "time": "19:20",
+      "userName": "admin"
+    },{
+      "id": "1",
+      "NO": "1",
+      "title": "title",
+      "time": "19:20",
+      "userName": "admin"
+    }]
+}

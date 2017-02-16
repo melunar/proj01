@@ -1,0 +1,51 @@
+{
+  "code": 200,
+  "message": "获取列公司表成功",
+  "data": [
+    {
+      "id": "1231",
+      "name": "companyName2312",
+      "label": "companyName2312",
+      "imageUrl": "images/test02.png"
+    },{
+      "id": "1232",
+      "name": "companyName432",
+      "label": "companyName432",
+      "imageUrl": "images/test01.png"
+    },{
+      "id": "1233",
+      "name": "companyName234234",
+      "label": "companyName234234",
+      "imageUrl": "images/test01.png"
+    },{
+      "id": "1234",
+      "name": "companyNameert",
+      "label": "companyNameert",
+      "imageUrl": "images/test02.png"
+    },{
+      "id": "1236",
+      "name": "companyNameerwer",
+      "label": "companyNameerwer",
+      "imageUrl": "images/test02.png"
+    },{
+      "id": "1235",
+      "name": "companyNamwrwee",
+      "label": "companyNamwrwee",
+      "imageUrl": "images/test01.png"
+    },{
+      "id": "1237",
+      "name": "companyNwerame",
+      "label": "companyNwerame",
+      "imageUrl": "images/test02.png"
+    },{
+      "id": "1238",
+      "name": "comwerpanyName",
+      "label": "comwerpanyName",
+      "imageUrl": "images/test01.png"
+    },{
+      "id": "1238",
+      "name": "companytrrtrtrtName",
+      "label": "companytrrtrtrtName",
+      "imageUrl": "images/test01.png"
+    }]
+}

@@ -1,0 +1,271 @@
+<!--基本信息部分-->
+{{#if base}}
+<div id="base" class="panel-content" data-type="base">
+    <div class="base-content">
+        <div class="">
+            <span class="base-title" data-name="companyName">{{data.companyName}}</span>
+            <!--可选-->
+            <abbr class="base-title-abbr" title="{{data.companyName}}" data-name="abbr">{{data.abbr}}</abbr>
+        </div>
+        <div class="base-item-box">
+            <img id="headPic" data-value="{{data.headSrc}}" src="{{data.headSrc}}" title="{{data.companyName}}"
+                 alt="{{data.companyName}}">
+        </div>
+        <div class="base-item-box">
+            <label for="registrationNumber">工商注册号</label> <!--style="font-family: 'LCD-digital'"-->
+            <input id="registrationNumber" disabled data-name="registrationNumber"
+                   class="item-content disabled-edit eable-edit font-LCD-digital" value="{{data.registrationNumber}}"/>
+        </div>
+        <div class="base-item-box">
+            <label for="status">当前状态</label>
+            <input id="status" data-name="status" disabled class="item-content disabled-edit eable-edit"
+                   value="{{data.status}}" data-value="{{data.status}}"/>
+        </div>
+        <div class="h10"></div>
+    </div>
+    <div class="show-edit-content">
+        <div class="">
+            <label for="location">所在地</label>
+            <input id="location" disabled data-name="location" class="item-content disabled-edit eable-edit"
+                   value="{{data.location}}"/>
+        </div>
+        <div class="">
+            <label for="mainProduct">主营产品</label>
+            <input id="mainProduct" disabled data-name=mainProduct"" class="item-content disabled-edit eable-edit"
+                   value="{{data.mainProduct}}"/>
+        </div>
+        <div class="">
+            <label for="registeredCapital">注册资本</label>
+            <input id="registeredCapital" type="number" disabled data-name="registeredCapital"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.registeredCapital}}"/>
+        </div>
+        <div class="">
+            <label for="legalRepresentative">法定代表人</label>
+            <input id="legalRepresentative" disabled data-name="legalRepresentative"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.legalRepresentative}}"/>
+        </div>
+        <div class="">
+            <label for="employeesCount">员工数量</label>
+            <input id="employeesCount" type="number" maxlength="10" disabled data-name="employeesCount"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.employeesCount}}"/>
+        </div>
+        <div class="">
+            <label for="area">占地面积(米2)</label>
+            <input id="area" type="number" placeholder="输入占地面积" disabled data-name="area"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.area}}"/>
+        </div>
+        <div class="">
+            <label for="phone">联系方式</label>
+            <input id="phone" type="number" disabled data-name="phone" maxlength="11"
+                   class="item-content disabled-edit eable-edit"
+                   value="{{data.phone}}"/>
+        </div>
+        <div class="">
+            <label for="email">法定代表人</label>
+            <input id="email" type="email" disabled data-name="email" class="item-content disabled-edit eable-edit"
+                   value="{{data.email}}"/>
+        </div>
+        <div class="">
+            <label for="zipCode">邮编</label>
+            <input id="zipCode" type="number" disabled data-name="zipCode" class="item-content disabled-edit eable-edit"
+                   value="{{data.zipCode}}"/>
+        </div>
+    </div>
+    <div class="ez-wr h10"></div>
+
+
+</div>
+{{/if}}
+
+
+<!--公司简介-->
+{{#if info}}
+
+<div id="htmlInfo" class="show-info-content" data-name="info">
+    <!--用js html()方法渲染 不然没有样式 而是代码-->
+    <!--<textarea style="display: block; width: 100%; height: auto" >  </textarea>-->
+</div>
+{{/if}}
+
+<!--详情产品介绍模块-->
+{{#if detail}}
+<div id="detail" class="panel-content" data-type="detail">
+    <!--产品展示手风琴-->
+    <div id="accordion" class="ez-wr">
+        {{#if data}}
+        {{#each data}}
+        <h3>{{name}}</h3>
+        <div class="ez-wr product-steps">
+            <div class="product-info-in-step">
+                {{info}}
+            </div>
+            <div class="cb h10"></div>
+            <span>计量单位：{{unit}}</span><br>
+            <div class="cb h10"></div>
+            <span>生产周期：{{period}}月</span><br>
+            <div class="cb h10"></div>
+            <span>品种：{{category}}</span><br>
+            <div class="cb h10"></div>
+            <span>产出季节：{{season}}</span><br>
+            <div class="cb h10"></div>
+             <span>有机认证机构：{{#if isCheck}}{{dep}}({{depCode}})<br><br>
+            <img src="/src/module/common/images/youji.png">{{else}}未认证{{/if}}</span><br>
+            <div class="ez-wr h5"></div>
+
+        </div>
+
+        {{/each}}
+        {{/if}}
+
+    </div>
+
+    <div class="ez-wr h20"></div>
+    <div class="ez-wr">
+        <div class="QR-code ez-fr ez-40">
+            <div id="QR-code" class="ez-box">
+
+            </div>
+            <div class="ez-box">
+                <div class="ez-wr h5"></div>
+                <!--保存或扫描公司二维码快速访问-->
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+
+
+{{#if logList}}
+<div class="productOriginDetail">
+    <div class="productOriginOutter">
+        <h3 style="font-size: 1.3em; font-weight: 500; margin: 0 0 15px 0; text-align: center"><i id="product-name-i" style="font-style: normal;">产品</i>生产过程信息</h3>
+        <ul class="productOriginList" id="layer-log-photos" class="layer-log-photos">
+            {{#each data}}
+            <li class="productOriginListItem" >
+                <img layer-pid="pid{{logSrc}}" src="{{logSrc}}" layer-src="{{logSrc}}" alt="{{name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" title="{{name}}">
+                        <span style="font-size: 1.7em !important; width:340px;">
+                            <h3 style="font-size: 1.1em;">{{name}}<i>&nbsp; &nbsp;</i></h3>
+
+                <div class="ez-wr h5"></div>
+                            时间:<i class="timeTamp">{{time}}</i><br>
+
+                <div class="ez-wr h5"></div>
+                            地点:<i>{{position}}</i><br>
+
+                <div class="ez-wr h5" style="line-height: 1.4em"></div>
+                            {{info}}<br>
+
+
+                        </span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<div class="logsFromProduct">
+
+</div>
+
+<div class="btn-group cb">
+    您还可以：<button id="traceToCompany" class="button" >查看该公司详情</button>
+</div>
+
+<div class="cb h20"></div>
+<div class="cb h20"></div>
+<div id="comment-panel" class="comment-panel" >
+    <form>
+        <fieldset>
+            <legend>或者对该公司产品做出评价（匿名）</legend>
+
+            <div class="cb h10"></div>
+            <label>评价主题 </label>
+            <input name="title" type="text" class="inputText" style="width: 80%;">
+            <div class="cb h20"></div>
+            <label style="position: relative; top: -30px;">评价内容 </label>
+            <textarea name="content" placeholder="添加你的评论吧" cols="" rows="4" style="width: 80%;"></textarea>
+            <div class="cb h20"></div>
+            <label style="position: relative; top: 5px;">打个星吧 </label>
+            <div id="rating-star">
+                <a href="javascript:void(0)">0</a>
+                <a href="javascript:void(0)">1</a>
+                <a href="javascript:void(0)">2</a>
+                <a href="javascript:void(0)">3</a>
+                <a href="javascript:void(0)">4</a>
+            </div>
+            <div class="cb" style="height: 15px;"></div>
+            <legend>如果可以，留下您的联系方式</legend>
+            <div class="cb h10"></div>
+
+            <label>联系电话 </label>
+            <input name="phone" type="number" class="inputText" style="width: 80%;">
+        </fieldset>
+    </form>
+    <script>
+        $('#rating-star').on('click', 'a', function () {
+            setStar(this.innerHTML);
+            $('#rating-star').data('star', this.innerHTML);
+            localStorage.setItem("commentStar",parseInt(this.innerHTML.trim()) + 1);
+        }).on('mouseenter', 'a', function () {
+            setStar(this);
+        }).on('mouseleave', 'a', function () {
+            var $r_star = $('#rating-star');
+            var level = $r_star.data('star');
+            var $stars = $r_star.find('a');
+            if (level) {
+                setStar($stars[level]);
+
+            } else {
+                $stars.css('background-position', '0 -90px');
+            }
+        });
+
+        function setStar(star) {
+            var $this = $(star);
+            var level = $this.html();
+            var n;
+            if (level >= '4') {
+                n = '0 -30px';
+            } else if (level == '3' || level == '2' || level == '1') {
+                n = '0 0';
+            } else {
+                n = '0 -60px';
+            }
+            $this.prevAll().andSelf().css('background-position', n);
+            $this.nextAll().css('background-position', '0 -90px');
+        }
+    </script>
+    <div class="cb h10"></div>
+    <button class="button" data-event="click" id="submitComment">提交</button>
+</div>
+{{/if}}
+
+
+{{#if logsFromProduct}}
+<div class="cb h20"></div>
+<h3 style="font-size: 12px !important; font-weight: 500; margin: 5px 0 5px 150px">产品名称：{{data.name}}</h3>
+<div class="ez-wr product-steps product-info-in-trace"  style="font-size: 11px !important; margin: 5px 0 5px 150px">
+    <div class="product-info-in-step" style="font-size: 11px !important;">
+        简介：{{data.info}}
+    </div>
+    <div class="cb h10"></div>
+    <span style="font-size: 21px !important;">有机认证机构：{{#if data.isCheck}}{{data.dep}}({{data.depCode}})<br>
+            <img src="/src/module/common/images/youji.png">{{else}}未认证 <img width="20" height="20" style="display: inline-block" src="/src/module/common/images/warn.png">{{/if}}</span><br>
+    <span style="font-size: 21px !important;">计量单位：{{data.unit}}</span><br>
+    <div class="cb h10"></div>
+    <span style="font-size: 21px !important;">生产周期：{{data.period}}月</span><br>
+    <div class="cb h10"></div>
+    <span style="font-size: 21px !important;"> 品种：{{data.category}}</span><br>
+    <div class="cb h10"></div>
+    <span style="font-size: 21px !important;">产出季节：{{data.season}}</span><br>
+
+
+    <div class="cb h10"></div>
+    <div class="ez-wr h5"></div>
+
+</div>
+{{/if}}

@@ -1,0 +1,83 @@
+{
+  "code": 200,
+  "message": "获取admin列表成功",
+  "data": [
+    {
+      "id": "1",
+      "NO": "1",
+      "companyName": "大华",
+      "name": "dahua",
+      "code": "1234123",
+      "registrationNumber": "1231231231",
+      "legalRepresentative": "xiaoming",
+      "phone": "12312312",
+      "apply-time": "2014-03-30",
+      "out-time": "2014-03-30",
+      "status": "审核通过"
+    },
+    {
+      "id": "1",
+      "NO": "1",
+      "companyName": "大华",
+      "name": "dahua",
+      "code": "1234123",
+      "registrationNumber": "1231231231",
+      "legalRepresentative": "xiaoming",
+      "phone": "12312312",
+      "apply-time": "2014-03-30",
+      "out-time": "2014-03-30",
+      "status": "审核通过"
+    },
+    {
+      "id": "1",
+      "NO": "1",
+      "companyName": "大华",
+      "name": "dahua",
+      "code": "1234123",
+      "registrationNumber": "1231231231",
+      "legalRepresentative": "xiaoming",
+      "phone": "12312312",
+      "apply-time": "2014-03-30",
+      "out-time": "2014-03-30",
+      "status": "审核通过"
+    },
+    {
+      "id": "1",
+      "NO": "1",
+      "companyName": "大华",
+      "name": "dahua",
+      "code": "1234123",
+      "registrationNumber": "1231231231",
+      "legalRepresentative": "xiaoming",
+      "phone": "12312312",
+      "apply-time": "2014-03-30",
+      "out-time": "2014-03-30",
+      "status": "审核通过"
+    },
+    {
+      "id": "1",
+      "NO": "1",
+      "companyName": "大华",
+      "name": "dahua",
+      "code": "1234123",
+      "registrationNumber": "1231231231",
+      "legalRepresentative": "xiaoming",
+      "phone": "12312312",
+      "apply-time": "2014-03-30",
+      "out-time": "2014-03-30",
+      "status": "审核通过"
+    },
+    {
+      "id": "1",
+      "NO": "1",
+      "companyName": "大华",
+      "name": "dahua",
+      "code": "1234123",
+      "registrationNumber": "1231231231",
+      "legalRepresentative": "xiaoming",
+      "phone": "12312312",
+      "apply-time": "2014-03-30",
+      "out-time": "2014-03-30",
+      "status": "审核通过"
+    }]
+}
