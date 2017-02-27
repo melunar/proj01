@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外边距合并-行内元素的外边距</title>
+</head>
+<style>
+    .whole {
+        /*float: left;*/
+        width: 300px;
+        height: 500px;
+        background-color: antiquewhite;
+        text-align: center;
+    }
+    .one {
+        /*float: left;*/
+        margin: 20px 0;
+        line-height: 80px;
+        height: 80px;
+        background-color: #911001;
+        border: 1px solid #fff;
+        padding: 5px;
+    }
+    .block > span {
+        margin: 30px;
+        background-color: aqua;
+    }
+</style>
+<body>
+    <div class="whole">
+        <div class="one">正常流中垂直相邻的外边距[上下边距20px]</div>
+        <div class="one">外边距合并[上下边距20px]</div>
+        <div class="one">也有说元素如果设置了内边距和边框，就不会合并外边距</div>
+        <div class="one">但是并没有演示成功</div>
+    </div>
+    <div class="block">
+        这是一个div，里面这里是一个<span>行内元素，行内元素[margin:30px]</span>是可以设置左右边距的，但是无法设置上下边距。
+    </div>
+    <div class="block">
+        这是一个div，里面这里是一个<span>行内元素，行内元素[margin:30px]</span>是可以设置左右边距的，但是无法设置上下边距。
+    </div>
+</body>
+</html>
