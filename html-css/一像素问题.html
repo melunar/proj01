@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+			text-decoration: none;
+		}
+		body {
+			/*font-size: 0;*/
+		}
+		div {
+			display: inline-block;
+			/*float: left;*/
+			font-size: 15px;
+			/*padding:0px;*/
+		}
+		#span1 {
+			margin-right: 1px;
+			background:#f00;
+		}
+		#span2 {
+			background:#0f0;
+		}
+		#span3 {
+			background:#00f;
+		}
+	</style>
+</head>
+
+<body>
+<a href="#">元素属性为display: inline/inline-block 或默认就是行内/行内块级元素的元素标签，如a，span，label等，默认会有一像素【其实是字体大小的一半宽度】宽的空白 <br>
+解决办法：<br>
+1). 给元素清除inline属性，并添加float <br>
+2). 给父元素设置font-size: 0; 【别忘记给自己重新设置非零的字体大小】
+<br>
+<br>
+</a>
+	<div id="span1">这是一个span标签</div>
+	<div id="span2">上一个标签之间会留白1px</div>
+	<div id="span3">上一个标签之间会留白1px</div>
+</body>
+</html>
