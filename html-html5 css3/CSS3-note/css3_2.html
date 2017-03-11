@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>CSS3 背景</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">
+        CSS3 NOTE 2 背景
+    </h1>
+
+    <div class="row">
+        <div class="span6">
+            <h4 class="page-header">background-size :规定背景图片的尺寸</h4>
+            <span>CSS3 允许您为元素使用多个背景图像。</span>
+        <pre>
+body {
+background:url(/img.gif);
+background-size:63px 100px;
+-moz-background-size:63px 100px; /* 老版本的 Firefox */
+background-repeat:no-repeat;
+}
+div
+{
+background:url(bg_flower.gif);
+-moz-background-size:40% 100%; /* 老版本的 Firefox */
+background-size:40% 100%;
+background-repeat:no-repeat;
+}
+
+多个背景图片：
+body {
+background-image:url(bg_flower.gif),url(bg_flower_2.gif);
+}
+        </pre>
+        </div>
+        <div class="span6">
+            <h4 class="page-header">background-size :规定背景图片的尺寸</h4>
+            <pre>
+div {
+background:url(bg_flower.gif);
+background-repeat:no-repeat;
+background-size:100% 100%;
+-webkit-background-origin:content-box; /* Safari */
+background-origin:content-box/padding-box/boeder-boxs;/* 指定位置*/
+}
+            </pre>
+            <img src="images/v.png"s>
+        </div>
+        <br><br>
+
+    </div>
+
+</div>
+</body>
+</html>

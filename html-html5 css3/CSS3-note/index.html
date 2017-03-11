@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>CSS3 边框</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="bootstrap/js/jquery-1.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+</head>
+<body>
+<script>
+    //alert($);
+    //测试jquery文件是否包含进来。
+</script>
+<div class="container">
+    <h1 class="page-header">
+        CSS3 NOTE 1 边框
+    </h1>
+
+    <div class="row">
+        <div class="span12">
+            <ul class="unstyled">
+                <li><h4>浏览器针对css特殊属性的前缀</h4></li>
+                <li><b>Safari 5 以及更老的版本</b>
+                    <mark>-webkit-</mark>
+                </li>
+                <li><b>Opera</b>
+                    <mark>-o-</mark>
+                </li>
+                <li><b>(Old) Firefox</b>
+                    <mark>-moz-</mark>
+                </li>
+                <li><b>Safari 和 Chrome </b>
+                    <mark>-webkit-</mark>
+                </li>
+                <li><>IE 9 </b>
+                    <mark>-ms-</mark>
+                </li>
+            </ul>
+        </div>
+        <div class="span6">
+            <h4 class="page-header">border-radius</h4>
+
+            <div style="text-align:center;
+border:2px solid #a1a1a1;
+padding:10px 40px;
+background:#dddddd;
+width:350px;
+border-radius:25px;
+-moz-border-radius:25px;">border-radius 属性允许您向元素添加圆角。
+            </div>
+            <br><br>
+        <pre>
+div {
+    text-align:center;
+    border:2px solid #a1a1a1;
+    padding:10px 40px;
+    background:#dddddd;
+    width:350px;
+    border-radius:25px;
+    -moz-border-radius:25px;/* 老的 Firefox */s
+}
+        </pre>
+        </div>
+        <br><br>
+
+        <div class="span6">
+            <h4 class="page-header">box-shadow 用于向方框添加阴影</h4>
+
+            <div style="width:300px;
+height:100px;
+background-color:#ff9900;
+-moz-box-shadow: 20px 10px 5px #342338; /* 老的 Firefox */
+box-shadow: 20px 10px 5px #123456;"></div>
+            <br><br>
+                <pre>
+div {
+width:300px;
+height:100px;
+background-color:#ff9900;
+-moz-box-shadow: 20px 10px 5px #342338; /* 老的 Firefox */
+box-shadow: 20px 10px 5px #123456;
+}
+        </pre>
+
+        </div>
+        <div class="span9">
+            <h4 class="page-header">（了解）border-image 使用图片创建围绕 div 元素的边框</h4>
+            <br>
+                <pre>
+div {
+-moz-border-image:url(/i/border.png) 30 30 round/stretch;	/* Old Firefox */
+-webkit-border-image:url(/i/border.png) 30 30 round/stretch;	/* Safari and Chrome */
+-o-border-image:url(/i/border.png) 30 30 round/stretch;		/* Opera */
+border-image:url(/i/border.png) 30 30 round/stretch;
+}</pre>
+
+        </div>
+        <div class="span12">
+            <h3 class="page-header">
+                <a href="http://www.w3school.com.cn/css3/css3_multiple_columns.asp">CSS3 多列</a><br>
+                <a href="http://www.w3school.com.cn/css3/css3_user_interface.asp">resize</a><br>
+                <a href="http://www.w3school.com.cn/css3/css3_user_interface.asp">Outline Offset</a><br>
+                <a href="http://www.w3school.com.cn/css3/css3_user_interface.asp">box-sizing</a><br>
+                <a href="http://blog.csdn.net/haoyong110/article/details/47711645">display:box;box-flex</a>
+            </h3>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
