@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<style>
+    /*栅格容器*/
+    .grid-container {
+        width : 100%;
+        max-width : 1500px; 
+    }
+    /*-- 将栅格系统里的所有元素设为 border-box --*/
+    .grid-container *{
+        box-sizing: border-box; 
+    }
+    /*-- 行：清除浮动 -- */ 
+    .row:before, .row:after {
+        content: "";
+        display: table;  /* display: table  此元素会作为块级表格来显示(类似 <table>)，表格前后带有换行符。*/
+        clear: both;
+    }
+    /*列：位置*/
+    [class*='col-'] {
+        float: left;
+        min-height: 1px;  
+        /*-- 设置间隙【固定值】 --*/
+        padding: 12px;
+        background-color: #FFDCDC;
+    }
+    /*列：宽度-6 */
+    [class*='col-'] {
+        float: left;
+        min-height: 1px; 
+        width: 16.66%; 
+    }
+
+    .col-1{ width: 16.66%; }
+    .col-2{ width: 33.33%; }
+    .col-3{ width: 50%;    }
+    .col-4{ width: 66.66%; }
+    .col-5{ width: 83.33%; }
+    .col-6{ width: 100%;   }
+
+    .outline, .outline *{
+        outline: 1px solid #F6A1A1; 
+    }
+
+    /*-- 列的额外内容样式 --*/
+    [class*='col-'] > p {
+     background-color: #FFC2C2; 
+     padding: 0;
+     margin: 0;
+     text-align: center; 
+     color: white; 
+    }
+</style>
+<body>
+    <div class="grid-container outline">
+        <div class="row">
+            <div class="col-1"><p>col-1</p></div> 
+            <div class="col-1"><p>col-1</p></div> 
+            <div class="col-1"><p>col-1</p></div> 
+            <div class="col-1"><p>col-1</p></div> 
+            <div class="col-1"><p>col-1</p></div> 
+            <div class="col-1"><p>col-1</p></div> 
+        </div> 
+        <div class="row">
+            <div class="col-2"><p>col-2</p></div> 
+            <div class="col-2"><p>col-2</p></div> 
+            <div class="col-2"><p>col-2</p></div> 
+        </div> 
+        <div class="row">
+            <div class="col-3"><p>col-3</p></div> 
+            <div class="col-3"><p>col-3</p></div> 
+        </div> 
+    </div>
+</body>
+</html>
