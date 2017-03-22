@@ -24,6 +24,28 @@ mounted、 updated 、destroyed等钩子
 > 过滤器【filters：】可以用在两个地方：mustache 插值和 v-bind 表达式。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符'|'指示, ex: `v-bind:id="rawId | formatId"`  
 过滤器只能在 mustache 绑定和 v-bind 表达式（从 2.1.0 开始支持）中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用**计算属性**。
 
---------------
+> 【computed】 vs 【methods】 能达到同样的效果  
+计算属性是基于它们的依赖进行缓存的，计算属性只有在它的相关依赖发生改变时才会重新求值；  
+相比而言，只要发生重新渲染，methods 调用总会执行该函数。
 
-<https://cn.vuejs.org/v2/guide/syntax.html#v-on-缩写>
+> 通常更好的想法是使用 【computed】 属性而不是命令式的 【watch】 回调；  
+setter getter：
+
+```
+computed: {
+  fullName: {
+    // getter
+    get: function () {
+      return this.firstName + ' ' + this.lastName
+    },
+    // setter
+    set: function (newValue) {
+      var names = newValue.split(' ')
+      this.firstName = names[0]
+      this.lastName = names[names.length - 1]
+    }
+  }
+}
+```
+
+<https://cn.vuejs.org/v2/guide/computed.html>
