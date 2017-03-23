@@ -48,4 +48,37 @@ computed: {
 }
 ```
 
-<https://cn.vuejs.org/v2/guide/computed.html>
+> :class的值可以是对象，可以是数组，最终都会装换为数组项。   
+`<div v-bind:class="[{ active: isActive }, errorClass]"></div>`  
+计算属性方式：`<div v-bind:class="classObject"></div>`
+
+> v-if, v-else....选择性渲染时，Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染，会使渲染变快，也会保留部分相同的dom【这个度是怎么控制的？，官方的解释是**高效地**复用，可以这么理解，重复的dom的只更新text，除非有唯一key属性】；如果想避免此情况：给元素添加唯一的key='val'属性即可。
+
+> 一般来说， 【v-if】 有更高的切换开销，而 【v-show】 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件不太可能改变，则使用 v-if 较好。
+
+> 【v-for】 块中，我们拥有对父作用域属性的完全访问权限，包括this命名空间属性，或者多维数组的上一层item及其属性。  
+遍历数组或对象：`v-for="(value, keyOrIndex) in objectOrArray"`  
+简单灵巧点的：`<span v-for="n in 10">{{ n }}</span>`
+
+> Vue 包含一组观察数组的**变异方法**，所以它们也将会触发视图更新  
+push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()  
+也有**非变异方法**，例如： filter(), concat(), slice() 。这些不会改变原始数组，总是返回一个新数组
+
+> 由于 JavaScript 的限制， Vue **不能检测以下变动的数组**：  
+当你利用索引直接设置一个项时，例如： vm.items[indexOfItem] = newValue  
+当你修改数组的长度时，例如： vm.items.length = newLength  
+为了解决第一类问题，以下两种方式都可以实现和 vm.items[indexOfItem] = newValue 相同的效果， 同时也将触发状态更新：  
+// Vue.set  
+Vue.set(example1.items, indexOfItem, newValue)  
+// Array.prototype.splice`  
+example1.items.splice(indexOfItem, 1, newValue)  
+为了解决第二类问题，你也同样可以使用 splice：  
+example1.items.splice(newLength)  
+
+<https://cn.vuejs.org/v2/guide/list.html#key>
