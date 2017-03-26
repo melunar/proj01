@@ -24,6 +24,16 @@
             <h2>v-show</h2>
             <p v-show="ok">v-show</p>
             <p v-show="!ok">!v-show</p>
+            <br><br>
+            <div v-if="loginType === 'username'">
+                <label class="class0">Username</label>
+                <input placeholder="Enter your username">
+            </div>
+            <div v-else>
+                <label class="class1">Email</label>
+                <input placeholder="Enter your email address">
+            </div>
+            <button @click="toggleLogin()">change</button>
         </div>
 	</body>
 	<script>
@@ -44,7 +54,13 @@
         var vm = new Vue({
             el: "#show",
             data: {
-                ok: false
+                ok: false,
+                loginType: "username"
+            },
+            methods: {
+                toggleLogin: function() {
+                    this.loginType =  (this.loginType === "username") ? "other" : "username";
+                }
             }
         });
 	</script>
