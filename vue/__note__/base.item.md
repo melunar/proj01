@@ -122,7 +122,7 @@ event.stopPropagation();
 
 ```
 <!-- value是data.`picked`  -->
-<input type="radio" v-model="picked" value="a">
+<input type="radio" v-model.trim="picked" value="a">
 <!-- `toggle` 为 true 或 false -->
 <input type="checkbox" v-model="toggle">
 <!-- 当选中时，`selected` 为字符串 "abc" -->
@@ -130,5 +130,11 @@ event.stopPropagation();
   <option value="abc">ABC</option>
 </select>
 ```
-继续看修饰符
-<https://cn.vuejs.org/v2/guide/forms.html#修饰符>
+
+> 修饰符:  
+1. 【lazy】 ，value在 change 事件中同步[change事件：焦点离开，input事件：框内值变化]  
+2. 【number】 自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值）  
+3. 【trim】自动过滤用户输入的首尾空格
+
+
+<https://cn.vuejs.org/v2/guide/forms.html>

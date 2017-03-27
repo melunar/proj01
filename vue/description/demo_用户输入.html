@@ -31,6 +31,12 @@
         <label for="mike">Mike</label>
         <br>
         <span>Checked names: {{ checkedNames }}</span>
+        <br>
+        修饰符
+        <br>
+        <input v-model.lazy="msg1" >
+        <input v-model.number="msg2" >
+        <input v-model.trim="msg3" >
     </div>
     </body>
     <script>
@@ -58,6 +64,9 @@
                 message: "input value",
                 message1: "23",
                 checked: false,
+                msg1: "msg1",
+                msg2: "msg2",
+                msg3: "msg3",
                 checkedNames: []
             }
         });
