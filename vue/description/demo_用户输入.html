@@ -1,31 +1,43 @@
 <html>
-	<head>
-		<title>VUE-用户输入</title>
-		<style>
+<head>
+  <title>VUE-用户输入</title>
+  <style>
 
-		</style>
-		<script src="../../js/vue.js"></script>
-	</head>
-	<body>
-        <div id="app-5">
-            <p>{{message}}</p>
-            <button v-on:click="reverseMessage">reverse</button>
-        </div>
-        <hr>
-        <div id="app-6">
-            <!--
-                无效
-                <input type="text" value={{message}}>
-            -->
-            <input type="text" v-model="message">
-        </div>
-        </div>
-	</body>
-	<script>
+  </style>
+  <script src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">reverse</button>
+    </div>
+    <hr>
+    <div id="app-6">
+        <!--
+            无效
+            <input type="text" value={{message}}>
+        -->
+        <input type="text" v-model="message">
+        <br>    
+        <input id="message1" type="text" v-model="message1" value="123">
+        <br>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+    </body>
+    <script>
         /**
          * data的每一个属性在vue封装的对象中都有get/set方法=>实时双向数据绑定的关键
          */
-        var app5 = new Vue({
+         var app5 = new Vue({
             el: "#app-5",
             data: {
                 message: "你好 Vue ha"
@@ -35,16 +47,19 @@
                     /**
                      * this 代指app5 对象
                      */
-                    this.message = this.message.split(" ").reverse().join(" ");
-                }
-            }
-        });
+                     this.message = this.message.split(" ").reverse().join(" ");
+                 }
+             }
+         });
 
-        var app6 = new Vue({
+         var app6 = new Vue({
             el: "#app-6",
             data: {
-                message: "input value"
+                message: "input value",
+                message1: "23",
+                checked: false,
+                checkedNames: []
             }
         });
-	</script>
-</html>
+    </script>
+    </html>

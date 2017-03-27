@@ -1,3 +1,5 @@
+### 基础
+
 > 通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新.
 
 ```
@@ -81,4 +83,52 @@ example1.items.splice(indexOfItem, 1, newValue)
 为了解决第二类问题，你也同样可以使用 splice：  
 example1.items.splice(newLength)  
 
-<https://cn.vuejs.org/v2/guide/list.html#key>
+### 事件
+
+> 【v-on】v-on="methods_fun($e)"   
+【事件修饰符】: v-on:事件名 + `.stop【阻止单击事件冒泡】  .prevent【组织默认事件】  .capture【添加事件侦听器时使用事件捕获】  .self【只当事件在该元素本身（而不是子元素）触发时触发回调】  .once【点击事件将只会触发一次】`
+
+> 监听键盘事件时，Vue 允许为 v-on 在监听键盘事件时添加按键修饰符[number]  
+`v-on:keyup.ctrl.67="hanlder()" //ctrl+C`
+
+```
+//按键修饰符别名：
+.enter
+.tab
+.delete (“删除” 和 “退格” 键)
+.esc
+.space
+.up
+.down
+.left
+.right
+.ctrl
+.alt
+.shift
+.meta
+```
+
+```
+event.preventDefault();  
+event.stopPropagation();  
+```
+
+### 表单
+
+> v-model 指令在表单控件元素上创建双向数据绑定。  
+而且对于input，textArea输入框，在文本区域插值并不会生效！  
+
+> 对于单选按钮，勾选框及选择列表选项， v-model 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）
+
+```
+<!-- value是data.`picked`  -->
+<input type="radio" v-model="picked" value="a">
+<!-- `toggle` 为 true 或 false -->
+<input type="checkbox" v-model="toggle">
+<!-- 当选中时，`selected` 为字符串 "abc" -->
+<select v-model="selected">
+  <option value="abc">ABC</option>
+</select>
+```
+继续看修饰符
+<https://cn.vuejs.org/v2/guide/forms.html#修饰符>
