@@ -1,11 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="cn">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../css/ez.css">
-	<title>EZ 超级布局</title>
+    <style>
+        .no {
+            display: none;
+        }
+
+        /*div[class|=ez] {
+            background-color: red;
+        }*/
+        .ez-box {
+            opacity: .7;/*
+            height:100px;*/
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+        .b1 {
+            background-color: #c65;
+        }
+
+        .b2 {
+            background-color: #16f;
+        }
+
+        .b3 {
+            background-color: #cc5;
+        }
+
+        .b4 {
+            background-color: #065;
+        }
+        .ez-wr {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src=""></script>
+    <title>EZ框架</title>
+
 </head>
 <body>
-	
+<h1><a href="http://www.ez-css.org/layouts">EZ通用布局 粘贴吧[教程链接]</a></h1>
+<!--一列-->
+<div class="ez-wr  ez-mw">
+    <div class="ez-box">一个盒子（ez-wr ez-box）</div>
+</div>
+<!-- 
+<div style="border: 1px solid red">
+    div
+    <div style="border: 3px solid green">
+        div2
+    </div>
+</div> -->
+
+<!--两列-->
+<div class="ez-wr ez-mw">
+    <div class="ez-fl ez-negmr ez-66">
+        <div class="ez-box">
+            一个盒子1
+        </div>
+
+    </div>
+    <div class="ez-last ez-oh">
+        <div class="ez-box">一个盒子2</div>
+    </div>
+</div>
+
+<!--右侧浮动-->
+<div class="ez-wr no">
+    <div class="ez-fr ez-negmr ez-50">
+        <div class="ez-box">一个盒子1</div>
+    </div>
+    <div class="ez-last ez-oh">
+        <div class="ez-box">一个盒子2</div>
+    </div>
+</div>
+
+
+<!--三列布局-->
+<div class="ez-wr">
+    <div class="ez-fr ez-negmr ez-33">
+        <div class="ez-box">一个盒子1</div>
+    </div>
+    <div class="ez-fl ez-50">
+        <div class="ez-box" style="margin: 10px;">一个盒子2</div>
+    </div>
+    <div class="ez-last ez-oh">
+        <div class="ez-box">一个盒子3</div>
+    </div>
+</div>
+
+
+<!--4列布局-->
+<div class="ez-wr no">
+    <div class="ez-fr ez-negmx ez-25">
+        <div class="ez-box">一个盒子1</div>
+    </div>
+    <div class="ez-fl ez-negmx ez-25">
+        <div class="ez-box">一个盒子2</div>
+    </div>
+    <div class="ez-fl ez-negmr ez-25">
+        <div class="ez-box">一个盒子3</div>
+    </div>
+    <div class="ez-last ez-oh">
+        <div class="ez-box">一个盒子4</div>
+    </div>
+</div>
+
+<!--4列布局B-->
+<div class="ez-wr">
+    <div class="ez-fl ez-negmr ez-50">
+        <div class="ez-fl ez-negmr ez-33">
+            <div class="ez-box b1">一个盒子1
+            </div>
+        </div>
+        <div class="ez-last ez-oh">
+            <div class="ez-box b2">一个盒子1.1</div>
+        </div>
+    </div>
+    <div class="ez-last ez-oh">
+        <div class="ez-fl ez-negmr ez-50">
+            <div class="ez-box b3">一个盒子2</div>
+        </div>
+        <div class="ez-last ez-oh">
+            <div class="ez-box b4">一个盒子2.1</div>
+        </div>
+    </div>
+</div>
+
+
+<!--三行-->
+<div class="ez-wr no">
+    <div class="ez-box b1">一个盒子1</div>
+    <div class="ez-box b2">一个盒子2</div>
+    <div class="ez-box b3">一个盒子3</div>
+</div>
+</div>
+
+
+
+<!--混合-->
+<div class="ez-wr">
+    <div class="ez-box b1">一个盒子1</div>
+    <div class="ez-wr">
+        <div class="ez-fr ez-negmr ez-33">
+            <div class="ez-box b1">一个盒子2.1</div>
+        </div>
+        <div class="ez-fl ez-negml ez-33">
+            <div class="ez-box b2">一个盒子2.2</div>
+        </div>
+        <div class="ez-last ez-oh">
+            <div class="ez-box b3">一个盒子2.3</div>
+        </div>
+    </div>
+    <div class="ez-box b3">一个盒子3</div>
+</div>
+
+
+
+<div class="ez-wr">
+    <div class="ez-box b1">一个盒子1--</div>
+    <div class="ez-wr">
+        <div class="ez-fr ez-negmr ez-33">
+            <div class="ez-box ez-fl b1 ez-33">一个盒子2.1.1</div>
+            <div class="ez-box  ez-fl b3 ez-33">一个盒子2.1.2</div>
+            <div class="ez-box b2 ez-33">一个盒子2.1.3</div>
+        </div>
+        <div class="ez-fl ez-negml ez-33">
+            <div class="ez-box b2">一个盒子2.2</div>
+        </div>
+        <div class="ez-fl ez-negml ez-33">
+            <div class="ez-box b3">一个盒子2.3</div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
