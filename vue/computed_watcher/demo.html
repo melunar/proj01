@@ -10,6 +10,7 @@
         <div id="example">
             <h2>计算属性-computed</h2>
             <p>origin message: {{message}}</p>
+            <input type="text" v-model="message">
             <p>computed(reverseMessage) message: {{reverseMessage}}</p>
             <p>methods(reverseMessage1) message: {{reverseMessage}}</p>
             <p v-on:click="date_now1">methods-click(date_now) message: {{dateNow}}</p>
@@ -56,12 +57,14 @@
             el: "#example",
             data: {
                 message: "hello vue hello js",
-                dateNow: "??:??:??"
+                dateNow: "??:??:??",
+                dataMiddle: "origin"
             },
             computed: {
                 //声明了一个计算属性 reversedMessage。
                 //提供的函数将用作属性 vm.reversedMessage的getter
                 reverseMessage: function() {
+                    this.dataMiddle += this.dataMiddle + "-abc-"
                     return this.message.split(" ").reverse().join(" ");
                 },
                 date_now: function() {
