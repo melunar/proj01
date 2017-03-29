@@ -56,5 +56,46 @@ computed: {
 }
 ```
 
-<https://cn.vuejs.org/v2/guide/components.html#自定义事件>
+> 父组件必须在模板里直接用v-on绑定；子组件用this.$emit("event-name")触发事件  
+有时候，你可能想在某个组件的根元素上监听一个原生事件。可以使用 .native 修饰 v-on
+
+```
+//父组件
+<button-counter v-on:event-name="handler(data)"></button-counter>
+//子组件
+this.$emit('event-name',data)
+//原生事件
+<my-component v-on:click.native="doTheThing"></my-component>
+```
+
+> 【slot】内容分发：子组件模板包含至少一个 <slot/> 【匿名slot不要超过一个】插口，否则父组件的内容将会被丢弃。当子组件模板只有一个没有属性的 slot 时，父组件整个内容片段将插入到 slot 所在的 DOM 位置，并替换掉 slot 标签本身。  
+注意：<slot/>写在子组件里面，父子间往里面插dom     
+<slot/> 元素可以用一个特殊的属性 name 来配置如何分发内容。 
+
+```
+<!-- 子组件 -->
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+```
+<!-- 父组件 -->
+<app-layout>
+  <h1 slot="header">这里可能是一个页面标题</h1>
+  <p>主要内容的一个段落。</p>
+  <p>另一个主要段落。</p>
+  <p slot="footer">这里有一些联系信息</p>
+</app-layout>
+```
+
+<https://cn.vuejs.org/v2/guide/components.html#作用域插槽>
 <https://cn.vuejs.org/v2/guide/components.html>
