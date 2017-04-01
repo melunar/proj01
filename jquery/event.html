@@ -29,32 +29,35 @@
             /*$("#btn01").one("click", function(){
                 alert( $(this).text() );
             });*/
-             $("#btn01").on("click",{name: "name"},function(e) {
+             /*$("#btn01").on("click",{name: "name"},function(e) {
 //                 e.preventDefault(); 通知浏览器不要执行与事件关联的默认动作（如果存在这样的动作）。例如，如果 type 属性是 "submit"，在事件传播的任意阶段可以调用任意的事件句柄，通过调用该方法
 //                 console.log(e.cancelable); true
                  alert(this + " " +e.data.name  );
                  //e.stopPropagation();
-             });
-            $("#btn01").mouseover(function(e) {
+             });*/
+            /*$("#btn01").mouseover(function(e) {
                 alert("over");
-            });
+            });*/
 
 
             /*$(".btn01").on("mouseenter mouseleave",function() {
                 $(this).toggleClass("enter");
             });*/
-            $("#btn01").on({
+            /*$("#btn01").on({
                 mouseover: function() {alert("over");},
                 mouseout:  function() {alert("out");}
-            });
+            });*/
             //off接受一个参数（不能有逗号隔开的多个事件），或者没有参数（解除所有事件）
 //            $("#btn01").off("click");
-            /*
+            
 
             $("#btn01p").on("click",function(e) {
-                alert(111);
+                alert("this.message=" + $(this).data("message"));
+                
+                alert("e.target.getAttribute('data-message')=" + e.target.getAttribute('data-message'));
+                alert("e.currentTarget.getAttribute('message')=" + e.currentTarget.getAttribute('data-message'));
                 e.stopPropagation();
-            });*/
+            });
 
             //trigger 和绑定多个回调函数参数
             $(".btn01").last().dblclick( function (event, a) {
@@ -105,7 +108,7 @@
         });
     </script>
 
-    <p id="btn01p"><button id="btn01">on</button></p>
+    <p id="btn01p" data-message="message-parent"><button id="btn01" data-message="message-sub">on1</button></p>
     <button class="btn01">on</button>
     <button class="btn01">双击</button>
 
@@ -118,7 +121,7 @@
     </div>
     <p class="toggleP" style="display: none">toggle:用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
         如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的。</p>
-
+    
     <p class="toggleP2" style="display: none">toggle:速度参数和多个回调函数不可以同时存在
         如果元素是可见的，切换为隐藏的；如果元素是隐藏的，切换为可见的。</p>
     <p class="toggleP2" style="display: none">toggle:用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
