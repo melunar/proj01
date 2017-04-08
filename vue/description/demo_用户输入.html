@@ -37,6 +37,13 @@
         <input v-model.lazy="msg1" >
         <input v-model.number="msg2" >
         <input v-model.trim="msg3" >
+        <br><br>
+        select
+        <br>
+        <select v-model="selected">
+          <option selected :value="'abc'">ABC</option>
+          <option :value="'china'">china</option>
+        </select>
     </div>
     </body>
     <script>
@@ -67,7 +74,8 @@
                 msg1: "msg1",
                 msg2: "msg2",
                 msg3: "msg3",
-                checkedNames: []
+                checkedNames: [],
+                selected: "1"
             }
         });
     </script>
