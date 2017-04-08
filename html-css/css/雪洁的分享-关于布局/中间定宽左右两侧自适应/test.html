@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中间定宽、左右两侧自适应</title>
+<style>
+* {
+    margin: 0;
+}
+.container {
+    font-size: 0;
+    height: 50px;
+}
+.left,
+.right {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    margin-left: -100px;
+    vertical-align: top;
+}
+.innerLeft,
+.innerRight {
+    height: 100%;
+    margin-left: 100px;
+}
+.center {
+    display: inline-block;
+    width: 200px;
+    height: 100%;
+    font-size: 14px;
+    vertical-align: top;
+}
+.center {
+    background: #F00;
+}
+.innerLeft {
+    background: #0F0;
+}
+.innerRight {
+    background: yellow;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="innerLeft">
+            </div>
+        </div>
+        <div class="center">
+            中间定宽100px
+        </div>
+        <div class="right">
+            <div class="innerRight">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

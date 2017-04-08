@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>左右两侧定宽、中间自适应</title>
+<style>
+* {
+    margin: 0;
+}
+.container {
+    position: relative;
+    height: 50px;
+}
+.center {
+    height: 100%;
+    margin-left: 200px;
+    margin-right: 120px;
+    background: #F00;
+}
+.left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: yellow;
+}
+.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 100%;
+    background: #0F0;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            左侧定宽200px
+        </div>
+        <div class="center">
+        </div>
+        <div class="right">
+            右侧定宽120px
+        </div>
+    </div>
+</body>
+</html>
