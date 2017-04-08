@@ -9,7 +9,7 @@ https://www.zhihu.com/question/46943112/answer/110548888
 
 检测控制台被打开了几次（新标签页）
 (function () {
-  var re = /x/;
+  var re = /x/;  //任意一个正则
   var i = 0;
   console.log(re);
 

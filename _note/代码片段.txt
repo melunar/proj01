@@ -42,13 +42,13 @@ define(["",""], function() {
 
 执行回调时判断一下：
 function fn1() {params, callback} {
-	//TODO 
-	if(typeof(callback)==="function") {
-		callback(res.data);
+	// TODO  ...
+	if(typeof callback === "function") {
+		callback(param);
 	}
 }
 
-deferred.resolve( args )
+deferred.resolve(args)
 参数：args
 类型: Object
 传递给完成回调函数（doneCallbacks）的可选的参数。
