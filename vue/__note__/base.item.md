@@ -50,6 +50,16 @@ computed: {
 }
 ```
 
+> 【watch】监听当前vue对象中的data或prop值的变化
+
+```
+watch: {
+    "dataName_1": function(val, oldVal) {
+        // TODO ...
+    }
+}
+```
+
 > :class的值可以是对象，可以是数组，最终都会装换为数组项。   
 `<div v-bind:class="[{ active: isActive }, errorClass]"></div>`  
 计算属性方式：`<div v-bind:class="classObject"></div>`

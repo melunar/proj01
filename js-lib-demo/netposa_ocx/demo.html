@@ -4,22 +4,22 @@
 	<meta charset="utf-8">
 	<title>OCX DEMO</title>
 	<style>
-		#UIOCX {
+		div, #UIOCX {
+			height: 100%;
+			width: 100%;
 		}
 	</style>
+<script src="../../js/jquery.min.js"></script>
 </head>
 <body>
 	<h1>OCX DEMO</h1>
-	<object id="UIOCX" class="UIOCX" type="applicatin/x-firebreath" width="600" height="400">
-		<param name="onload" value="pluginLoaded"/>
-	</object>
+	<div>
+		<object id="UIOCX" class="UIOCX" type="applicatin/x-firebreath" width="" height="700">
+			<param name="onload" value="pluginLoaded"/>
+		</object>
+	</div>
 </body>
 <script>
-	setTimeout(function() {
-		var ocx = document.getElementById("UIOCX");
-		debugger
-		console.log("111111",ocx)
-		ocx.setLayout(4);
-	},4000);
 </script>
+<script src="./js/ocx.js"></script>
 </html>
