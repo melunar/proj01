@@ -2,7 +2,7 @@
 * @Author: melunar
 * @Date:   2017-06-03 15:00:37
 * @Last Modified by:   melunar
-* @Last Modified time: 2017-06-03 15:07:27
+* @Last Modified time: 2017-06-03 15:11:45
 */
 
 var events = require("events");    
@@ -17,9 +17,8 @@ function UserBean() {
     }, 
     this.login = function(req,res) { 
         console.log("登录"); 
-        res.write("用户名:" + req['uname']); 
-        res.write("密码:" + req['pwd']); 
-        res.write("登录"); 
+        res.write(" 用户名:" + req['uname']); 
+        res.write(" 密码:" + req['pwd']); 
     }    
 }    
     
