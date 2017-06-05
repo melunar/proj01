@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+	<title>图层分组</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+</head>
+
+<body>
+	<div class="map-id" id="mapId"></div>
+	<link rel="stylesheet" href="/root/gis-manager/css/dialog.css">
+	<script type="text/javascript" src="/root/gis-manager/js/require.js"></script>
+	<script type="text/javascript" src="../../js/jquery.js"></script>
+	<script type="text/javascript" src="/root/gis-manager/js/all-demos.js"></script>
+	<script type="text/javascript" src="../../js/NpgisFactory.js"></script>
+	<script type="text/javascript" src="../../../../v1.0/Init.js"></script>
+	<script type="text/javascript" src="../../js/resource-code.js"></script>
+	<script src="../../js/dialog.js"></script>
+	<script type="text/javascript">
+	mapOpera.init();
+	var pvaLayer = new NPMapLib.Layers.OverlayLayer("pvaLayer");
+	map.addLayer(pvaLayer);
+	var g = pvaLayer.addGroup('测试');
+	var g1 = pvaLayer.addGroup('测试1');
+	g1.addOverlay(mapOpera.setPolygonLine());
+	//注册操作说明
+	registerDemoInstructions({
+		title: "图层组",
+		height: "220",
+		width: "250",
+		position: [650, 80],
+		modal: false,
+		content: "一个图层，两个图层组(g,g1)，g 中两个覆盖物(mark和矩形框)，g1中一个线覆盖物",
+		buttons: {
+			"添加": function() {
+				g.addOverlay(mapOpera.setIconMarker());
+				g.addOverlay(mapOpera.setRectangle());
+			},
+			"移除": function() {
+				g.removeAllOverlays();
+			},
+			"显示": function() {
+				g.show();
+			},
+			"隐藏": function() {
+				g.hide();
+			}
+		}
+	});
+	</script>
+</body>
+
+</html>

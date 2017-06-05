@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+	<title>QQ在线地图</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+</head>
+
+<body>
+	<div style="margin-left: 10px">
+		<select id='area' onchange='areaChange()'>
+			<option value='116.3902783047,43.590283060888'>北京</option>
+			<option value='121.47145506251,32.890972758154'>上海</option>
+			<option value='113.3141064297,23.74210801206'>广州</option>
+			<option value='108.96489378322,36.480750158957'>西安</option>
+			<option value='120.22588011133,31.799201086693'>杭州</option>
+			<option value='114.5789074551,41.233710364035'>石家庄</option>
+			<option value='118.22499510157,43.229788855247'>唐山</option>
+			<option value='116.89152952541,41.526221350364'>沧州</option>
+			<option value='115.71130853394,40.818935598497'>衡水</option>
+			<option value='114.90643736232,44.835166052513'>张家口</option>
+			<option value='115.52029844629,42.308310583762'>保定</option>
+			<option value='114.53839537012,39.991568640403'>邢台</option>
+			<option value='117.9558300625,44.997901037863'>承德</option>
+		</select>
+		<div class="map-id" id="mapId"></div>
+	</div>
+	<link rel="stylesheet" type="text/css" href="../../css/main.css" />
+	<script type="text/javascript" src="./v1.0/Init.js"></script>
+	<script type="text/javascript">
+	var mapContainer = document.getElementById("mapId");
+	map = new NPMapLib.Map(mapContainer, {
+		projection: "EPSG:900913",
+		displayProjection: "EPSG:4326",
+		minZoom: 4,
+		defaultZoom:10,
+		maxZoom: 18
+	});
+	var url = [
+		"http://rt0.map.gtimg.com/realtimerender?z=${z}&x=${x}&y=${y}&type=vector&style=0&v=1.1.2",
+		"http://rt1.map.gtimg.com/realtimerender?z=${z}&x=${x}&y=${y}&type=vector&style=0&v=1.1.2",
+		"http://rt2.map.gtimg.com/realtimerender?z=${z}&x=${x}&y=${y}&type=vector&style=0&v=1.1.2",
+		"http://rt3.map.gtimg.com/realtimerender?z=${z}&x=${x}&y=${y}&type=vector&style=0&v=1.1.2"
+	];
+	var opts = {
+		centerPoint: [116.37409535560337,39.73013855462747],
+		fullExtent: [-20037508.3427892, -20037508.3427892, 20037508.3427892, 20037508.3427892],
+		sateTiles: false,
+		isBaseLayer: true
+	};
+	var layerSLYX = new NPMapLib.Layers.QQMapLayer(url, "ditu", opts);
+	map.addLayers([layerSLYX]);
+	map.addControl(new NPMapLib.Controls.NavigationControl());
+	</script>
+	<script type="text/javascript">
+	function areaChange() {
+		var value = document.getElementById("area").value.split(',');
+		var point = new NPMapLib.Geometry.Point(parseFloat(value[0]), parseFloat(value[1]));
+		map.centerAndZoom(point, 10);
+	}
+	</script>
+</body>
+
+</html>

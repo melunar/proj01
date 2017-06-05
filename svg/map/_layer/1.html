@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+	<title>覆盖物图层</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+</head>
+
+<body>
+	<div class="map-id" id="mapId"></div>
+	<link rel="stylesheet" href="../../css/dialog.css">
+	<script type="text/javascript" src="../../../../v1.0/Init.js"></script>
+	<script type="text/javascript" src="../../js/jquery.js"></script>
+	<script type="text/javascript" src="../../js/allScript.js"></script>
+	<script type="text/javascript" src="../../js/resource-code.js"></script>
+	<script src="../../js/dialog.js"></script>
+	<script type="text/javascript" src="../../js/NpgisFactory.js"></script>
+	<script type="text/javascript">
+	var mapContainer = document.getElementById("mapId");
+	var map = new NPMapLib.Map(mapContainer, {
+		minZoom: 11,
+		maxZoom: 18,
+		projection: "EPSG:900913",
+		centerPoint: [12956481.521509, 4852703.140763]
+	});
+	var overlayLayer = null;
+	var url = 'http://cache1.arcgisonline.cn/ArcGIS/rest/services/ChinaCities_Community_BaseMap_CHN/BeiJing_Community_BaseMap_CHN/MapServer';
+	$.ajax({
+			url: url + "?f=pjson",
+			dataType: 'jsonp'
+		})
+		.done(function(layerInfo) {
+			var baseLayer = new NPMapLib.Layers.ArcgisTileLayer(url, 'Aerials', {
+				layerInfo: layerInfo
+			});
+			map.addLayers([baseLayer]);
+			map.addControl(new NPMapLib.Controls.NavigationControl());
+			//图像标记的地理坐标
+			var pt = map.getCenter();
+			//点坐标
+			var points = [];
+			var distance = new NPMapLib.GisToolKit().getDistanceByProjection(10000, map);
+			var circlePt = new NPMapLib.Geometry.Point(pt.lon -  distance, pt.lat - distance);
+			points.push(new NPMapLib.Geometry.Point(pt.lon - distance, pt.lat));
+			points.push(pt);
+			points.push(new NPMapLib.Geometry.Point(pt.lon + distance, pt.lat));
+			points.push(new NPMapLib.Geometry.Point(pt.lon, pt.lat + distance));
+			points.push(new NPMapLib.Geometry.Point(pt.lon - 2 * distance, pt.lat + distance));
+			points.push(new NPMapLib.Geometry.Point(pt.lon - distance, pt.lat));
+			//图片大小
+			var size = new NPMapLib.Geometry.Size(32, 32);
+
+			//图片
+			var icon = new NPMapLib.Symbols.Icon("../../images/Flag.png", size);
+			//设置偏移量，这里取坐标点为图片中心点
+			icon.setAnchor(new NPMapLib.Geometry.Size(-size.width / 2, -size.height / 2));
+
+			//文本标记
+			var label = new NPMapLib.Symbols.Label("图像标记A");
+			//设置样式
+			label.setStyle({
+				fontSize: 12, //文字大小
+				fontFamily: '宋体', //字体
+				color: 'red', //文字前景色
+				align: 'center', //对方方式
+				isBold: true //是否粗体
+			});
+			//设置偏移量
+			label.setOffset(new NPMapLib.Geometry.Size(0, size.height / 2));
+			//图像标记A
+			var marker = new NPMapLib.Symbols.Marker(pt);
+			marker.setIcon(icon);
+			marker.setLabel(label);
+			//圆形标注
+			var circle = new NPMapLib.Geometry.Circle(circlePt,
+				5000, {
+					color: "blue", //颜色
+					fillColor: "yellow", //填充颜色
+					weight: 2, //宽度，以像素为单位
+					opacity: 1, //透明度，取值范围0 - 1
+					fillOpacity: 0.3 //填充的透明度，取值范围0 - 1
+				}
+			);
+			//多边形标注
+			var polygon = new NPMapLib.Geometry.Polygon(points, {
+				color: "blue", //颜色
+				fillColor: "green", //填充颜色
+				weight: 2, //宽度，以像素为单位
+				opacity: 1, //透明度，取值范围0 - 1
+				fillOpacity: 0.3 //填充的透明度，取值范围0 - 1
+			});
+			//覆盖物图层
+			overlayLayer = new NPMapLib.Layers.OverlayLayer("图层1", false);
+			map.addLayer(overlayLayer);
+			//向图层中添加覆盖物
+			overlayLayer.addOverlay(marker);
+			overlayLayer.addOverlay(circle);
+			overlayLayer.addOverlay(polygon);
+			overlayLayer.show();
+		})
+	</script>
+	<script type="text/javascript">
+	$(function() {
+		//注册操作说明
+		registerDemoInstructions({
+			title: "自定义图层",
+			height: "160",
+			width: "270",
+			position: [650, 80], //["right",80],
+			modal: false,
+			content: "向自定义图层中添加覆盖物，以便对覆盖物进行统一管理和操作。<br/>",
+			buttons: {
+				"显示": function() {
+					overlayLayer.show();
+				},
+				"隐藏": function() {
+					overlayLayer.hide();
+				}
+			}
+		});
+	});
+	</script>
+</body>
+
+</html>
