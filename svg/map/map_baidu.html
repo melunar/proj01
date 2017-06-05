@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <title>百度在线地图</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+</head>
+
+<body>
+    <div class="map-id" id="mapId"></div>
+    <script type="text/javascript" src="./v1.0/Init.js"></script>
+    <script type="text/javascript">
+    var mapContainer = document.getElementById("mapId");
+    map = new NPMapLib.Map(mapContainer, {
+        minZoom: 5,
+        maxZoom: 19,
+        centerPoint: [11960549.285411, 4095912.7650574],
+        projection:'EPSG:900913'
+    });
+
+    var url = ["http://online1.map.bdimg.com/tile/?qt=tile&x=${x}&y=${y}&z=${z}&styles=pl&udt=20150605&scaler=1", "http://online2.map.bdimg.com/tile/?qt=tile&x=${x}&y=${y}&z=${z}&styles=pl&udt=20150605&scaler=1", "http://online3.map.bdimg.com/tile/?qt=tile&x=${x}&y=${y}&z=${z}&styles=pl&udt=20150605&scaler=1"];
+    var layerSLYX = new NPMapLib.Layers.BaiduTileLayer(url, "ditu");
+    map.addLayer(layerSLYX);
+    map.addControl(new NPMapLib.Controls.NavigationControl());
+    </script>
+</body>
+
+</html>
