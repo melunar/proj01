@@ -2,8 +2,8 @@
 * mx v0.0.1_snap
 * @Author: melunar
 * @Date:   2017-06-17 20:00:55
-* @Last Modified by:   melunar
-* @Last Modified time: 2017-06-18 01:19:45
+* @Last Modified by:   haoy
+* @Last Modified time: 2017-06-21 13:50:22
 * @Description: Some tools function, include global function and prototype extend.
 *
 * (c) 2017 melunar <haoyong94520@outlook.com>
@@ -41,7 +41,26 @@
 	 * 日期格式化
 	 * Data.formate(formateType)
 	 */
-	// TODO
+	Date.prototype.format = function(format) {
+		var o = {
+			"M+": this.getMonth() + 1, //month
+			"d+": this.getDate(), //day
+			"h+": this.getHours(), //hour
+			"m+": this.getMinutes(), //minute
+			"s+": this.getSeconds(), //second
+			"q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+			"S": this.getMilliseconds() //millisecond
+		};
+		if (/(y+)/.test(format)) {
+			format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		}
+		for (var k in o) {
+			if (new RegExp("(" + k + ")").test(format)) {
+				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+			}
+		}
+		return format;
+	};
 
 	var MX = {
 		Version: "0.0.1_snap",
