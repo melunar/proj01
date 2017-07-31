@@ -1,238 +1,167 @@
 <!DOCTYPE html>
 <html lang="cn">
 <head>
-	<title>图表</title>
-	<script type="text/javascript" src="../../js/echarts.js"></script>
-	<style type="text/css">
-		#demo01 {
-			width: 400px;
-			height: 400px;
-		}
-	</style>
+	<title>ECharts 入门示例</title>
+	<!--<script type="text/javascript" src="https://melunar.github.io/_libs/front-end/echarts/echarts@3.6.2.js"></script>-->
+	<script type="text/javascript" src="../../js/echarts/echarts@3.6.2.js"></script>
 </head>
 <body>
-	<div id="demo01"></div>
-</body>
+<h3>
+    <a href="javascript:(0)" onclick="render0()">入门示例</a>
+    <a href="javascript:(0)" onclick="render1()">南丁格尔图</a>
+    <a href="javascript:(0)" onclick="render2()">异步加载</a>
+    <a href="javascript:(0)" onclick="render3()">交互组件-dataZoom</a>
+    <a href="javascript:(0)" onclick="render4()">事件和行为</a>
+</h3>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
 <script type="text/javascript">
-	var myChart = echarts.init(document.getElementById("demo01"));
-    //设置数据
-   
-    var option = {
-      //设置标题
-      title:{
-          show: true,
-          text: '标题 \ntitle.text',
-          link: "http://echarts.baidu.com/option.html#title.text",
-          target: "blank",// 或者 'self'
-          textStyle: {
-              color: "#270",
-              fontStyle: "oblique",
-              fontWeight: "bold",
-              fontFamily: "sans-serif",
-              fontSize: 18 //number
-          },
-          textAlign: "left",//left right
-          textBaseline: "top",// 'top', 'middle', 'bottom'
-          subtext: '二级标题 title.subtext',//二级标题具有一级标题类似属性 如sublink
-          padding: [0, 10]
-          //....
-      },
-      //设置提示 鼠标滑过的吐司提示
-      tooltip: {
-        show: true
-      },
-      //设置图例
-      legend: {
-          show: true,
-          left: 300,
-          orient: 'vertical',//'horizontal'
-          itemWidth: 45,
-          selectedMode: true,
-          //formatter: 'Legend {name}',
-        data:[{
-            name: '柱状图',
-            // 强制设置图形为圆。
-            icon: 'circle',
-            // 设置文本为红色
-            textStyle: {
-                color: 'red'
-            }
-        },"折线图","饼图"] //暂时只能设置一个图例 不然不统一
-      },
-        //坐标系内的网格
-        grid: {
-          show: true
-        },
-      //设置坐标轴
-      xAxis : [
-        {
-            name: "X轴",
-          type : 'category',
-          data : ["xAxis.data1","xAxis.data2","xAxis.category-in","裤子","高跟鞋","袜子",{
-              value: "帽子",
-              textStyle: {
-                  color: 'red'
-              }
-          },"围巾"]
-        }
-      ],
-      yAxis : [
-        {
-          type : 'value'
-        }
-      ],
-      //设置数据
-      series : [
-        //条形图
-        {
-          "name":"柱状图",
-          "type":"bar",//条形图
-          "data":[5, 20, 38, 10, 24, 20,24,32]
-        },
-        //折线图
-         {
-              "name":"折线图",
-              "type":"line",//折线图
-              step: true,
-              "data":[5, 20, 38, 10, 24, 20,24,32],
-              //绘制平均线
-              markLine : {
-                  data : [{type : 'max', name: '最大值'},
-                      {type : 'average', name: '平均值'}
-                  ]
-              },
-              //绘制最高最低点
-              markPoint : {
-                  symbol: "arrow",
-                  symbolSize: 20,
-                  data : [
-                      {type : 'max', name: '最大值'},
-                      {type : 'min', name: '最小值'}
-                  ]
-              }
-          },
-          {
-              "name":"饼图",
-              "type":"pie",//
-              roseType: true,
-              center: ['10%', '50%'],
-              "data":[5, 20, 38, 10, 24, 20,24,32]
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
 
-          }
-      ]
+    // 指定图表的配置项和数据
+    var option0 = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量','收益']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        },{
+            name: '收益',
+            type: 'bar',
+            data: [50, 200, 306, 100, 100, 200]
+        }],
+        visualMap: {
+            type: 'continuous',
+            min: 0,
+            max: 200,
+            text:['High','Low'],
+            realtime: false,
+            calculable : true,
+            color: ['orangered','yellow','lightskyblue']
+        }
     };
     var option1 = {
-        //时间轴设置
-        timeline : {
-            //时间轴时间列表
-            data:[
-                '2002-01-01','2003-01-01','2004-01-01','2005-01-01','2006-01-01'
-            ],
-            //自定义处理，只显示年份
-            label:{
-                formatter : function(s) {
-                    return s.slice(0, 4);
-                }
-            },
-            //时间轴的位置设定
-            height:80,
-            x:50,
-            padding:[40,10,10,10],
-            //时间轴播放控制
-            autoPlay : true,
-            playInterval : 2000
-        },
-        //时间点设置
-        options : [
-            //第一个时间点
-            //2002年数据表
+        title: { text: '南丁格尔图' },
+        legend: { data: ['视频广告','联盟广告','邮件营销','直接访问','搜索引擎','访问来源'] },
+        series : [
             {
-                title:{
-                    text:'2002年货物销量图',
-                    subtext:'纯属捏造，如有雷同，人品爆发。'
-                },
-                //设置提示
-                tooltip: {
-                    show: true
-                },
-                //设置图例
-                legend: {
-                    data:['销量']
-                },
-                //设置坐标轴
-                xAxis : [
-                    {
-                        type : 'category',
-                        data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","帽子","围巾"],
-                        axisLabel:{
-                            margin:-20,
-                            textStyle:{
-                                color:'#999',
-                                fontWeight:'bold'
-                            }
-                        }
-                    }
-                ],
-                yAxis : [
-                    {
-                        type : 'value'
-                    }
-                ],
-                series : [
-                    {
-                        type:'line',
-                        data:[5, 20, 38, 10, 24, 20,24,32],
-                        //绘制平均线
-                        markLine : {
-                            data : [
-                                {type : 'average', name: '平均值'}
-                            ]
-                        },
-                        //绘制最高最低点
-                        markPoint : {
-                            data : [
-                                {type : 'max', name: '最大值'},
-                                {type : 'min', name: '最小值'}
-                            ]
-                        }
-                    }
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data:[
+                    {value:235, name:'视频广告'},
+                    {value:274, name:'联盟广告'},
+                    {value:310, name:'邮件营销'},
+                    {value:335, name:'直接访问'},
+                    {value:400, name:'搜索引擎'}
                 ]
-            },
-            //第二个时间点
-            //2003年数据表，新增内容
-            {
-                title:{
-                    text:'2003年货物销量图',
-                    subtext:'纯属捏造，如有雷同，人品爆发。'
-                },
-                series : [
-                    {
-                        type:'line',
-                        data:[10, 20, 36, 18, 26, 16,20,34],
-                        //绘制平均线
-                        markLine : {
-                            data : [
-                                {type : 'average', name: '平均值'}
-                            ]
-                        },
-                        //绘制最高最低点
-                        markPoint : {
-                            data : [
-                                {type : 'max', name: '最大值'},
-                                {type : 'min', name: '最小值'}
-                            ]
-                        }
-                    }
-                ]
-            },
-            //第三个时间点
-            {}
-            //...
+            }
         ]
     };
-
-    // 为echarts对象加载数据 
-    myChart.setOption(option);
-  
+    var options2_0 = {
+        title: {
+            text: '异步数据加载示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: []
+        }]
+    };
+    var options2_1 = {
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        series: [{
+            // 根据名字对应到相应的系列
+            name: '销量',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+    var options3 = {
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'value'
+        },
+        dataZoom: [
+            {   // 这个dataZoom组件，默认控制x轴。
+                type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                start: 10,      // 左边在 10% 的位置。
+                end: 60         // 右边在 60% 的位置。
+            }
+        ],
+        series: [
+            {
+                type: 'scatter', // 这是个『散点图』
+                itemStyle: {
+                    normal: {
+                        opacity: 0.8
+                    }
+                },
+                symbolSize: function (val) { //滑动的回调
+                    //console.log(val)
+                    return val[2] * 40;
+                },
+                data: [["14.616","7.241","0.896"],["3.958","5.701","0.955"],["2.768","8.971","0.669"],["9.051","9.710","0.171"],["14.046","4.182","0.536"],["12.295","1.429","0.962"],["4.417","8.167","0.113"],["0.492","4.771","0.785"],["7.632","2.605","0.645"],["14.242","5.042","0.368"]]
+            }
+        ]
+    };
+    function renderFix() {
+        //if(myChart) delete myChart;
+        //myChart = echarts.init(document.getElementById('main'));
+        myChart.setOption({series: []});
+    }
+    function render0() {
+        renderFix();
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option0);
+    }
+    function render1() {
+        renderFix();
+        myChart.setOption(option1);
+    }
+    function render2() {
+        renderFix();
+        new Promise(function(res,rej) {
+            myChart.setOption(options2_0);
+            setTimeout(function() {
+                res();
+               if(false) { rej(); }
+            }, 3000)
+        }).then(function() {
+            myChart.setOption(options2_1);
+        });
+    }
+    function render3() {
+        renderFix();
+        myChart.setOption(options3);
+    }
+    function render4() {
+        myChart.on('click', function (params) {
+            console.warn(params);
+        });
+    }
 </script>
+</body>
 </html>
