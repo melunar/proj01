@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+		<head>
+				<meta charset="utf-8">
+		</head>
+		<body>
+		<canvas id="__LineCanvas" width=1000 height=1000></canvas>
+		<script>
+		var _mapClickX = 1.5,
+					_mapClickY = 1,
+					// point1 = [485, 157],
+					point1 = [285.5, 357],
+					point2 = [460.5, 157];
+			var ctx = document.getElementById("__LineCanvas").getContext('2d');
+			ctx.linewidth = 1;
+			ctx.strokeStyle = "rgba(51,51,51,0.1)";
+			function drawRowLine(startX, startY, endX, endY, callback) {
+				var flag = 0, lineTime = 250, interval = 5,
+						times = lineTime / interval / 2;
+				var xUnit = (endX - startX)/times;
+				var yUnit = (endY - startY)/times;
+				//debugger
+				function rowLine() {
+					if(flag < times) {
+						ctx.moveTo(startX, startY);
+						var endPoint = [startX+=xUnit, startY+=yUnit];
+						ctx.lineTo(endPoint[0], endPoint[1]);
+						console.log(endPoint)
+						flag++;
+						ctx.stroke();
+					} else {
+						//callback && callback(point1[0], point1[1], point2[0], point2[1]);
+					}
+				}
+				setInterval(rowLine, interval);
+			}
+			drawRowLine(_mapClickX, _mapClickY, point1[0], point1[1]);
+			setTimeout(function() {
+				drawRowLine(point1[0], point1[1], point2[0], point2[1]);
+			},250)
+		/*var ctx = document.getElementById('canvas').getContext('2d');
+		ctx.lineWidth = 1;
+    	ctx.strokeStyle = "#333";
+		function drawRowLine(startX, startY, endX, endY, callback) {   
+			var flag = 0, lineTime = 250, interval = 5, 
+			times = lineTime / interval / 2;  
+			var xUnit = (endX - startX)/times;
+			var yUnit = (endY - startY)/times;
+			//debugger
+			function rowLine() {
+				if(flag < times) {
+					ctx.moveTo(startX, startY);  
+					ctx.lineTo(startX+=xUnit, startY+=yUnit);  
+					flag++;  
+					ctx.stroke();  
+				} else {
+					debugger
+					callback && callback(200, 300, 400, 100);
+				}
+			}  
+			setInterval(rowLine, interval);  
+		}  
+		drawRowLine(0, 0, 200, 300, drawRowLine);*/
+		</script>
+		</body>
+</html>
