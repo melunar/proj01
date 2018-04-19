@@ -1,8 +1,8 @@
 /* 
 * @Author: haoy
 * @Date:   2017-07-18 18:56:48
-* @Last Modified by:   haoy
-* @Last Modified time: 2017-07-18 19:56:00
+* @Last Modified by:   melunar
+* @Last Modified time: 2018-04-20 01:08:25
 */
 
 /** 
@@ -123,3 +123,25 @@ proErr.catch(function(err) {
  * 
  * Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected。
  */
+
+/**
+ * promiss 对象是可以缓存 随时多次调用then等方法
+ * Promise.resolve(1).then(function(res){console.log(res);return res;}).then(function(res){console.log(res)}) // 1,1 
+//promise 每次调用 .then 或者 .catch 都会返回一个新的 promise
+ */
+console.log(1);// 0/
+new Promise(function (resolve, reject){
+    resolve(true); //3.
+    console.log(99) //1.先执行
+    window.setTimeout(function (){
+        console.log(100) // 由于延迟 最后执行
+        reject(false); //执行了一个状态 这里不会触发
+    }, 0);
+}).then(function(){
+    console.log(2);//3.
+}, function(){
+    console.log(3);//-1
+});
+console.log(4);//2
+
+//1-99-4-2-100
